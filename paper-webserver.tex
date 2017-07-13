@@ -66,6 +66,15 @@ Text. Text.
 
 
 \section{Introduction}
+Broad --> narrow
+-Bacterial infections are a cause of human disease -> associated costs
+-Surveillance is used to monitor known pathogens and detect emerging threats, to lower burden of human illness
+-Until recently, surveillance involved traditional reference laboratory techniques (and still does) --> examples of both old and new (WGS), what they measure, how they are used
+-WGS methods have great potential, but some drawbacks (list with references)
+-Some of the drawbacks can be solved by providing pre-computed analyses for routine tasks
+-We have previously created SuperPhy, which helps solve some of the issues
+-Some issues still remain
+-In this study, we have addressed these issues by ... which will provide these benefits
 
 The surveillance of bacterial pathogens is a routine function of public-health agencies.
 In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and others pathogens \cite{ronholm2016navigating}, culture-dependent subtyping techniques are becoming displaced by culture-independent methods based on whole-genome sequencing (WGS).
@@ -81,6 +90,8 @@ Here we present Spfy, a complete rewrite of Superphy integrating our Panseq pack
 Furthermore, Spfy takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel.
 All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
+
+\section{MATERIALS AND METHODS}
 We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
 The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
