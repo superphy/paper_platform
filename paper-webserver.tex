@@ -82,14 +82,14 @@ Furthermore, Spfy takes a modular approach to tool integration and distributes a
 All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
 We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
-The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, as a single-page application to allow efficient data-flow without reloading the website.
+The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
 
 Spfy enables processing of thousands of genome sequences using multiple modules.
 By using task queue workers, enabled by the Python-based Redis Queue library \url{https://github.com/nvie/rq}, performance can quickly scale to available infrastructure.
 As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
 Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
-We present Spfy as an integrated predictive genomics toolkit for \textit{E. coli} which leverages advances in web application development and deployment.
+We present Spfy as an integrated predictive genomics toolkit for pathogens / \textit{E. coli} which leverages advances in web application development and deployment.
 
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
