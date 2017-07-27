@@ -77,47 +77,46 @@ Broad --> narrow
 -In this study, we have addressed these issues by ... which will provide these benefits
 
 % costs of bacterial infections
-As food-sourcing is globalized, the consumer risk for bacterial infections is more complicated to track than ever before \cite{kozak2013foodborne}.
-\textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common bacetrial infections originating from produce and is a central concern amongst public health efforts \cite{kozak2013foodborne}.
+Consumers' risks for bacterial infections is more difficult to track due to the global sourcing of food \cite{kozak2013foodborne}.
+Public health efforts monitor bacterial infections, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}.
 Foodborne illnesses translate into actual costs: in Canada alone, an estimated 4000 hospitalizations and 105 deaths per year are thought to be the result of various pathogens \cite{thomas2015estimates}.
 Futhermore, the associated economic costs have been known for decades \cite{todd1989costs}.
-
 % surveillance
-The surveillance of bacterial pathogens is a routine function of public-health agencies in an effort to lower the burden caused by human illness.
-In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and others pathogens \cite{ronholm2016navigating}, culture-dependent subtyping techniques are lately coupled with culture-independent methods based on whole-genome sequencing (WGS), to monitor known pathogens and detect emerging threats.
+Public-health agencies routinely look for emerging threats, attempting to lower the burden caused by human illness.
+In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and others pathogens \cite{ronholm2016navigating}, culture-dependent subtyping techniques are now coupled with culture-independent methods based on whole-genome sequencing (WGS).
 
 % traditional reference lab techniques
-Subtyping encompasses various methods to designate particular strains of bacterial isolates.
-In order to monitor outbreaks, platforms must rapidly subtype collected strains and communicate such information to other agencies \cite{ronholm2016navigating}. 
+Subtyping encompasses methods designating particular strains of bacterial isolates.
+To monitor outbreaks, platforms must rapidly subtype collected strains and be shareable with other agencies \cite{ronholm2016navigating}. 
 Traditional reference laboratory techniques handled subtyping through methods such as serotyping, detecting the presence of specific cell surface antigens as tested by antibody reaction, pulsed-field gel electrophoresis (PFGE), to identify band patterns, known virulence factors (VFs), or antimicrobial resistance genes (AMR genes), or Sanger sequencing, to determine multi-locus sequence types (MLSTs) \cite{ronholm2016navigating}.
 Using PFGE, outbreaks can be tracked by comparing band patterns of bacterial isolates, as routinely performed in public health agencies \cite{kozak2013foodborne}. 
-The original computational methods to leverage WGS focused on creating \textit{in-silico} approaches to return subtyping results matching those of wet-lab techniques.
-Software such as VirulenceFinder \cite{joensen2014real} compares a pre-collected set of reference sequences encompassing known VF gene sequences against a WGS result.
-Similar approaches have been applied to predict AMR genes \cite{mcarthur2013comprehensive}, O-type, and H-type \cite{whiteside2016superphy}. 
+The original computational methods leveraging WGS focused on returning subtyping results matching those of wet-lab techniques.
+Software such as VirulenceFinder \cite{joensen2014real} compares a pre-collected set of reference VF gene sequences against a WGS result.
+Similar approaches are applied to predict AMR genes \cite{mcarthur2013comprehensive}, O-type, and H-type \cite{whiteside2016superphy}. 
 
 % potential of WGS
-WGS has the potential to expand on traditional methods: due to the inclusion of the entire genome, WGS-based methods offer better resolution and context in evaluating the spread of outbreaks \cite{ronholm2016navigating}.
-In the case for laboratory-based MLST, instead of examining selected single-nucleotide polymorphisms (SNPs) in a subset of housekeeping genes, newer WGS-based methods such as core genome MLST (cgMLST) attempt to cover every common gene.
-Secondary analyses, the study of relations and historical relevance of genomes, are now possible as a result of the large datasets provided by WGS \cite{ronholm2016navigating}.
-Advances in WGS technologies have also enabled the monitoring and sharing of outbreak genomes in real-time \cite{ronholm2016navigating}.
+WGS expands on traditional methods: due to the inclusion of the entire genome, WGS-based methods offer better resolution and context for evaluating the spread of outbreaks \cite{ronholm2016navigating}.
+In the case of laboratory-based MLST, instead of examining selected single-nucleotide polymorphisms (SNPs) in a subset of housekeeping genes, newer WGS-based methods, such as core genome MLST (cgMLST), attempt to cover every common gene.
+Secondary analyses, the study of relations and historical relevance of genomes, are possible as a result of the large datasets provided by WGS \cite{ronholm2016navigating}.
+Advances in WGS technologies have also enabled the real-time monitoring and sharing of outbreak genomes \cite{ronholm2016navigating}.
 
 % Drawbacks - genetics
 However, these WGS-based methods still examine the underlying genetics, not the expressed phenotype; the presence of a particular gene sequence does not necessitate expression.
-Correspondingly, a greater number of target sequences are identified using WGS approaches which complicates risk assessments \cite{ronholm2016navigating}, and laboratory based phenotypic tests remain relatively inexpensive \cite{koser2012routine}.
-The effectiveness of WGS-based methods is also reliant on the accuracy and breadth of reference datasets.
+Correspondingly, a greater number of target sequences are identified using WGS approaches which complicates risk assessments \cite{ronholm2016navigating}, and laboratory based phenotypic tests remain inexpensive \cite{koser2012routine}.
+The effectiveness of WGS-based methods also rely on the accuracy and breadth of reference datasets.
 
 % drawbacks - big data
-Traditionaly, bioinformatics software was developed \textit{ad hoc}, without employing software engineering principles \cite{de2015trends}.
-Such designs were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
-As WGS-technology expanded the availability of data, systems engineering principles became important as code failure could quickly disrupt entire bioinformatics pipelines \cite{schatz2015biological}.
-The field also lags behind other big data industries: bioinformatics software typically struggles to perform computations in real-time, stores data in inflexible databases, doesn't support live visualizations \cite{de2015trends}, and lacks a common application programming interface (API) linking resources \cite{swaminathan2016review}.
+Traditionaly, bioinformatics software was developed \textit{ad hoc} without employing software engineering principles \cite{de2015trends}.
+Tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
+As WGS-technology expanded the availability of data, systems engineering principles became important since code failure could quickly disrupt entire bioinformatics pipelines \cite{schatz2015biological}.
+The field also lags behind other big data industries: bioinformatics software still struggles to perform computations in real-time, stores data in inflexible databases, doesn't support live visualizations \cite{de2015trends}, and lacks a common application programming interface (API) linking resources \cite{swaminathan2016review}.
 
 % Solution via pre-computed analyses for routine tasks
 Efforts such as the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive} attempt to alleviate data concerns by curating a set of known AMR genes.
 In addition, agencies such as the Food and Drug Administration (FDA), which hosts GenomeTrakr \cite{allard2016practical}, the National Center for Biotechnology Information (NCBI), which hosts GenBank \cite{doi:10.1093/nar/gks1195}, and the Center for Disease Control and Prevention (CDC), which hosts PulseNet \cite{swaminathan2001pulsenet}, provide services to share genome sequences and associated metadata either openly or amongst member institutions.
-Recent efforts have been focused on providing modern tools for quality control of reference genomes \cite{parks2015checkm}, particularly amongst human-genome projects \cite{lee2017ngscheckmate}.
-Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, and chewBBACA \url{https://github.com/mickaelsilva/chewBBACA} are available to compute core and accessory regions and identify SNPs across a large collection of reference genomes.
-Taken together, open-access initiatives and shared tooling aim to alleviate the drawbacks of WGS-based methods by pre-computing sufficient reference data.
+Recent efforts have focused on providing modern tools for quality control of reference genomes \cite{parks2015checkm}, particularly amongst human-genome projects \cite{lee2017ngscheckmate}.
+Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, and chewBBACA \url{https://github.com/mickaelsilva/chewBBACA} are freely available to compute core and accessory regions and identify SNPs across a large collection of reference genomes.
+Taken together, open-access initiatives and shared tooling are lessening the drawbacks of WGS-based methods, by pre-computing sufficient reference data.
 
 % solution via modern big data approaches
 For genotypic, WGS-based approaches to truly compliment laboratory-based phenotypic tests, analyses software must be faster or there must be a reasonable link between target genes and the expressed phenotype \cite{koser2012routine}.
@@ -127,15 +126,15 @@ Storing results in a tiered structure, with rapid access available for retrieval
 % why Superphy
 Subtyping and reference data generation often require command-line or programming experience.
 To make such \textit{in-silico} techniques user-friendly for front-line clinicians and laboratories, a variety of web services have been developed in Denmark \cite{joensen2014real}, Taiwan \cite{liu2016construction}, and in collaborations \cite{hasman2015detection}.
-While useful, arguably \cite{fricke2014bacterial}, the lack of bioinformatic standards and common infrastructure technologies have made it difficult to fully leverage the big-data results from WGS. 
+While useful, arguably \cite{fricke2014bacterial}, the lack of bioinformatic standards and common infrastructure technologies make it difficult to fully leverage the big-data results from WGS. 
 
 % Superphy
-Previously we developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli}, which determines Shiga toxin subtypes, AMR genes using CARD, and provides statistical significance tests between subgroups in associated metadata and pan-genome regions.
+Previously we developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli} which determines Shiga toxin subtypes, AMR genes using CARD, and provides statistical significance tests between subgroups in associated metadata and pan-genome regions.
 However, we struggled to provide real-time computing of results and to accomdate an ever-growing reference database.
 Furthermore, due to the nature of the various dependencies involved, the platform was difficult for other researchers to independently replicate.
 
 % this study
-Here we present Spfy, a complete rewrite of Superphy which expands on supported features to also provide long-term storage of results in a graph database - one of the emerging \cite{de2015trends} database types being used for biological data.
+Here we present Spfy, a complete rewrite of Superphy expanding on supported features to also provide long-term storage of results in a graph database - one of the emerging \cite{de2015trends} database types being used for biological data.
 We also containerize services using Docker, a modern approach found in many web servers and proposed to mitigate the complexities of bioinformatic pipelines \cite{di2015impact}.
 Docker integration ensures that nested dependency resolution, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
 Furthermore, Spfy takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel and address code failures.
