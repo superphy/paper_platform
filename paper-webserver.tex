@@ -105,8 +105,9 @@ Entire datasets and results can also be shared in real-time \cite{ronholm2016nav
 
 % Drawbacks - genetics
 However, these WGS-based methods only examine the underlying genetics, not the expressed phenotype; the presence of a particular gene sequence does not necessitate expression.
-Correspondingly, a greater number of target sequences are identified using WGS approaches which complicates risk assessments \cite{ronholm2016navigating}, and laboratory based phenotypic tests remain inexpensive \cite{koser2012routine}.
+Correspondingly, more target sequences are identified using WGS; if we take a tradition approach to making threat assessments by looking for known VFs or AMR genes, the large number of results make it difficult to guage risk \cite{ronholm2016navigating}.
 The effectiveness of WGS-based methods also rely on the accuracy and breadth of reference datasets.
+Agencies must also weigh the cost of developing people and knowledge in bioinformatic approaches, and laboratory based phenotypic tests remain inexpensive \cite{koser2012routine}.
 
 % drawbacks - big data
 Traditionaly, bioinformatics software was developed \textit{ad hoc} without employing software engineering principles \cite{de2015trends}.
@@ -114,16 +115,17 @@ Tools were often script-based, with custom data formats, and only suitable for s
 As WGS-technology expanded the availability of data, systems engineering principles became important since code failure could quickly disrupt entire bioinformatics pipelines \cite{schatz2015biological}.
 The field also lags behind other big data industries: bioinformatics software still struggles to perform computations in real-time, stores data in inflexible databases, doesn't support live visualizations \cite{de2015trends}, and lacks a common application programming interface (API) linking resources \cite{swaminathan2016review}.
 
-% Solution via pre-computed analyses for routine tasks
+% Solution via software engineering
 Efforts such as the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive} attempt to alleviate data concerns by curating a set of known AMR genes.
 In addition, agencies such as the Food and Drug Administration (FDA), which hosts GenomeTrakr \cite{allard2016practical}, the National Center for Biotechnology Information (NCBI), which hosts GenBank \cite{doi:10.1093/nar/gks1195}, and the Center for Disease Control and Prevention (CDC), which hosts PulseNet \cite{swaminathan2001pulsenet}, provide services to share genome sequences and associated metadata either openly or amongst member institutions.
 Recent efforts have focused on providing modern tools for quality control of reference genomes \cite{parks2015checkm}, particularly amongst human-genome projects \cite{lee2017ngscheckmate}.
-Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, and chewBBACA \url{https://github.com/mickaelsilva/chewBBACA} are freely available to compute core and accessory regions and identify SNPs across a large collection of reference genomes.
-Taken together, open-access initiatives and shared tooling are lessening the drawbacks of WGS-based methods, by pre-computing sufficient reference data.
 
-% solution via modern big data approaches
-For genotypic, WGS-based approaches to truly compliment laboratory-based phenotypic tests, analyses software must be faster or there must be a reasonable link between target genes and the expressed phenotype \cite{koser2012routine}.
-Antimicrobial resistance testing, which is a major component of public health monitoring efforts, typically takes 18-24 hours in a reference laboratory \cite{koser2012routine} and thus WGS solutions should perform faster.
+% rewrite of bigdata approach (BIGGER bigdata)
+While efforts such as CARD as important for replicating traditional results and for historical context, WGS can also be used to develop new methods using the larger datasets available.
+To study entire genomes, we need methods of creating reference data encompassing all genes, both core and accessory, in a given phlogeny.
+Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} are freely available to compute these pan-genomic regions.
+These software approaches must be scalable to significantly larger datasets than those found in wet-lab approaches.
+Also, for uptake by front-line clinicians and laboratories, WGS solutions should perform faster; for example, AMR genes should be determined faster than the typical 18-24 hours required in a reference laboratory \cite{koser2012routine}.
 Storing results in a tiered structure, with rapid access available for retrieval and visualization while maintaining long-term data storage \cite{schatz2015biological}, would enable developers to address the current limitations \cite{de2015trends} of bioinformatics software.
 
 % why Superphy
