@@ -129,9 +129,9 @@ Also, for uptake by front-line clinicians and laboratories, WGS solutions should
 Storing results in a tiered structure, with rapid access available for retrieval and visualization while maintaining long-term data storage \cite{schatz2015biological}, would enable developers to address the current limitations \cite{de2015trends} of bioinformatics software.
 
 % why Superphy
-Subtyping and reference data generation often require command-line or programming experience.
-To make such \textit{in-silico} techniques user-friendly for front-line clinicians and laboratories, a variety of web services have been developed in Denmark \cite{joensen2014real}, Taiwan \cite{liu2016construction}, and in collaborations \cite{hasman2015detection}.
-While useful, arguably \cite{fricke2014bacterial}, the lack of bioinformatic standards and common infrastructure technologies make it difficult to fully leverage the big-data results from WGS. 
+To make bioinformatic approaches user-friendly for front-line clinicians and laboratories, a variety of web services have been developed in Denmark \cite{joensen2014real}, Taiwan \cite{liu2016construction}, and in collaborations \cite{hasman2015detection}.
+While useful, arguably \cite{fricke2014bacterial}, the lack of bioinformatic standards and common infrastructure technologies make it difficult to fully leverage the big-data results from WGS.
+Existing software also lack ways to integrate results from multiple genomes, and examine the connections between them.
 
 % Superphy
 Previously we developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli} which determines Shiga toxin subtypes, AMR genes using CARD, and provides statistical significance tests between subgroups in associated metadata and pan-genome regions.
@@ -141,9 +141,12 @@ Furthermore, due to the nature of the various dependencies involved, the platfor
 % this study
 Here we present Spfy, a complete rewrite of Superphy to put a graph databases at the core.
 Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types being used for biological data.
+Spfy takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel and address code failures.
+Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
+Furthermore, large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistically significance testing of genome markers for user-defined groups, are provided in real-time.
 We also containerize services using Docker, a modern approach found in many web servers and proposed to mitigate the complexities of bioinformatic pipelines \cite{di2015impact}.
 Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
-Furthermore, Spfy takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel and address code failures.
+Furthermore, 
 These changes enable us to provide real-time genome analysis and database storage of results for upwards of 5000 genomes.
 All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
