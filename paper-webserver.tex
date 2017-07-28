@@ -81,14 +81,18 @@ Foodborne ilnesses are increasingly difficult to track; food is globally sourced
 The resulting consumer infections translate into actual costs: in Canada alone, an estimated 4000 hospitalizations and 105 deaths per year are thought to be the result of various pathogens \cite{thomas2015estimates}.
 Futhermore, the associated economic costs have been known for decades \cite{todd1989costs}.
 % surveillance
-Public-health agencies routinely look for emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}.
+Public-health agencies routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}.
 In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and others pathogens \cite{ronholm2016navigating}, a variety of bioinformatic approaches are now based on whole-genome sequencing (WGS).
 
 % traditional reference lab techniques
-To begin analyzing genomes, researchers designate particular strains of bacterial isolates by identifiers known as subtypes.
-Traditional reference laboratory techniques handled subtyping through methods such as serotyping, detecting the presence of specific cell surface antigens as tested by antibody reaction, pulsed-field gel electrophoresis (PFGE), to identify band patterns, known virulence factors (VFs), or antimicrobial resistance genes (AMR genes), or Sanger sequencing, to determine multi-locus sequence types (MLSTs) \cite{ronholm2016navigating}.
-In public health agencies, PFGE is used to track outbreaks by comparing band patterns of bacterial isolates \cite{kozak2013foodborne}. 
-The original computational methods leveraging WGS returned subtyping results matching those of wet-lab techniques.
+To begin analyzing genomes, researchers designate particular strains of bacterial isolates using identifiers known as subtypes.
+Traditional reference laboratory techniques handled subtyping through methods such as serotyping, pulsed-field gel electrophoresis (PFGE), or Sanger sequencing, amongst others \cite{ronholm2016navigating}.
+PFGE is unique amongst the set; restriction enzymes are used to produce DNA fragments visible as specific banding patterns.
+Public health agencies use PFGE to track outbreaks by comparing band patterns of bacterial isolates \cite{kozak2013foodborne}.
+However, as WGS rarely produces complete circular genomes and, in PFGE, cutting by a restriction enzyme is dependent on protein structure, there is not a bioinformatic-analog to PFGE.
+Serotyping uses antibodies to detect the presence of specific cell surface antigens.
+Sanger sequencing is historically used to examine differences in housekeeping genes which are required to maintain cell function, an approach known as multi-locus sequence typing (MLST).
+Unlike PFGE, both serotyping and MLST have WGS-based computational methods which mimick results of the wet-lab techniques.
 Software such as VirulenceFinder \cite{joensen2014real} compares a pre-collected set of reference VF gene sequences against a WGS result.
 Similar approaches are applied to predict AMR genes \cite{mcarthur2013comprehensive}, O-type, and H-type \cite{whiteside2016superphy}.  
 
