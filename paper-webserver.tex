@@ -90,10 +90,11 @@ To begin analyzing genomes, researchers designate particular strains of bacteria
 Traditional reference laboratory techniques handled subtyping through methods such as serotyping, pulsed-field gel electrophoresis (PFGE), or Sanger sequencing, amongst others \cite{ronholm2016navigating}.
 PFGE is unique amongst the set; restriction enzymes are used to produce DNA fragments visible as specific banding patterns.
 Public health agencies use PFGE to track outbreaks by comparing band patterns of isolates \cite{kozak2013foodborne}.
-However, as WGS rarely produces complete circular genomes and, in PFGE, cutting by a restriction enzyme is dependent on protein structure, there is no bioinformatic-analog to PFGE.
+However, as WGS rarely produces complete circular genomes and, in PFGE, cutting by a restriction enzyme is dependent on protein structure, bioinformatic-analogs to PFGE are difficult to develop.
 Unlike PFGE, both serotyping and MLST have WGS-based computational methods which mimick results of the wet-lab techniques.
 Serotyping uses antibodies to detect the presence of specific cell surface antigens and multi-locus sequence typing (MLST), using Sanger sequencing, examines differences in housekeeping genes which are required to maintain cell function.
-By comparing a pre-collected set of reference VF gene sequences against a WGS result, we can predict wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
+By comparing a pre-collected set of reference gene sequences against a WGS result, we can predict wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
+A similar approach can be taken for MLST \cite{larsen2012multilocus}.
 
 % potential of WGS
 WGS also expands on traditional methods: due to the inclusion of the entire genome, WGS-based methods offer better resolution and context for evaluating the spread of outbreaks \cite{ronholm2016navigating}.
@@ -127,7 +128,7 @@ Also, for uptake by front-line clinicians and laboratories, WGS solutions should
 Storing results in a tiered structure, with rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}, would enable developers to address the current interactivity limitations \cite{de2015trends} of bioinformatics software.
 
 % why Superphy
-To make bioinformatic approaches user-friendly for front-line clinicians and laboratories, a variety of web services have been developed in Denmark \cite{joensen2014real}, Taiwan \cite{liu2016construction}, and in collaborations \cite{hasman2015detection}.
+To make bioinformatic approaches user-friendly for front-line clinicians and laboratories, a variety of web services have been developed in Denmark \cite{joensen2014real,larsen2012multilocus}, Taiwan \cite{liu2016construction}, and in collaborations \cite{hasman2015detection}.
 While useful, arguably \cite{fricke2014bacterial}, the lack of bioinformatic standards and common infrastructure technologies make it difficult to fully leverage the big-data results from WGS.
 Existing software also lack ways to integrate results from multiple genomes, and examine the connections between them.
 
