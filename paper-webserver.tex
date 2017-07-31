@@ -77,9 +77,9 @@ Broad --> narrow
 -In this study, we have addressed these issues by ... which will provide these benefits
 
 % costs of bacterial infections
-Tracking foodborne ilnesses is increasingly difficult; ingrediants are globally sourced and contamination can occur at any point in the supply-chain.
+Tracking foodborne illnesses is increasingly difficult; ingredients are globally sourced and contamination can occur at any point in the supply-chain.
 The resulting consumer infections translate into actual costs: foodborne illnesses cause an estimated 4000 hospitalizations and 105 deaths per year in Canada \cite{thomas2015estimates}, and 55961 hospitalizations and 1351 deaths per year in the United States \cite{scallan2011foodborne}.
-Futhermore, many studies \cite{todd1989costs,scharff2010health} document the associated financial and productivity costs.
+Furthermore, many studies \cite{todd1989costs,scharff2010health} document the associated financial and productivity costs.
 % surveillance
 Public-health agencies routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}.
 In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and others pathogens \cite{ronholm2016navigating}, a variety of bioinformatic approaches to surveillance are now based on whole-genome sequencing (WGS).
@@ -90,7 +90,7 @@ Traditional reference laboratory techniques handled subtyping through methods su
 PFGE is unique amongst the set; restriction enzymes are used to produce DNA fragments visible as specific banding patterns.
 Public health agencies use PFGE to track outbreaks by comparing band patterns of isolates \cite{kozak2013foodborne}.
 However, as WGS rarely produces complete circular genomes and, in PFGE, cutting by a restriction enzyme is dependent on protein structure, developing bioinformatic-analogs to PFGE is difficult.
-Unlike PFGE, both serotyping and MLST have WGS-based computational methods which mimick results of the wet-lab techniques.
+Unlike PFGE, both serotyping and MLST have WGS-based computational methods which mimic results of the wet-lab techniques.
 Serotyping uses antibodies to detect the presence of specific cell surface antigens and multi-locus sequence typing (MLST), using Sanger sequencing, examines differences in housekeeping genes which are required to maintain cell function.
 By comparing a pre-collected set of reference gene sequences against a WGS result, we can predict wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
 MLST software uses a similar approach \cite{larsen2012multilocus}.
@@ -104,11 +104,11 @@ Entire datasets and results can also be shared in real-time \cite{ronholm2016nav
 
 % Drawbacks - genetics
 However, these WGS-based methods only examine the underlying genetics, not the expressed phenotype; the presence of a particular gene sequence does not necessitate expression.
-Correspondingly, more target sequences are identified using WGS; if we take a tradition approach to making threat assessments by looking for known VFs or AMR genes, guaging risk is difficult due to the large number of results \cite{ronholm2016navigating}.
-The effectiveness of WGS-based methods also rely on the accuracy and breadth of reference datasets and agencies must weigh the cost of developing expertise in bioinformatic approaches, while laboratory based phenotypic tests remain inexpensive \cite{koser2012routine}.
+Correspondingly, more target sequences are identified using WGS; if we take a tradition approach to making threat assessments by looking for known VFs or AMR genes, gauging risk is difficult due to the large number of results \cite{ronholm2016navigating}.
+The effectiveness of WGS-based methods also rely on the accuracy and breadth of reference datasets and agencies must weigh the cost of developing expertise in bioinformatic approaches, while laboratory based phenotype tests remain inexpensive \cite{koser2012routine}.
 
 % drawbacks - big data
-Traditionaly, bioinformatics software was developed \textit{ad hoc} without employing software engineering principles \cite{de2015trends}.
+Traditionally, bioinformatics software was developed \textit{ad hoc} without employing software engineering principles \cite{de2015trends}.
 Tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
 Since WGS-technology expanded the availability of data, bioinformatic pipelines are larger and more complicated.
 We must apply systems engineering principles to handle code failures throughout \cite{schatz2015biological}.
@@ -121,7 +121,7 @@ Recent efforts have focused on checking the quality of shared reference genomes 
 
 % rewrite of bigdata approach (BIGGER bigdata)
 While efforts such as CARD as important for replicating traditional results and for historical context, WGS can also be used to develop new methods using the larger datasets available.
-To study entire genomes, we need methods of creating reference sets encompassing all genes in a given phlogeny.
+To study entire genomes, we need methods of creating reference sets encompassing all genes in a given phylogeny.
 Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} are freely available to compute these pan-genomic regions.
 Such software approaches must scale to larger datasets than those found in wet-lab approaches.
 Also, for uptake by front-line clinicians and laboratories, WGS solutions should perform faster; for example, AMR gene prediction should take less than the typical 18-24 hours required in a reference laboratory \cite{koser2012routine}.
@@ -134,7 +134,7 @@ Integrating results from multiple genomes, and examining shared connections, wil
 
 % Superphy
 Previously we developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli} which determines Shiga toxin subtypes, AMR genes using CARD, and provides statistical significance tests between subgroups in associated metadata and pan-genome regions.
-However, we struggled to provide real-time computing of results and to accomdate an ever-growing reference database.
+However, we struggled to provide real-time computing of results and to accommodate an ever-growing reference database.
 Furthermore, due to the various dependencies involved, independently replicating the platform was difficult for other researchers.
 
 % this study
