@@ -78,17 +78,14 @@ Broad --> narrow
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
+The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs. Within Canada it is estimated that over 4,000 hospitalizations and 100 deaths occur due to bacterial infections \cite{thomas2015estimates}; in the United States, over 55,000 hospitalizations and 1,300 deaths occur per year \cite{scallan2011foodborne}. Within North America the total economic burden of these illnesses is estimated to be ACTUAL NUMBER \cite{todd1989costs,scharff2010health}. The bacterial species that are most frequently associated with severe disease, and cause the majority of this health burden in (Canada / NA/ Europe / Worldwide ) are ABC.
+%You could combine the Canada / US numbers into a North America number, and include world-wide data as well. Always avoid vacuous descriptors like "many", "various" -- use an actual quantifier. Eg. Most people prefer vanilla to chocolate. Fifty-one percent of people prefer vanilla to chocolate. Ninety-nine percent of people prefer vanilla to chocolate.  
 
+% routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}. In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and (others pathogens --> either state the other pathogens or leave it out entirely) \cite{ronholm2016navigating}
 
-Tracking foodborne illnesses is increasingly difficult; ingredients are globally sourced and contamination can occur at any point in the supply-chain.
-Consumers infected by bacteria incur actual costs: foodborne illnesses cause an estimated 4000 hospitalizations and 105 deaths per year in Canada \cite{thomas2015estimates}, and 55961 hospitalizations and 1351 deaths per year in the United States \cite{scallan2011foodborne}.
-Furthermore, many studies \cite{todd1989costs,scharff2010health} document the associated economic costs.
 % surveillance
-Public-health agencies routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}.
-In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and others pathogens \cite{ronholm2016navigating}, surveillance now involves a variety of bioinformatic approaches based on whole-genome sequencing (WGS).
+Until recently, Public-health agencies relied on laboratories tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings. The previous gold-standard in determining  
 
-% traditional reference lab techniques
-To begin analyzing genomes, researchers designate particular strains of bacterial isolates using identifiers known as subtypes.
 Traditional reference laboratory techniques handled subtyping through methods such as serotyping, pulsed-field gel electrophoresis (PFGE), or Sanger sequencing, amongst others \cite{ronholm2016navigating}.
 PFGE is unique amongst the set; restriction enzymes are used to produce DNA fragments visible as specific banding patterns.
 Public health agencies use PFGE to track outbreaks by comparing band patterns of isolates \cite{kozak2013foodborne}.
@@ -97,6 +94,10 @@ Unlike PFGE, both serotyping and MLST have WGS-based computational methods mimic
 Serotyping, using antibodies, detects the presence of specific cell surface antigens and multi-locus sequence typing (MLST), using Sanger sequencing, examines differences in housekeeping genes - the genes required to maintain cell function.
 By comparing a pre-collected set of reference gene sequences against a WGS result, bioinformatics software predicts wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
 MLST software uses a similar reference-based approach \cite{larsen2012multilocus}.
+
+
+
+
 
 % potential of WGS
 WGS also expands on traditional methods: due to the inclusion of the entire genome, WGS-based methods evaluate the spread of outbreaks with better resolution and context \cite{ronholm2016navigating}.
