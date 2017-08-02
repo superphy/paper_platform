@@ -88,19 +88,21 @@ The bacterial species that are most frequently associated with severe disease, a
 % surveillance
 Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings.
 The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain.
-Downsides of PFGE ... .
+However, in \textit{Enterococcus faecium}, PFGE has been shown to misclassify 9 of 132 isolates, when compared to whole-genome sequencing (WGS) based discrimination \cite{pinholt2015multiple}.
+In \textit{Klebsiella pneumoniae} \cite{marsh2015genomic}, \textit{Yersinia enterocolitica} \cite{gilpin2014limitations}, and \textit{Staphylococcus aureus} \cite{doi:10.1093/ofid/ofu096}, WGS was used to discriminate isolates after initial clustering by PFGE resulted in indistinguishable samples.
+Examination of PFGE bands are also subjective, difficult to share \cite{lytsy2017time}, and collative platforms such as PulseNet reported \cite{gilpin2014limitations} that even after collecting 72\% of \textit{Campylobacter jejuni} in a given year in Minnesota (673 cases), 87\% of isolates could not be linked by PFGE pattern.
 To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
 Antimicrobial resistance testing, virulence factor testing ...
-However, current efforts are foucsed on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
+However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
 
 % potential of WGS
-Whole-genome sequencing (WGS) uses the entire genetic content of an organism, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
+WGS uses the entire genetic content of an organism, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
 However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict.
 For example, predictions involving reference databases are only as good as the databases themselves.
 Additionally, the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}.
 
 % drawbacks - big data
-Many previously developed bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
+Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
 Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
 While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
 Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
