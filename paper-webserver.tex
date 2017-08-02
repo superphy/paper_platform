@@ -66,15 +66,23 @@ Text. Text.
 
 
 \section{Introduction}
-Broad --> narrow
--Bacterial infections are a cause of human disease -> associated costs
--Surveillance is used to monitor known pathogens and detect emerging threats, to lower burden of human illness
--Until recently, surveillance involved traditional reference laboratory techniques (and still does) --> examples of both old and new (WGS), what they measure, how they are used
--WGS methods have great potential, but some drawbacks (list with references)
--Some of the drawbacks can be solved by providing pre-computed analyses for routine tasks
--We have previously created SuperPhy, which helps solve some of the issues
--Some issues still remain
--In this study, we have addressed these issues by ... which will provide these benefits
+% new outline
+% para
+% 1. brief: WGS is standard
+% 2. Big Problem: but tools are for individual analysis
+% 3. 100,000 genomes, (lookup number for Enterobase, GenBank), how do we run analysis on it
+% 4. previous methods (Galaxy/IRIDA: real-time, but no storage of results, other website examples - Denmark?), what problems they addressed
+% 5. Problems that remain / lack of result storage means: recomputation, lost data, can't reference old analyses, not suited for "big data"
+% 6. Solutions in general: store and increment, huga "big data" analyses, parallelization /queues
+% para
+% 1. Our specific problem, previous work
+% 2. Why solving it is important (for Public health / research)
+% 3. how we solved it
+% para
+% 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
+% 5. analyses modules -> conda -> IRIDA/Galaxy
+% 6. short snippit on website link & github link
+
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
