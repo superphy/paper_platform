@@ -84,76 +84,37 @@ The isolation and characterization of bacterial pathogens are critical for Publi
 % routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}. In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and (others pathogens --> either state the other pathogens or leave it out entirely) \cite{ronholm2016navigating}
 
 % surveillance
-Until recently, Public-health agencies relied on laboratories tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings. The previous gold-standard in determining  
-
-Traditional reference laboratory techniques handled subtyping through methods such as serotyping, pulsed-field gel electrophoresis (PFGE), or Sanger sequencing, amongst others \cite{ronholm2016navigating}.
-PFGE is unique amongst the set; restriction enzymes are used to produce DNA fragments visible as specific banding patterns.
-Public health agencies use PFGE to track outbreaks by comparing band patterns of isolates \cite{kozak2013foodborne}.
-However, as WGS rarely produces complete circular genomes and, in PFGE, cutting by a restriction enzyme is dependent on protein structure, developing bioinformatic-analogs to PFGE is difficult.
-Unlike PFGE, both serotyping and MLST have WGS-based computational methods mimicking wet-lab results.
-Serotyping, using antibodies, detects the presence of specific cell surface antigens and multi-locus sequence typing (MLST), using Sanger sequencing, examines differences in housekeeping genes - the genes required to maintain cell function.
-By comparing a pre-collected set of reference gene sequences against a WGS result, bioinformatics software predicts wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
-MLST software uses a similar reference-based approach \cite{larsen2012multilocus}.
-
-
-
-
+Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings. The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain. Downsides of PFGE ... . To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens. Antimicrobial resistance testing, virulence factor testing ... However, current efforts are foucsed on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
 
 % potential of WGS
-WGS also expands on traditional methods: due to the inclusion of the entire genome, WGS-based methods evaluate the spread of outbreaks with better resolution and context \cite{ronholm2016navigating}.
-Instead of examining selected single-nucleotide polymorphisms (SNPs) in a subset of housekeeping genes as in laboratory-based MLST, newer WGS-based methods, such as core genome MLST (cgMLST), attempt to cover every common gene.
-WGS approaches also expand coverage of VF and AMR gene detection to every known sequence.
-Furthermore, using WGS we can study the relations between genomes, changes in which VF or AMR genes are present over time, and mutations in genes \cite{ronholm2016navigating}.
-Researchers can also share entire datasets and results online \cite{ronholm2016navigating}.
-
-% Drawbacks - genetics
-However, these WGS-based methods only examine the underlying genetics, not the expressed phenotype.
-Correspondingly, more target sequences are identified using WGS; if health officials make threat assessments by looking for known VFs or AMR genes, they can only estimate the associated risks due to the large number of results \cite{ronholm2016navigating}.
-The effectiveness of WGS-based methods also rely on the accuracy and breadth of reference datasets and agencies must weigh the cost of developing expertise in bioinformatic approaches.
-Meanwhile, laboratory based phenotype tests remain inexpensive \cite{koser2012routine}.
+Whole-genome sequencing (WGS) uses the entire genetic content of an organism, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}. However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict. For example, predictions involving reference databases are only as good as the databases themselves. Additionally, the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}.
 
 % drawbacks - big data
-Traditionally, bioinformatics software was developed \textit{ad hoc} without employing software engineering principles \cite{de2015trends}.
-Tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
-Since WGS-technology expanded the availability of data, bioinformatic pipelines are now larger and involve linked dependencies.
-Bioinformatics developers must apply systems engineering principles to handle code failures throughout \cite{schatz2015biological}.
-The bioinformatics field also lags behind other big-data industries \cite{de2015trends}: software still struggles to perform computations in real-time, stores data in inflexible databases, and lacks a common application programming interface (API) linking resources \cite{swaminathan2016review}.
+Many previously developed bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}. Sych tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}. While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}. Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
 % Solution via software engineering
-Efforts such as the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive} address data concerns by curating a set of known AMR genes.
-In addition, agencies such as the Food and Drug Administration (FDA), which hosts GenomeTrakr \cite{allard2016practical}, the National Center for Biotechnology Information (NCBI), which hosts GenBank \cite{doi:10.1093/nar/gks1195}, and the Center for Disease Control and Prevention (CDC), which hosts PulseNet \cite{swaminathan2001pulsenet}, enables sharing of genome sequences and associated metadata either openly or amongst member institutions.
-Recent efforts focused on checking the quality of shared reference genomes \cite{parks2015checkm}, particularly amongst human-genome projects \cite{lee2017ngscheckmate}.
+Current programs that address these issues include the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, which addresses data concerns by curating a set of known AMR genes. In addition, GenomeTrackr from the Food and Drug Administration (FDA) \cite{allard2016practical}; GenBank from the National Center for Biotechnology Information (NCBI) \cite{doi:10.1093/nar/gks1195}; and PulseNet from the Center for Disease Control and Prevention (CDC) \cite{swaminathan2001pulsenet}, all enable sharing of genome sequences and associated metadata, either openly or amongst member institutions.
+
+%By comparing a pre-collected set of reference gene sequences against a WGS result, bioinformatics software predicts wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
+%MLST software uses a similar reference-based approach \cite{larsen2012multilocus}.
+
 
 % rewrite of bigdata approach (BIGGER bigdata)
-While efforts such as CARD are important for replicating traditional results and for historical context, researchers can now develop new methods targeting larger datasets from WGS.
-To study entire genomes, the field needs methods of creating reference sets encompassing all genes in a given phylogeny.
-Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
-Such software approaches must scale to larger datasets than those found in wet-lab approaches.
-Also, for uptake by front-line clinicians and laboratories, WGS solutions should perform faster; for example, AMR gene prediction should take less than the typical 18-24 hours required in a reference laboratory \cite{koser2012routine}.
-Storing results in a tiered structure, with rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}, would help address the current interactivity limitations \cite{de2015trends} of bioinformatics software.
+Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available. These software programs are capable of processing X number of genomes per Y days at a cost of Z, which would take a A, B and C to do in a wet-lab.
+
+While these programs are useful for computing novel analyses, storing results in a tiered structure, with rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}, is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
 
 % why Superphy
-To make bioinformatic approaches user-friendly, a variety of web services have been developed in Denmark \cite{joensen2014real,larsen2012multilocus}, Taiwan \cite{liu2016construction}, and in collaborations \cite{hasman2015detection}.
-While useful, arguably \cite{fricke2014bacterial}, leveraging the big-data results from WGS is difficult due to the lack of bioinformatic standards and common infrastructure technologies.
-Integrating results from multiple genomes, and examining shared connections, will be important for new software.
+Currently, a number of organizations are creating user-friendly web services for common analyses of bacterial genomes. These include: NAME \cite{joensen2014real,larsen2012multilocus}, NAME \cite{liu2016construction}, and NAME \cite{hasman2015detection}, which do X, Y and Z respectively.
+
+While useful, leveraging big-data results from WGS is difficult due to the lack of bioinformatic standards and common infrastructure technologies. Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
 
 % Superphy
-Previously we developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli} which determines Shiga toxin subtypes, AMR genes using CARD, and provides statistical significance tests between subgroups in associated metadata and pan-genome regions.
-However, we struggled to provide real-time computing of results and to accommodate an ever-growing reference database.
-Furthermore, due to the various dependencies involved, other researchers could not easily replicate the platform.
+We have previously developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli}, which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location. While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
 
-% this study
-Here we present Spfy, a complete rewrite of Superphy.
-Spfy is backed by a graph database which our analysis modules rely on.
-Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
-Spfy takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel and address code failures.
-Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
-Furthermore, large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistically significance testing of genome markers for user-defined groups, run in real-time.
-We also containerize services using Docker, a modern approach found in many web servers and proposed \cite{di2015impact} to mitigate the complexities of bioinformatic pipelines.
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
-These changes enable real-time genome analysis and database storage of results for upwards of 5000 genomes.
-All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
+In this study, we present an update to the SuperPhy platform, called Spfy. It is backed by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel in real-time, and address code failures. This allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistically significance testing of genome markers for user-defined groups. Lastly, these services are containerized using Docker to mitigate the complexities of the underlying bioinformatic pipelines. All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
+ 
 \section{MATERIALS AND METHODS}
 We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
 The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
@@ -164,6 +125,18 @@ By using task queue workers, enabled by the Python-based Redis Queue library \ur
 As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
 Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
 We present Spfy as an integrated predictive genomics toolkit for pathogens / \textit{E. coli} which leverages advances in web application development and deployment.
+
+which our analysis modules rely on.
+Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
+Spfy 
+
+
+Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
+
+
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
+These changes enable real-time genome analysis and database storage of results for upwards of 5000 genomes.
+
 
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
