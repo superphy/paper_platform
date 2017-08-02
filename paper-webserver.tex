@@ -78,41 +78,63 @@ Broad --> narrow
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
-The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs. Within Canada it is estimated that over 4,000 hospitalizations and 100 deaths occur due to bacterial infections \cite{thomas2015estimates}; in the United States, over 55,000 hospitalizations and 1,300 deaths occur per year \cite{scallan2011foodborne}. Within North America the total economic burden of these illnesses is estimated to be ACTUAL NUMBER \cite{todd1989costs,scharff2010health}. The bacterial species that are most frequently associated with severe disease, and cause the majority of this health burden in (Canada / NA/ Europe / Worldwide ) are ABC.
+The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
+Within Canada it is estimated that over 4,000 hospitalizations and 100 deaths occur due to bacterial infections \cite{thomas2015estimates}; in the United States, over 55,000 hospitalizations and 1,300 deaths occur per year \cite{scallan2011foodborne}. Within North America the total economic burden of these illnesses is estimated to be ACTUAL NUMBER \cite{todd1989costs,scharff2010health}.
+The bacterial species that are most frequently associated with severe disease, and cause the majority of this health burden in (Canada / NA/ Europe / Worldwide ) are ABC.
 %You could combine the Canada / US numbers into a North America number, and include world-wide data as well. Always avoid vacuous descriptors like "many", "various" -- use an actual quantifier. Eg. Most people prefer vanilla to chocolate. Fifty-one percent of people prefer vanilla to chocolate. Ninety-nine percent of people prefer vanilla to chocolate.  
 
 % routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}. In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and (others pathogens --> either state the other pathogens or leave it out entirely) \cite{ronholm2016navigating}
 
 % surveillance
-Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings. The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain. Downsides of PFGE ... . To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens. Antimicrobial resistance testing, virulence factor testing ... However, current efforts are foucsed on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
+Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings.
+The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain.
+Downsides of PFGE ... .
+To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
+Antimicrobial resistance testing, virulence factor testing ...
+However, current efforts are foucsed on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
 
 % potential of WGS
-Whole-genome sequencing (WGS) uses the entire genetic content of an organism, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}. However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict. For example, predictions involving reference databases are only as good as the databases themselves. Additionally, the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}.
+Whole-genome sequencing (WGS) uses the entire genetic content of an organism, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
+However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict.
+For example, predictions involving reference databases are only as good as the databases themselves.
+Additionally, the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}.
 
 % drawbacks - big data
-Many previously developed bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}. Sych tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}. While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}. Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
+Many previously developed bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
+Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
+While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
+Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
 % Solution via software engineering
-Current programs that address these issues include the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, which addresses data concerns by curating a set of known AMR genes. In addition, GenomeTrackr from the Food and Drug Administration (FDA) \cite{allard2016practical}; GenBank from the National Center for Biotechnology Information (NCBI) \cite{doi:10.1093/nar/gks1195}; and PulseNet from the Center for Disease Control and Prevention (CDC) \cite{swaminathan2001pulsenet}, all enable sharing of genome sequences and associated metadata, either openly or amongst member institutions.
+Current programs that address these issues include the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, which addresses data concerns by curating a set of known AMR genes.
+In addition, GenomeTrackr from the Food and Drug Administration (FDA) \cite{allard2016practical}; GenBank from the National Center for Biotechnology Information (NCBI) \cite{doi:10.1093/nar/gks1195}; and PulseNet from the Center for Disease Control and Prevention (CDC) \cite{swaminathan2001pulsenet}, all enable sharing of genome sequences and associated metadata, either openly or amongst member institutions.
 
 %By comparing a pre-collected set of reference gene sequences against a WGS result, bioinformatics software predicts wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
 %MLST software uses a similar reference-based approach \cite{larsen2012multilocus}.
 
 
 % rewrite of bigdata approach (BIGGER bigdata)
-Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available. These software programs are capable of processing X number of genomes per Y days at a cost of Z, which would take a A, B and C to do in a wet-lab.
+Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
+These software programs are capable of processing X number of genomes per Y days at a cost of Z, which would take a A, B and C to do in a wet-lab.
 
 While these programs are useful for computing novel analyses, storing results in a tiered structure, with rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}, is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
 
 % why Superphy
-Currently, a number of organizations are creating user-friendly web services for common analyses of bacterial genomes. These include: NAME \cite{joensen2014real,larsen2012multilocus}, NAME \cite{liu2016construction}, and NAME \cite{hasman2015detection}, which do X, Y and Z respectively.
+Currently, a number of organizations are creating user-friendly web services for common analyses of bacterial genomes.
+These include: NAME \cite{joensen2014real,larsen2012multilocus}, NAME \cite{liu2016construction}, and NAME \cite{hasman2015detection}, which do X, Y and Z respectively.
 
-While useful, leveraging big-data results from WGS is difficult due to the lack of bioinformatic standards and common infrastructure technologies. Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
+While useful, leveraging big-data results from WGS is difficult due to the lack of bioinformatic standards and common infrastructure technologies.
+Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
 
 % Superphy
-We have previously developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli}, which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location. While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
+We have previously developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli}, which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location.
+While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
 
-In this study, we present an update to the SuperPhy platform, called Spfy. It is backed by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel in real-time, and address code failures. This allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistically significance testing of genome markers for user-defined groups. Lastly, these services are containerized using Docker to mitigate the complexities of the underlying bioinformatic pipelines. All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
+In this study, we present an update to the SuperPhy platform, called Spfy.
+It is backed by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel in real-time, and address code failures.
+This allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistically significance testing of genome markers for user-defined groups.
+Lastly, these services are containerized using Docker to mitigate the complexities of the underlying bioinformatic pipelines.
+All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
  
 \section{MATERIALS AND METHODS}
