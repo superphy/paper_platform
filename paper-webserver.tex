@@ -84,7 +84,12 @@ Our update rewrites result storage with backing by a graph database and takes a 
 All results are stored as a series of linked nodes which enables the platform to build associations between results as they are generated. \par
 
 % 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
-This allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
+Integrating task distribution with graph storage allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
+By supporting multiple \textit{in-silico} subtyping options, the platform can function as an online reference laboratory.
+Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
+Future work will focus on expanding available analyses and supporting different species, which can be connected to the existing graph database without need for recalculation.
+To complement existing platforms such as IRIDA, analyses modules are individually packaged and easily integrated into Galaxy \cite{goecks2010galaxy} based platforms.
+The website and source-code are available at \url{https://superphy.github.io/}. \par
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
