@@ -61,35 +61,40 @@ Accepted March 1, 2009}
 % 6. short snippit on website link & github link
 
 % 1. brief: WGS is standard
-Whole genome sequencing (WGS) uses the entire genetic content of an organism, and is the new standard for bacterial surveillance \cite{ronholm2016navigating,lytsy2017time}, research into disease \cite{wang2014whole,yuen2015whole}, and clinical diagnoses \cite{willig2015whole,dewey2014clinical}.
+Whole genome sequencing (WGS) uses the entire genetic content of an organism, and is used for bacterial surveillance \cite{ronholm2016navigating,lytsy2017time}, research into disease \cite{wang2014whole,yuen2015whole}, and clinical diagnoses \cite{willig2015whole,dewey2014clinical}.
 % 2. Big Problem: but tools are for individual analysis
 Targeted software, such as the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive} for antimicrobial resistance (AMR) gene prediction, Prokka for bacterial genome annotation \cite{doi:10.1093/bioinformatics/btu153}, and integrated platforms, such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, all leverage WGS data.
 For bioinformatics software to reach true "big-data" goals, analyses modules must run in real-time and results must be integrated.
 % 3. 100,000 genomes, (lookup number for Enterobase, GenBank), how do we run analysis on it
 WGS generates data at a break-neck speed; for \textit{Escherichia coli} alone, the public genome databases EnteroBase \url{https://enterobase.warwick.ac.uk/} and GenBank \cite{doi:10.1093/nar/gks1195} have 60,206 and 2,779,008 sequences uploaded, respectively.
 Typical bioinformatics software, such as RGI and Prokka, take single files as input, and integrated platforms, such as BAP and IRIDA, build workflows linking different analyses modules.
-BAP and IRIDA begin to solve "big-data" challenges by offering a hosted solution which computes results in real-time, and parallelizes analyses across computing resources.
-For WGS to further benefit surveillance, research, and clinical fields, analyses results should also be integrated and searchable; storage of results would avoid recomputation, persist data, and allow references to old analyses. \par
+BAP and IRIDA begin to solve "big-data" challenges by offering a hosted solution which computes results in real-time, and parallelizing analyses across computing resources.
+For WGS to further benefit surveillance, research, and clinical fields, analyses results should also be integrated and searchable; storage of results would avoid recomputation, enable data persistence, and allow references to old analyses. \par
 
 % 1. Our specific problem, previous work
 We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
-Superphy integrates pre-computed results with domain-specific metadata to provide real-time analyses of epidemiology relations over thousands of genomes.
+Superphy integrates pre-computed results with domain-specific metadata to provide real-time analyses of epidemiology relations.
 While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
 % 2. Why solving it is important (for Public health / research)
-WGS offers better resolution than traditional strain comparison methods, such as  pulsed-field gel electrophoresis (PFGE) \cite{ronholm2016navigating}, and is set to replace the functions of reference laboratories.
-Though the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}, performing real-time analyses and linkage to thousands of historical results is only possible through WGS.
+WGS offers improved resolution over traditional strain comparison methods, such as  pulsed-field gel electrophoresis (PFGE) \cite{ronholm2016navigating}, and is set to replace the functions of reference laboratories.
+Though the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches is time consuming and expensive \cite{koser2012routine}, platforms can only perform real-time analyses and linkage to thousands of historical results through leveraging WGS.
 % 3. how we solved it
 In this study, we present an update to the SuperPhy platform, called Spfy.
-Our update rewrites result storage with backing by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing users to submit genomes and modules to run in parallel in real-time, and address code failures.
+The update rewrites result storage with backing by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing users to submit genomes and modules to run in parallel in real-time, and address code failures.
 All results are stored as a series of linked nodes which enables the platform to build associations between results as they are generated. \par
 
 % 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
-Integrating task distribution with graph storage allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
-By supporting multiple \textit{in-silico} subtyping options, the platform can function as an online reference laboratory.
+Integrating task distribution with graph storage enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
+Subtyping options are ..., pan-genome generation ..., group comparisons via Fisher's, ML, .... for E.coli.
+By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, with added support for big-data analyses.
 Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
 Future work will focus on expanding available analyses and supporting different species, which can be connected to the existing graph database without need for recalculation.
 To complement existing platforms such as IRIDA, analyses modules are individually packaged and easily integrated into Galaxy \cite{goecks2010galaxy} based platforms.
 The website and source-code are available at \url{https://superphy.github.io/}. \par
+
+
+% end of new intro
+% below material is just old stuff, might or might not be used elsewhere
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
