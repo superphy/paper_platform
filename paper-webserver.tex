@@ -38,30 +38,7 @@ Accepted March 1, 2009}
 \maketitle
 
 \begin{abstract}
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text.
+
 \end{abstract}
 
 
@@ -83,6 +60,19 @@ Text. Text.
 % 5. analyses modules -> conda -> IRIDA/Galaxy
 % 6. short snippit on website link & github link
 
+% 1. brief: WGS is standard
+Whole genome sequencing (WGS) uses the entire genetic content of an organism, and is the new standard for bacterial surveillance \cite{ronholm2016navigating,lytsy2017time}, research into disease \cite{wang2014whole,yuen2015whole}, and clinical diagnoses \cite{willig2015whole,dewey2014clinical}.
+% 2. Big Problem: but tools are for individual analysis
+Targeted software, such as the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive} for antimicrobial resistance (AMR) gene prediction, Prokka for bacterial genome annotation \cite{doi:10.1093/bioinformatics/btu153}, and integrated platforms, such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, all leverage WGS data.
+For bioinformatics software to reach true "big-data" goals, analyses modules must run in real-time and results must be integrated.
+% 3. 100,000 genomes, (lookup number for Enterobase, GenBank), how do we run analysis on it
+WGS generates data at a break-neck speed; for \textit{Escherichia coli} alone, the public genome databases EnteroBase \url{https://enterobase.warwick.ac.uk/} and GenBank \cite{doi:10.1093/nar/gks1195} have 60,206 and 2,779,008 sequences uploaded, respectively.
+Typical bioinformatics software, such as RGI and Prokka, take single files as input, and integrated platforms, such as BAP and IRIDA, build workflows linking different analyses modules.
+BAP and IRIDA begin to solve "big-data" challenges by offering a hosted solution which computes results in real-time, and parallelizes analyses across computing resources.
+For WGS to further benefit surveillance, research, and clinical fields, analyses results should also be integrated and searchable; storage of results would avoid recomputation, persist data, and allow references to old analyses. \par
+
+% 1. Our specific problem, previous work
+We've attempted to build big-data platforms which address both real-time analyses and integrated storage of results. We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
@@ -104,7 +94,7 @@ Antimicrobial resistance testing, virulence factor testing ...
 However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
 
 % potential of WGS
-WGS uses the entire genetic content of an organism, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
+, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
 However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict.
 For example, predictions involving reference databases are only as good as the databases themselves.
 Additionally, the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}.
@@ -137,7 +127,7 @@ While useful, leveraging big-data results from WGS is difficult due to the lack 
 Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
 
 % Superphy
-We have previously developed Superphy \cite{whiteside2016superphy}, an online platform targeting \textit{E. coli}, which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location.
+, which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location.
 While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
 
 In this study, we present an update to the SuperPhy platform, called Spfy.
