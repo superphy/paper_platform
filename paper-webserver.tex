@@ -74,7 +74,17 @@ For WGS to further benefit surveillance, research, and clinical fields, analyses
 % 1. Our specific problem, previous work
 We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
 Superphy integrates pre-computed results with domain-specific metadata to provide real-time analyses of epidemiology relations over thousands of genomes.
-To scale Superphy for tens of thousands of genomes and for use by front-line clinicians, software pipelines should run in real-time and existing population-wide analyses should automatically integrate new results.
+While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
+% 2. Why solving it is important (for Public health / research)
+WGS offers better resolution than traditional strain comparison methods, such as  pulsed-field gel electrophoresis (PFGE) \cite{ronholm2016navigating}, and is set to replace the functions of reference laboratories.
+Though the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}, performing real-time analyses and linkage to thousands of historical results is only possible through WGS.
+% 3. how we solved it
+In this study, we present an update to the SuperPhy platform, called Spfy.
+Our update rewrites result storage with backing by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing users to submit genomes and modules to run in parallel in real-time, and address code failures.
+All results are stored as a series of linked nodes which enables the platform to build associations between results as they are generated. \par
+
+% 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
+This allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
 
 % costs of bacterial infections
 % We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
@@ -99,7 +109,7 @@ However, current efforts are focused on predictive genomics, where the relevant 
 , and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
 However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict.
 For example, predictions involving reference databases are only as good as the databases themselves.
-Additionally, the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches in time consuming and expensive \cite{koser2012routine}.
+
 
 % drawbacks - big data
 Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
@@ -130,11 +140,10 @@ Integrating results from multiple genomes, and examining shared connections, is 
 
 % Superphy
 , which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location.
-While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
 
-In this study, we present an update to the SuperPhy platform, called Spfy.
-It is backed by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing modules to run in parallel in real-time, and address code failures.
-This allows large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistically significance testing of genome markers for user-defined groups.
+
+
+
 Lastly, these services are containerized using Docker to mitigate the complexities of the underlying bioinformatic pipelines.
 All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
