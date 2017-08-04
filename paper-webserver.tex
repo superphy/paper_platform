@@ -65,10 +65,10 @@ Whole genome sequencing (WGS) resolves the entire genetic content of an organism
 % 2. Big Problem: but tools are for individual analysis
 Targeted software, such as the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive} for antimicrobial resistance (AMR) gene prediction, Prokka for bacterial genome annotation \cite{doi:10.1093/bioinformatics/btu153}, and integrated platforms, such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, all leverage WGS data.
 % 3. 100,000 genomes, (lookup number for Enterobase, GenBank), how do we run analysis on it
-WGS generates data at a break-neck speed; for \textit{Escherichia coli} alone, the public genome databases EnteroBase \url{https://enterobase.warwick.ac.uk/} and GenBank \cite{doi:10.1093/nar/gks1195} have 60,206 and 2,779,008 sequences uploaded, respectively.
+WGS generates data at a break-neck speed; for \textit{Escherichia coli} alone, the public genome databases EnteroBase \url{https://enterobase.warwick.ac.uk/} and GenBank \cite{doi:10.1093/nar/gks1195} have, respectively, 60,206 and 2,779,008 sequences uploaded.
 To effectively exploit WGS "big-data" and maintain the rapid response time required by public health applications, one approach is to make results from WGS analysis integrated and progressive.
 Typical bioinformatics software, such as RGI and Prokka, take single files as input, and integrated platforms, such as BAP and IRIDA, build workflows linking different analyses modules.
-BAP and IRIDA help address "big-data" challenges by offering a hosted solution which computes results in real-time, and parallelizing analyses across computing resources.
+BAP and IRIDA begin to solve big-data challenges by offering a hosted solution which computes results in real-time, and distributes analyses across computing resources.
 While effective for self-contained workflows, many comparative analyses such as predictive genomics methods would benefit from a broad WGS reference base.
 To use vast amount of WGS data and maintain real-time results for comparative analyses, platforms would need store results in a way that avoids recomputation when adding new WGS data.
 A resource framework in which WGS results are integrated and searchable; whereby the storage of results avoids recomputation, persists, and allows for iterative, on-going learning, will expand the capacity of current comparative bioinformatics analyses.
@@ -83,17 +83,17 @@ WGS offers improved resolution over traditional strain comparison methods, such 
 Though the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches is time consuming and expensive \cite{koser2012routine}, platforms can only perform real-time analyses and linkage to thousands of historical results by leveraging WGS.
 % 3. how we solved it
 In this study, we present an update to the SuperPhy platform, called Spfy.
-The update rewrites result storage with backing by a graph database and takes a modular approach to tool integration and distributes analyses over task queues, thereby allowing users to submit genomes and modules to run in parallel in real-time, and address code failures.
+The update rewrites result storage with backing by a graph database, takes a modular approach to tool integration, and distributes analyses over task queues, thereby allowing users to submit genomes and modules to run in parallel in real-time, and address code failures.
 All results are stored as a series of linked nodes which enables the platform to build associations between results as they are generated. \par
 
 % 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
-Integrating task distribution with graph storage enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
+By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
 Subtyping options are ..., pan-genome generation ..., group comparisons via Fisher's, ML, .... for E.coli.
 By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, with added support for big-data analyses.
 Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
-Future work will focus on expanding available analyses and supporting different species, which can be connected to the existing graph database without need for recalculation.
-To complement existing platforms such as IRIDA, analyses modules are individually packaged and easily integrated into Galaxy \cite{goecks2010galaxy} based platforms.
-The website and source-code are available at \url{https://superphy.github.io/}. \par
+Future work will focus on adding more analysis modules and supporting different species, which can be connected to the existing graph database without need for recalculation.
+To complement existing platforms such as IRIDA, modules are self-contained and can easily be integrated into Galaxy \cite{goecks2010galaxy} based platforms.
+The website and source code are available at \url{https://superphy.github.io/}. \par
 
 
 % end of new intro
@@ -180,79 +180,48 @@ All services are publicly available at \url{https://lfz.corefacility.ca/superphy
 % shortpara
 % problem: CI/testing - sol'n Github, TravisCI, Pytest
 
-We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
-The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
-Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
+
+
+
+
+We present Spfy as an integrated predictive genomics toolkit for pathogens / \textit{E. coli} which leverages advances in web application development and deployment.
+
+which our analysis modules rely on.
+
+
+
+
+These changes enable real-time genome analysis and database storage of results for upwards of 5000 genomes.
+
+\subsection{Real-time analysis pipelines}
 
 Spfy enables processing of thousands of genome sequences using multiple modules.
 By using task queue workers, enabled by the Python-based Redis Queue library \url{https://github.com/nvie/rq}, performance can quickly scale to available infrastructure.
 As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
 Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
-We present Spfy as an integrated predictive genomics toolkit for pathogens / \textit{E. coli} which leverages advances in web application development and deployment.
 
-which our analysis modules rely on.
+\subsubsection{}
+
+\subsection{Task distribution and containerization}
+
+Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
+
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
+
+\subsection{Graph databases and ontologies}
+
 Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
 Spfy 
 
 
 Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
 
+\subsection{Intuitive web design}
 
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
-These changes enable real-time genome analysis and database storage of results for upwards of 5000 genomes.
+We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
+The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 
-\subsection{Materials subsection one}
-
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-
-
-\subsubsection{Materials subsubsection one.}
-
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text:
-\begin{align}
-\mathrm{LD}^r = \frac{\mathrm{LD}}{A_\mathrm{iso}}
-= 1.5 S \left( 3 \cos^2 \alpha_i - 1 \right)
-\end{align}
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-
-
-\subsection{Materials subsection two}
+\subsection{Continuous integration and testing}
 
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
