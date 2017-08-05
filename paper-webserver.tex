@@ -188,6 +188,7 @@ Spfy queries the graph database to run analyses XYZ and build visualizations.
 
 \subsection{Graph databases and ontologies}
 % para
+% 0. Goals: big-data, everything linked, easy addition of new links
 % 1. spfy is built around graph technologies
 % 2. graph dbs store data as a series of links
 % 3. existing graph dbs and bioinformatics implementations
@@ -196,7 +197,7 @@ Spfy queries the graph database to run analyses XYZ and build visualizations.
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-% 4. results/timings
+% 4. results/timings: scale
 
 Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
 Spfy 
@@ -219,16 +220,42 @@ Serotyping, VF, AMR predictions are computed within minutes, and results are eff
 We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
 The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 
+\subsection{Real-time analysis pipelines and task distribution}
 \subsection{Real-time analysis pipelines}
+% para
+% 1. goals: real-time, support for pipelines (linked modules)
+% 2. how pipelines have been handled in the past: Galaxy, other examples
+% 3. Python, RQ
+% para
+% 1. how we implemented RQ
+% 2. different pipelines available
+% 3. how pipelines are started from the front-end
+% 4. result storage in graph db
 
 Spfy enables processing of thousands of genome sequences using multiple modules.
 By using task queue workers, enabled by the Python-based Redis Queue library \url{https://github.com/nvie/rq}, performance can quickly scale to available infrastructure.
 As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
 Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
 
-\subsubsection{}
+\subsubsection{Task distribution and parallelization}
+% para
+% 1. goals: scale analyses to "big-data", error handling
+% 2. examples of different ways parallelization has been handled in the past
+% 3. how we handle parallelization with RQ
+% para
+% 1. how many tasks have we tested this with
+% 2. error handling: rq-dashboard, sentry
+% 3. why options like sentry are better than traditional logging: scales well to tons (big-data levels) of tasks, groups the same errors together, reporting via email
 
-\subsection{Task distribution and containerization}
+\subsection{Containerization}
+% para
+% 1. goals: why compartmentilizations
+% 2. examples of different virtualization technologies
+% 3. intro do docker
+% para
+% 1. how we implemented docker
+% 2. use of docker-compose
+% 3. how this lets us replicate worker containers and link everything together
 
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
 
@@ -237,6 +264,10 @@ Docker integration ensures that software dependencies, which typically must be m
 
 
 \subsection{Continuous integration and testing}
+% para
+% 1. goals: why CI, testing is important
+% 2. examples of different testing platforms
+% 3. how we've implemented it, integration with github
 
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
 Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
@@ -270,7 +301,10 @@ Text. Text. Text. Text.
 \end{figure}
 
 \subsection{Guides and documentation}
-
+% para
+% 1. goals: use guide (ie. the README), dev guide
+% 2. how docs have been done in the past (in general)
+% 3. our use of ReadtheDocs
 
 \section{RESULTS AND DISCUSSION}
 
