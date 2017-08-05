@@ -13,7 +13,7 @@
 
 \begin{document}
 
-\title{Article title}
+\title{Spfy: distributed predictive genomics of E.coli with graph based result linkage}
 
 \author{%
 Corresponding Author\,$^{1,*}$,
@@ -180,18 +180,44 @@ All services are publicly available at \url{https://lfz.corefacility.ca/superphy
 % shortpara
 % problem: CI/testing - sol'n Github, TravisCI, Pytest
 
+% Inputs: more like going from file -> analysis -> graph db (not a hard subsection)
+Spfy takes assembled genomes as input, runs selected analyses modules, and converts the results into a graph structure for upload.
+
+% Outputs: more like what we query from blazegraph and how we use it (not a hard subsection)
+Spfy queries the graph database to run analyses XYZ and build visualizations.
+
+\subsection{Graph databases and ontologies}
+% para
+% 1. spfy is built around graph technologies
+% 2. graph dbs store data as a series of links
+% 3. existing graph dbs and bioinformatics implementations
+% para
+% 1. how we structure our graph
+% 2. ontoogies used
+% 3. inferencing
+% 3 1/2. SPARQL queries
+% 4. results/timings
+
+Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
+Spfy 
 
 
+Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
 
+\subsection{Web design}
+% para
+% 1. goals: intuitive/familar, ease of use 
+% 2. design specs and different examples
+% 3. Google Material design
+% 4. some focus on card based design
+% para
+% 1. implementation: reactjs, react-md, ES6, JSX
+% 2. A to B: example of how users go from uploading files to results
+% 3. backwards compatibility with older browsers: transpile via Babel
+% 4. separation from Flask layer
 
-We present Spfy as an integrated predictive genomics toolkit for pathogens / \textit{E. coli} which leverages advances in web application development and deployment.
-
-which our analysis modules rely on.
-
-
-
-
-These changes enable real-time genome analysis and database storage of results for upwards of 5000 genomes.
+We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
+The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 
 \subsection{Real-time analysis pipelines}
 
@@ -208,18 +234,7 @@ Everything is compartmentalized within separate Docker containers where the fron
 
 Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
 
-\subsection{Graph databases and ontologies}
 
-Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
-Spfy 
-
-
-Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
-
-\subsection{Intuitive web design}
-
-We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
-The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 
 \subsection{Continuous integration and testing}
 
@@ -253,6 +268,8 @@ Text. Text. Text. Text.
 \caption{Caption for figure within column.}
 \label{NAR-fig1}
 \end{figure}
+
+\subsection{Guides and documentation}
 
 
 \section{RESULTS AND DISCUSSION}
