@@ -167,18 +167,8 @@ All services are publicly available at \url{https://lfz.corefacility.ca/superphy
 % **************************************************************
 
 \section{METHODS AND IMPLEMENTATION}
-% outline
 % para
-% problem: predictive analylitcs in minutes - sol'n: RQ
-%	related: packaging of modules in conda
-% para (probably 2 paras)
-% problem: distribute tasks & automate installation - sol'n: docker
-% para(probably 2 for graphs)
-% problem: storage up 10,000+ genomes - sol'n: graph database
-% para
-% problem: responsive ui that's easy to navigate - sol'n: react & material design
-% shortpara
-% problem: CI/testing - sol'n Github, TravisCI, Pytest
+% goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes 
 
 % Inputs: more like going from file -> analysis -> graph db (not a hard subsection)
 Spfy takes assembled genomes as input, runs selected analyses modules, and converts the results into a graph structure for upload.
@@ -228,6 +218,7 @@ The user interface is implemented with the React JavaScript library \url{https:/
 % 3. Python, RQ
 % para
 % 1. how we implemented RQ
+%	related: packaging of modules in conda
 % 2. different pipelines available
 % 3. how pipelines are started from the front-end
 % 4. result storage in graph db
