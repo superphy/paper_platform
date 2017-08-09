@@ -250,7 +250,7 @@ Containers are orchestrated through Docker-Compose allowing the entire platform:
 
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
 
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically.
 
 
 
@@ -285,12 +285,25 @@ Docker integration ensures that software dependencies, which typically must be m
 
 % para
 % focus on application
-% para
+
+\subsection{Deployment to Cloud-Computing Platforms}
 % how costs can be saved because using standard web tech means you can deploy to different cloud computing services
 
 \subsection{Comparison with other bioinformatic pipeline technologies}
 
 % namely galaxy
+
+\subsection{Comparison with similar bioinformatic pipelines}
+
+% para: \cite{naccache2014cloud}
+% must install a ton of deps and even create dbs manually https://github.com/chiulab/surpi
+% im not actually sure where they're getting the 'cloud-compatible' aspect of their paper from - its cloud compatible in that you deploy in the same manner as you would to bare-metal, but that's just like saying it 'runs on a computer'
+
+% para: \cite{aanensen2016whole}
+% makes some pretty pictures, but not really a pipeline
+
+% para: \cite{joensen2014real,thomsen2016bacterial}
+% we have a lot of similar directions to this, but just try to make it prettier, more friendly to use, and faster
 
 \begin{table}[b]
 \tableparts{%
