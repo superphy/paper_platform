@@ -166,7 +166,21 @@ All services are publicly available at \url{https://lfz.corefacility.ca/superphy
 \enlargethispage{-65.1pt}
 % **************************************************************
 
-\section{METHODS AND IMPLEMENTATION}
+% Some general comments
+% The NAR Database issue is more of a showcase then a rigorous exploration of software design choices.
+% Given this focus, i would suggest the following:
+% 1. Increase/highlight the discriptions of the functions and capabilities, maybe by adding a Functionality section
+% 2. In the Implmentation (or Methods) section, only give a cursory description of the layout and components. Don't need to provide too much justification
+% 3. Use the Results section to highlight the scope/size and speed. This can be short
+% 4. In the Discussion, this is where i would expand on the justications and reasons for specific design choices. Pick 2-3 main ones and discuss those (i.e. don't need to justify our choice of documentation software). Also compare with other software in Discussion.
+% 5. Add a conclusions section
+
+
+\section{FUNCTIONALITY}
+
+% Describe available functions in spfy
+
+\section{IMPLEMENTATION}
 % para
 % goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes 
 
@@ -176,41 +190,31 @@ Spfy takes assembled genomes as input, runs selected analyses modules, and conve
 % Outputs: more like what we query from blazegraph and how we use it (not a hard subsection)
 Spfy queries the graph database to run analyses XYZ and build visualizations.
 
-\subsection{Graph databases and ontologies}
+\subsection{Data Storage}
 % para
 % 0. Goals: big-data, everything linked, easy addition of new links
 % 1. spfy is built around graph technologies
-% 2. graph dbs store data as a series of links
-% 3. existing graph dbs and bioinformatics implementations
-% para
 % 1. how we structure our graph
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-% 4. results/timings: scale
 
 Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
 Spfy 
-
 
 Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
 
 \subsection{Web design}
 % para
 % 1. goals: intuitive/familar, ease of use 
-% 2. design specs and different examples
+% 2. design specs
 % 3. Google Material design
-% 4. some focus on card based design
-% para
 % 1. implementation: reactjs, react-md, ES6, JSX
-% 2. A to B: example of how users go from uploading files to results
-% 3. backwards compatibility with older browsers: transpile via Babel
 % 4. separation from Flask layer
 
 We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
 The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 
-\subsection{Real-time analysis pipelines and task distribution}
 \subsection{Real-time analysis pipelines}
 % para
 % 1. goals: real-time, support for pipelines (linked modules)
@@ -219,33 +223,24 @@ The user interface is implemented with the React JavaScript library \url{https:/
 % para
 % 1. how we implemented RQ
 %	related: packaging of modules in conda
-% 2. different pipelines available
-% 3. how pipelines are started from the front-end
-% 4. result storage in graph db
 
 Spfy enables processing of thousands of genome sequences using multiple modules.
 By using task queue workers, enabled by the Python-based Redis Queue library \url{https://github.com/nvie/rq}, performance can quickly scale to available infrastructure.
 As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
 Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
 
-\subsubsection{Task distribution and parallelization}
+
 % para
 % 1. goals: scale analyses to "big-data", error handling
-% 2. examples of different ways parallelization has been handled in the past
 % 3. how we handle parallelization with RQ
 % para
 % 1. how many tasks have we tested this with
 % 2. error handling: rq-dashboard, sentry
 % 3. why options like sentry are better than traditional logging: scales well to tons (big-data levels) of tasks, groups the same errors together, reporting via email
 
-\subsection{Containerization}
 % para
 % 1. goals: why compartmentilizations
-% 2. examples of different virtualization technologies
-% 3. intro do docker
-% para
 % 1. how we implemented docker
-% 2. use of docker-compose
 % 3. how this lets us replicate worker containers and link everything together
 
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
@@ -253,12 +248,11 @@ Everything is compartmentalized within separate Docker containers where the fron
 Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically.
 
 
-
 \subsection{Continuous integration and testing}
+% Keep this short
 % para
 % 1. goals: why CI, testing is important
-% 2. examples of different testing platforms
-% 3. how we've implemented it, integration with github
+% 2. how we've implemented it, integration with github 
 
 \begin{figure}[t]
 \begin{center}
@@ -268,18 +262,17 @@ Docker integration ensures that software dependencies, which typically must be m
 \label{NAR-fig1}
 \end{figure}
 
-\subsection{Guides and documentation}
-% para
-% 1. goals: use guide (ie. the README), dev guide
-% 2. how docs have been done in the past (in general)
-% 3. our use of ReadtheDocs
 
-\section{RESULTS AND DISCUSSION}
+\section{RESULTS}
 
-\subsection{Further containerizing analyses modules}
+% e.g.
+% database statistics
+% analysis run-time / throughput with different levels of parallelization
 
-% ex. in python, tox can be set to spin up docker containers for testing - see certbot
-% could spin up a new container for each analysis module to run see \cite{di2015impact} - neglible performance impact
+
+\section{DISCUSSION}
+
+% Mention where users / developers can find documentation
 
 \subsection{Impact on Public Health Efforts}
 
@@ -304,6 +297,8 @@ Docker integration ensures that software dependencies, which typically must be m
 
 % para: \cite{joensen2014real,thomsen2016bacterial}
 % we have a lot of similar directions to this, but just try to make it prettier, more friendly to use, and faster
+
+\section{CONCLUSIONS}
 
 \begin{table}[b]
 \tableparts{%
