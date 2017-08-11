@@ -146,11 +146,6 @@ By retrieving results from the database, Spfy provides group comparisons using F
 \section{IMPLEMENTATION}
 % para
 % goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes {}
-% drawbacks - big data
-Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
-Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
-While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
-Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
 % Inputs: more like going from file -> analysis -> graph db (not a hard subsection)
 Spfy takes assembled genomes as input, runs selected analyses modules, and converts the results into a graph structure for upload.
@@ -240,8 +235,16 @@ This worked our to XYZ GB of data stored.
 
 \section{DISCUSSION}
 
+% drawbacks - big data
+Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
+Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
+While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
+Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
+
+One of the key goals in developing Spfy is to maintain instantaneity: modern websites have accustomed users to instant results.
+We attempt to use innovations in web development and bring a similar experience to Spfy as a predictive genomics platform for \textit{E. coli}.
 % Mention where users / developers can find documentation
-A guide to setting up Spfy is provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+Spfy's main documentation and codebase are provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
 \subsection{Impact on Public Health Efforts}
 
