@@ -114,7 +114,6 @@ The previous gold-standard in determining strain relatedness was pulsed-field ge
 However, in \textit{Enterococcus faecium}, PFGE has been shown to misclassify 9 of 132 isolates, when compared to whole-genome sequencing (WGS) based discrimination \cite{pinholt2015multiple}.
 In \textit{Klebsiella pneumoniae} \cite{marsh2015genomic}, \textit{Yersinia enterocolitica} \cite{gilpin2014limitations}, and \textit{Staphylococcus aureus} \cite{doi:10.1093/ofid/ofu096}, WGS was used to discriminate isolates after initial clustering by PFGE resulted in indistinguishable samples.
 Examination of PFGE bands are also subjective, difficult to share \cite{lytsy2017time}, and collative platforms such as PulseNet reported \cite{gilpin2014limitations} that even after collecting 72\% of \textit{Campylobacter jejuni} in a given year in Minnesota (673 cases), 87\% of isolates could not be linked by PFGE pattern.
-To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
 Antimicrobial resistance testing, virulence factor testing ...
 However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
 
@@ -131,16 +130,14 @@ While this was acceptable for smaller analyses, bioinformatic pipelines utilizin
 Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
 % Solution via software engineering
-Current programs that address these issues include the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, which addresses data concerns by curating a set of known AMR genes.
+
 In addition, GenomeTrackr from the Food and Drug Administration (FDA) \cite{allard2016practical}; GenBank from the National Center for Biotechnology Information (NCBI) \cite{doi:10.1093/nar/gks1195}; and PulseNet from the Center for Disease Control and Prevention (CDC) \cite{swaminathan2001pulsenet}, all enable sharing of genome sequences and associated metadata, either openly or amongst member institutions.
 
 %By comparing a pre-collected set of reference gene sequences against a WGS result, bioinformatics software predicts wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
 %MLST software uses a similar reference-based approach \cite{larsen2012multilocus}.
 
 
-% rewrite of bigdata approach (BIGGER bigdata)
-Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
-These software programs are capable of processing X number of genomes per Y days at a cost of Z, which would take a A, B and C to do in a wet-lab.
+
 
 While these programs are useful for computing novel analyses, storing results in a tiered structure, with rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}, is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
 
@@ -179,10 +176,35 @@ All services are publicly available at \url{https://lfz.corefacility.ca/superphy
 \section{FUNCTIONALITY}
 
 % Describe available functions in spfy
+% para covering everything
+Spfy performs reference laboratory tasks: O-antigen and H-antigen typing, Shiga-toxin (STX) typing,  virulence factor (VF) and antimicrobial resistance (AMR) gene determination, and related strain determination.
+Spfy also performs bioinformatics analyses: pangenome generation, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
+
+% para covering ectyper & RGI
+To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
+O-antigen and H-antigen typing, and VF determination use our ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} software.
+ECTYper compares the user-submitted genomes against a curated set of sequences, an approach originally implemented in the VirulenceFinder \cite{joensen2014real} tool.
+The Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive} maintains a set of known AMR genes and develops the Resistance Gene Identifier (RGI) program.
+Both ECTyper and RGI are based off of BLAST \cite{pmid2231712}.
+
+% para on phylotyper
+Stx typing looks at ...
+Phylotyper constructs phylogenetic trees and uses ancestral reconstruction to determine Stx-types ... others.
+The software can also be used to generate trees and determine closely related strains.
+
+% para on pangenome
+Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
+Spfy integrates panseq ...
+
+% storage of results
+The results from ECTyper, RGI, Phylotyper, and Panseq are converted into a graph structure and linked the the genomes they originated from.
+
+% use of stored results
+By retrieving results from the database, Spfy provides group comparisons using Fishers, and can build SVMs to predict AMR based off of the presence of particular pangenome regions.
 
 \section{IMPLEMENTATION}
 % para
-% goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes 
+% goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes {}
 
 % Inputs: more like going from file -> analysis -> graph db (not a hard subsection)
 Spfy takes assembled genomes as input, runs selected analyses modules, and converts the results into a graph structure for upload.
