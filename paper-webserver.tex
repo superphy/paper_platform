@@ -97,68 +97,6 @@ The website and source code are available at \url{https://superphy.github.io/}. 
 
 
 % end of new intro
-% below material is just old stuff, might or might not be used elsewhere
-
-% costs of bacterial infections
-% We need to state the "big problem" up-front that we are working on, which is not really tracking foodborne illness. It is fast analyses of bacterial whole-genomes, providing reference-laboratory tests from in-silico data, predicting phenotype from genotype, and providing a linked database of known genomes that don't need to be re-computed. This can be used in the tracking of foodborne illness, but is more an application of the problem we are working on.
-The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
-Within Canada it is estimated that over 4,000 hospitalizations and 100 deaths occur due to bacterial infections \cite{thomas2015estimates}; in the United States, over 55,000 hospitalizations and 1,300 deaths occur per year \cite{scallan2011foodborne}. Within North America the total economic burden of these illnesses is estimated to be ACTUAL NUMBER \cite{todd1989costs,scharff2010health}.
-The bacterial species that are most frequently associated with severe disease, and cause the majority of this health burden in (Canada / NA/ Europe / Worldwide ) are ABC.
-%You could combine the Canada / US numbers into a North America number, and include world-wide data as well. Always avoid vacuous descriptors like "many", "various" -- use an actual quantifier. Eg. Most people prefer vanilla to chocolate. Fifty-one percent of people prefer vanilla to chocolate. Ninety-nine percent of people prefer vanilla to chocolate.  
-
-% routinely monitor emerging threats, of which \textit{Salmonella enterica} and \textit{Escherichia coli} are amongst the two most common \cite{kozak2013foodborne}. In \textit{Salmonella enterica} \cite{bell2016recent}, \textit{Escherichia coli} \cite{fratamico2016advances}, and (others pathogens --> either state the other pathogens or leave it out entirely) \cite{ronholm2016navigating}
-
-% surveillance
-Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings.
-The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain.
-However, in \textit{Enterococcus faecium}, PFGE has been shown to misclassify 9 of 132 isolates, when compared to whole-genome sequencing (WGS) based discrimination \cite{pinholt2015multiple}.
-In \textit{Klebsiella pneumoniae} \cite{marsh2015genomic}, \textit{Yersinia enterocolitica} \cite{gilpin2014limitations}, and \textit{Staphylococcus aureus} \cite{doi:10.1093/ofid/ofu096}, WGS was used to discriminate isolates after initial clustering by PFGE resulted in indistinguishable samples.
-Examination of PFGE bands are also subjective, difficult to share \cite{lytsy2017time}, and collative platforms such as PulseNet reported \cite{gilpin2014limitations} that even after collecting 72\% of \textit{Campylobacter jejuni} in a given year in Minnesota (673 cases), 87\% of isolates could not be linked by PFGE pattern.
-To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
-Antimicrobial resistance testing, virulence factor testing ...
-However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
-
-% potential of WGS
-, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
-However, while these WGS-based methods can fully examine the underlying genetics, the expressed phenotype is more difficult to predict.
-For example, predictions involving reference databases are only as good as the databases themselves.
-
-
-% drawbacks - big data
-Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
-Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
-While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
-Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
-
-% Solution via software engineering
-Current programs that address these issues include the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, which addresses data concerns by curating a set of known AMR genes.
-In addition, GenomeTrackr from the Food and Drug Administration (FDA) \cite{allard2016practical}; GenBank from the National Center for Biotechnology Information (NCBI) \cite{doi:10.1093/nar/gks1195}; and PulseNet from the Center for Disease Control and Prevention (CDC) \cite{swaminathan2001pulsenet}, all enable sharing of genome sequences and associated metadata, either openly or amongst member institutions.
-
-%By comparing a pre-collected set of reference gene sequences against a WGS result, bioinformatics software predicts wet-lab serotyping results \cite{whiteside2016superphy}, Virulence Factor (VF) results \cite{joensen2014real}, and antimicrobial resistance (AMR) results \cite{mcarthur2013comprehensive}.
-%MLST software uses a similar reference-based approach \cite{larsen2012multilocus}.
-
-
-% rewrite of bigdata approach (BIGGER bigdata)
-Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
-These software programs are capable of processing X number of genomes per Y days at a cost of Z, which would take a A, B and C to do in a wet-lab.
-
-While these programs are useful for computing novel analyses, storing results in a tiered structure, with rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}, is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
-
-% why Superphy
-Currently, a number of organizations are creating user-friendly web services for common analyses of bacterial genomes.
-These include: NAME \cite{joensen2014real,larsen2012multilocus}, NAME \cite{liu2016construction}, and NAME \cite{hasman2015detection}, which do X, Y and Z respectively.
-
-While useful, leveraging big-data results from WGS is difficult due to the lack of bioinformatic standards and common infrastructure technologies.
-Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
-
-% Superphy
-, which provided pre-computed, predictive genomic analyses for determining Shiga toxin subtype, AMR gene profiles, the presence of known virulence factors, and provides predictive biomarkers, both the presence / absence of genomic regions and single nucleotide variants, for bacterial sub-groups based on metadata such as serotype, host source, or location.
-
-
-
-
-Lastly, these services are containerized using Docker to mitigate the complexities of the underlying bioinformatic pipelines.
-All services are publicly available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
 % **************************************************************
 % Keep this command to avoid text of first page running into the
@@ -166,9 +104,48 @@ All services are publicly available at \url{https://lfz.corefacility.ca/superphy
 \enlargethispage{-65.1pt}
 % **************************************************************
 
-\section{METHODS AND IMPLEMENTATION}
+% Some general comments
+% The NAR Database issue is more of a showcase then a rigorous exploration of software design choices.
+% Given this focus, i would suggest the following:
+% 1. Increase/highlight the discriptions of the functions and capabilities, maybe by adding a Functionality section
+% 2. In the Implmentation (or Methods) section, only give a cursory description of the layout and components. Don't need to provide too much justification
+% 3. Use the Results section to highlight the scope/size and speed. This can be short
+% 4. In the Discussion, this is where i would expand on the justications and reasons for specific design choices. Pick 2-3 main ones and discuss those (i.e. don't need to justify our choice of documentation software). Also compare with other software in Discussion.
+% 5. Add a conclusions section
+
+
+\section{FUNCTIONALITY}
+
+% Describe available functions in spfy
+% para covering everything
+Spfy performs reference laboratory tasks: O-antigen and H-antigen typing, Shiga-toxin (STX) typing,  virulence factor (VF) and antimicrobial resistance (AMR) gene determination, and related strain determination.
+Spfy also performs bioinformatics analyses: pangenome generation, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
+
+% para covering ectyper & RGI
+To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
+O-antigen and H-antigen typing, and VF determination use our ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} software.
+ECTYper compares the user-submitted genomes against a curated set of sequences, an approach originally implemented in the VirulenceFinder \cite{joensen2014real} tool.
+The Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive} maintains a set of known AMR genes and develops the Resistance Gene Identifier (RGI) program.
+Both ECTyper and RGI are based off of BLAST \cite{pmid2231712}.
+
+% para on phylotyper
+Stx typing looks at ...
+Phylotyper constructs phylogenetic trees and uses ancestral reconstruction to determine Stx-types ... others.
+The software can also be used to generate trees and determine closely related strains.
+
+% para on pangenome
+Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
+Spfy integrates panseq ...
+
+% storage of results
+The results from ECTyper, RGI, Phylotyper, and Panseq are converted into a graph structure and linked the the genomes they originated from.
+
+% use of stored results
+By retrieving results from the database, Spfy provides group comparisons using Fishers, and can build SVMs to predict AMR based off of the presence of particular pangenome regions.
+
+\section{IMPLEMENTATION}
 % para
-% goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes 
+% goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes {}
 
 % Inputs: more like going from file -> analysis -> graph db (not a hard subsection)
 Spfy takes assembled genomes as input, runs selected analyses modules, and converts the results into a graph structure for upload.
@@ -176,41 +153,31 @@ Spfy takes assembled genomes as input, runs selected analyses modules, and conve
 % Outputs: more like what we query from blazegraph and how we use it (not a hard subsection)
 Spfy queries the graph database to run analyses XYZ and build visualizations.
 
-\subsection{Graph databases and ontologies}
+\subsection{Data Storage}
 % para
 % 0. Goals: big-data, everything linked, easy addition of new links
 % 1. spfy is built around graph technologies
-% 2. graph dbs store data as a series of links
-% 3. existing graph dbs and bioinformatics implementations
-% para
 % 1. how we structure our graph
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-% 4. results/timings: scale
 
 Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
 Spfy 
-
 
 Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
 
 \subsection{Web design}
 % para
 % 1. goals: intuitive/familar, ease of use 
-% 2. design specs and different examples
+% 2. design specs
 % 3. Google Material design
-% 4. some focus on card based design
-% para
 % 1. implementation: reactjs, react-md, ES6, JSX
-% 2. A to B: example of how users go from uploading files to results
-% 3. backwards compatibility with older browsers: transpile via Babel
 % 4. separation from Flask layer
 
 We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
 The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
 
-\subsection{Real-time analysis pipelines and task distribution}
 \subsection{Real-time analysis pipelines}
 % para
 % 1. goals: real-time, support for pipelines (linked modules)
@@ -219,192 +186,117 @@ The user interface is implemented with the React JavaScript library \url{https:/
 % para
 % 1. how we implemented RQ
 %	related: packaging of modules in conda
-% 2. different pipelines available
-% 3. how pipelines are started from the front-end
-% 4. result storage in graph db
 
 Spfy enables processing of thousands of genome sequences using multiple modules.
 By using task queue workers, enabled by the Python-based Redis Queue library \url{https://github.com/nvie/rq}, performance can quickly scale to available infrastructure.
 As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
 Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
 
-\subsubsection{Task distribution and parallelization}
+
 % para
 % 1. goals: scale analyses to "big-data", error handling
-% 2. examples of different ways parallelization has been handled in the past
 % 3. how we handle parallelization with RQ
 % para
 % 1. how many tasks have we tested this with
 % 2. error handling: rq-dashboard, sentry
 % 3. why options like sentry are better than traditional logging: scales well to tons (big-data levels) of tasks, groups the same errors together, reporting via email
 
-\subsection{Containerization}
 % para
 % 1. goals: why compartmentilizations
-% 2. examples of different virtualization technologies
-% 3. intro do docker
-% para
 % 1. how we implemented docker
-% 2. use of docker-compose
 % 3. how this lets us replicate worker containers and link everything together
 
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
 
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2}, are handled automatically.
-
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically.
 
 
 \subsection{Continuous integration and testing}
+% Keep this short
 % para
 % 1. goals: why CI, testing is important
-% 2. examples of different testing platforms
-% 3. how we've implemented it, integration with github
+% 2. how we've implemented it, integration with github 
 
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text
-(see Figure \ref{NAR-fig1}).
+We developed Spfy using continuous integration (CI) techniques: all changes and update to the codebase is automatically ran against a series of tests ensuring functionality and backwards compatibility.
+We chose TravisCI \url{travisci.io} which offers free services for open-source projects.
+The individual tests use PyTest.
 
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text.
-\begin{equation*}
-\mathrm{LD} \left( t \right) =
-\sum\limits_i
-a_i \exp \left( \frac{-t}{\tau_i} \right)
-\end{equation*}
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text.
 
-\begin{figure}[t]
-\begin{center}
-\includegraphics{NAR-fig1.eps}
-\end{center}
-\caption{Caption for figure within column.}
-\label{NAR-fig1}
-\end{figure}
+\section{RESULTS}
 
-\subsection{Guides and documentation}
+% e.g.
+% database statistics
+We tested spfy with 55,353 samples genomes (267GB), storing both the entire genomes and results for all included analyses modules.
+The resulting database had XYZ nodes and XYZ edges, with XYZ object properties.
+This worked our to XYZ GB of data stored.
+
+% analysis run-time / throughput with different levels of parallelization
+
+
+\section{DISCUSSION}
+
+% drawbacks - big data
+Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
+Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
+While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
+Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
+
+One of the key goals in developing Spfy is to maintain instantaneity: modern websites have accustomed users to instant results.
+We attempt to use innovations in web development and bring a similar experience to Spfy as a predictive genomics platform for \textit{E. coli}.
+% Mention where users / developers can find documentation
+Spfy's main documentation and codebase are provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+
+\subsection{Impact on Public Health Efforts}
+
 % para
-% 1. goals: use guide (ie. the README), dev guide
-% 2. how docs have been done in the past (in general)
-% 3. our use of ReadtheDocs
+% focus on application
+The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
+Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings.
+The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain.
+However, in \textit{Enterococcus faecium}, PFGE has been shown to misclassify 9 of 132 isolates, when compared to whole-genome sequencing (WGS) based discrimination \cite{pinholt2015multiple}.
+In \textit{Klebsiella pneumoniae} \cite{marsh2015genomic}, \textit{Yersinia enterocolitica} \cite{gilpin2014limitations}, and \textit{Staphylococcus aureus} \cite{doi:10.1093/ofid/ofu096}, WGS was used to discriminate isolates after initial clustering by PFGE resulted in indistinguishable samples.
+Examination of PFGE bands are also subjective, difficult to share \cite{lytsy2017time}, and collative platforms such as PulseNet reported \cite{gilpin2014limitations} that even after collecting 72\% of \textit{Campylobacter jejuni} in a given year in Minnesota (673 cases), 87\% of isolates could not be linked by PFGE pattern.
+Antimicrobial resistance testing, virulence factor testing ...
+However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence. 
+, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
 
-\section{RESULTS AND DISCUSSION}
+% application: results similar to a wet-lab
+Spfy uses WGS results.
+After intial sequencing of new isolates, Spfy can be used in place of a traditional reference laborartory, to determine the O-type and H-type, Stx type, and all known VFs and AMR genes in real-time.
+These results can be shared with other ageencies and researchers over the internet.
+Futhermore, using Spfy's database of pre-processed genomes, Spfy can determine all strains a sample may be related to which is useful for ...
+Cost benefits ...
 
-\subsection{Results subsection one}
+\subsection{Deployment to Cloud-Computing Platforms}
+% how costs can be saved because using standard web tech means you can deploy to different cloud computing services
+Spfy's common infrastructure allows the platform to be deployed to multiple cloud computing services, without need to modify the code.
+Docker containerization is supported by Amazon AWS, Google Cloud, ...
+Neglibble impact of Docker containers on performance \cite{di2015impact}.
+Costs ...
 
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text.
+\subsection{Comparison with other bioinformatic pipeline technologies}
 
-\begin{table}[b]
-\tableparts{%
-\caption{This is a table caption}
-\label{table:01}%
-}{%
-\begin{tabular*}{\columnwidth}{@{}lllll@{}}
-\toprule
-Col. head 1 & Col. head 2 & Col. head 3 & Col. head 4 & Col. head 5
-\\
-& (\%) & (s$^{-1}$) & (\%) & (s$^{-1}$)
-\\
-\colrule
-Row 1 & Row 1 & Row 1 & -- & --
-\\
-Row 2 & Row 2 & Row 2 & Row 2 & Row 2
-\\
-\botrule
-\end{tabular*}%
-}
-{This is a table footnote}
-\end{table}
+% namely galaxy
+Other pipeline technologies such as Galaxy \cite{goecks2010galaxy}, Kepler ... \cite{de2015trends}.
+important to have rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}
+long term storage is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
+Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
 
+\subsection{Comparison with similar bioinformatic pipelines}
 
-\subsection{Results subsection two}
+% para: \cite{naccache2014cloud}
+% must install a ton of deps and even create dbs manually https://github.com/chiulab/surpi
+% im not actually sure where they're getting the 'cloud-compatible' aspect of their paper from - its cloud compatible in that you deploy in the same manner as you would to bare-metal, but that's just like saying it 'runs on a computer'
 
-Text.  Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text (see Table \ref{table:01}).
+% para: \cite{aanensen2016whole}
+% makes some pretty pictures, but not really a pipeline
 
-Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text (see Figure \ref{NAR-fig2}a).
+% para: \cite{joensen2014real,thomsen2016bacterial}
+% we have a lot of similar directions to this, but just try to make it prettier, more friendly to use, and faster
 
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-
-\begin{figure*}[t]
-\begin{center}
-\includegraphics{NAR-fig2.eps}
-\end{center}
-\caption{Caption for wide figure over two columns.
-\textbf{(a)} Left figure.
-\textbf{(b)} Right figure (see (a)).
-}
-\label{NAR-fig2}
-\end{figure*}
-
-
-\subsection{Results subsection three}
-
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text.
-
-\section{CONCLUSION}
-
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text.
-
+\section{CONCLUSIONS}
 
 \section{ACKNOWLEDGEMENTS}
-
-Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.
-Text. Text. Text. Text.
 
 
 \subsubsection{Conflict of interest statement.} None declared.
