@@ -149,6 +149,11 @@ Spfy is built around semantic web technologies which focuses on describing the r
 In biological data, a semantic web focus describes individual data points by the type, for example as a genome, contiguous DNA sequence, or gene, and then link related data together in a queryable graph.
 Semantic web technlogies allow new, not previously described data to be seemlessly incorporated to the existing graph, and has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
+% para: semantic web in spfy
+In Spfy, the entirety of SuperPhy's previous code is replaced with methods for handling semantic web technologies.
+Generalized functions are used to convert the results from different analysis modules into a graph object, and that graph object is used to update the main graph database; information contained in the WGS file is also converted into a graph object and stored.
+The use of semantic web technologies allows results to be linked to the genomes they were computed from, and all data points to share a common datastructure that can be queried together.
+
 \subsection{Data Storage}
 % para
 % 0. Goals: big-data, everything linked, easy addition of new links
@@ -158,7 +163,7 @@ Semantic web technlogies allow new, not previously described data to be seemless
 % 3. inferencing
 % 3 1/2. SPARQL queries
 
-Graph databases focus on describing the relationships between different data, and is one of the emerging \cite{de2015trends} database types used for biological data.
+Graph databases focus on describing the relationships between different data points, and is one of the emerging \cite{de2015trends} database types used for biological data.
 Spfy 
 
 Serotyping, VF, AMR predictions are computed within minutes, and results are efficiently stored within the graph.
