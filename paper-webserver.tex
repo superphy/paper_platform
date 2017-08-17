@@ -154,6 +154,16 @@ In Spfy, the entirety of SuperPhy's previous code is replaced with methods for h
 Generalized functions are used to convert the results from different analysis modules into a graph object, and that graph object is used to update the main graph database; information contained in the WGS file is also converted into a graph object and stored.
 The use of semantic web technologies allows results to be linked to the genomes they were computed from, and all data points to share a common datastructure that can be queried together.
 
+% para: intro to the spfy stack
+Spfy's server-side code is developed in Python and the website served to users is developed using the React JavaScript library.
+When users upload genomes for analysis: (i) they first make the upload through the ReactJS-based website. 
+The public web service accepts up to 200 MB of genome files (50 genomes compressed, or 120 genomes compressed).
+(ii) When files are uploaded, the user-selected analysis options are enqueued into the Redis Queue \url{http://python-rq.org/} task queue.
+Redis Queue consists of a Redis Database \url{https://redis.io/} and task queue workers which run as Python processes.
+(iii) The workers dequeue the various analyses and run them in parallel and results are stored back in the Redis database.
+(iv) Python functions are then used to parse the results and permanently store them in Blazegraph \url{https://www.blazegraph.com/} - a graph database.
+The entire Spfy platform is packaged as a series of Docker \url{https://www.docker.com/} containers and orchestrated using Docker Compose \url{https://docs.docker.com/compose/}.
+
 \subsection{Data Storage}
 % para
 % 0. Goals: big-data, everything linked, easy addition of new links
