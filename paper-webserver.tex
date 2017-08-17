@@ -172,10 +172,11 @@ The entire Spfy platform is packaged as a series of Docker \url{https://www.dock
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-
 Graph databases focus on describing the relationships between different data points, is one of the emerging \cite{de2015trends} database types used for biological data, and is one of the core building blocks of a semantic web stack \cite{horrocks2005semantic}.
 Spfy uses the RDFLib Python library \url{https://rdflib.readthedocs.org/} to represent all data meant for long-term storage.
 When serotyping, VF, AMR predictions, and pangenome generation tasks are completed, the results are stored within the graph database.
+% note: below is a feature in development
+The permanent storage of results serve as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run.
 
 \subsection{Web design}
 % para
