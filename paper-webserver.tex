@@ -144,14 +144,10 @@ The results from ECTyper, RGI, Phylotyper, and Panseq are converted into a graph
 By retrieving results from the database, Spfy provides group comparisons using Fishers, and can build SVMs to predict AMR based off of the presence of particular pangenome regions.
 
 \section{IMPLEMENTATION}
-% para
-% goals: predictive analylitcs in minutes, storage up 50,000-100,000 genomes {}
-
-% Inputs: more like going from file -> analysis -> graph db (not a hard subsection)
-Spfy takes assembled genomes as input, runs selected analyses modules, and converts the results into a graph structure for upload.
-
-% Outputs: more like what we query from blazegraph and how we use it (not a hard subsection)
-Spfy queries the graph database to run analyses XYZ and build visualizations.
+% para: the semantic web
+Spfy is built around semantic web technologies which focuses on describing the relaions between different datum \cite{berners2001semantic}.
+In biological data, a semantic web focus describes individual data points by the type, for example as a genome, contiguous DNA sequence, or gene, and then link related data together in a queryable graph.
+Semantic web technlogies allow new, not previously described data to be seemlessly incorporated to the existing graph, and has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
 \subsection{Data Storage}
 % para
