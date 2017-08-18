@@ -233,11 +233,12 @@ While data storage is graph-based, the results of various analysis modules are p
 % 1. how we implemented RQ
 %	related: packaging of modules in conda
 
-Spfy enables processing of thousands of genome sequences using multiple modules.
-By using task queue workers, enabled by the Python-based Redis Queue library \url{https://github.com/nvie/rq}, performance can quickly scale to available infrastructure.
-As a bioinformatics tool, we ensured reliability of the platform by integrating the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} for real-time exception tracking.
-Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
-
+Task queues are processes which schedule code exection across available computing infrastructure.
+In Spfy, the Python-based Redis Queue library \url{https://github.com/nvie/rq} is used to schedule analysis tasks and have them run asynchronously in response to user requests.
+When a user submits files for analysis or population-wide anlayses, separate tasks are enqueued at different priorities, depending on when users might expect the result to be returned.
+For example, population-wide analyses have a higher priority than bulk subtyping analyses, as we expect day-to-day web searches (for example, on Google) to respond instantly whereas a delay in subtyping is typical in similar web services such as the Center for Genomic Epidemiology Pipeline (CGE Pipeline) \cite{thomsen2016bacterial}.
+Spfy enables processing of thousands of genome sequences by using task queue workers running in parallel, which also allows performance to scale to available infrastructure.
+To ensure reliability of the platform, the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} was integrated and used for real-time exception tracking.
 
 % para
 % 1. goals: scale analyses to "big-data", error handling
@@ -252,6 +253,7 @@ Containers are orchestrated through Docker-Compose allowing the entire platform:
 % 1. how we implemented docker
 % 3. how this lets us replicate worker containers and link everything together
 
+Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
 
 (see Figure \ref{fig-docker})
