@@ -172,11 +172,29 @@ The entire Spfy platform is packaged as a series of Docker \url{https://www.dock
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-Graph databases focus on describing the relationships between different data points, is one of the emerging \cite{de2015trends} database types used for biological data, and is one of the core building blocks of a semantic web stack \cite{horrocks2005semantic}.
+Graph databases focus on describing relationships between different data points, is one of the emerging \cite{de2015trends} database types used for biological data, and one of the core building blocks of a semantic web technology stack \cite{horrocks2005semantic}.
 Spfy uses the RDFLib Python library \url{https://rdflib.readthedocs.org/} to represent all data meant for long-term storage.
 When serotyping, VF, AMR predictions, and pangenome generation tasks are completed, the results are stored within the graph database.
 % note: below is a feature in development
 The permanent storage of results serve as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run.
+
+% para
+% ontology
+Ontologies are indices which define types of data and the relations between them.
+Spfy describes genomes as a collection of contiguous sequences (contigs), and connects the predicted genes and pangenome regions to the contigs they were found on.
+(see Figure \ref{fig-ontology})
+Individual genes and pangenome regions are connected to all the contigs they are found on, such that it is possible to infer all the genomes which contain a particular target sequence.
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics{images/spfy_ontology-1.svg}
+\end{center}
+\caption{Caption for figure within column.}
+\label{fig-ontology}
+\end{figure}
+
+blah...
 
 \subsection{Web design}
 % para
@@ -218,6 +236,16 @@ Containers are orchestrated through Docker-Compose allowing the entire platform:
 % 3. how this lets us replicate worker containers and link everything together
 
 Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
+
+(see Figure \ref{fig-docker})
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics{images/docker.svg}
+\end{center}
+\caption{Caption for figure within column.}
+\label{fig-docker}
+\end{figure}
 
 Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically.
 
