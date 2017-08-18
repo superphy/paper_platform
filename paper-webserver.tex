@@ -181,9 +181,10 @@ The permanent storage of results serve as a one-time cost, and allows population
 % para
 % ontology
 Ontologies are indices which define types of data and the relations between them.
-Spfy describes genomes as a collection of contiguous sequences (contigs), and connects the predicted genes and pangenome regions to the contigs they were found on.
+By sharing ontologies, it is possible to link sources of data from different organizations together, and Spfy uses types defined in the  Genomic Epidemiology Application Ontology (GenEpiO) (\cite{griffiths2017context} and Feature Annotation Location Description Ontology (FALDO) \cite{bolleman2016faldo}.
+Spfy also connects genomes, contiguous sequences (contigs), pangenome regions, and predicted genes and alleles in novel ways; to allow the presence of various genes to be infered from a genome description, realtionship links are generically named.
 (see Figure \ref{fig-ontology})
-Individual genes and pangenome regions are connected to all the contigs they are found on, such that it is possible to infer all the genomes which contain a particular target sequence.
+Individual genes and pangenome regions are connected to all the contigs they are found on using this inferencing method, such that it is possible to determine all the genomes which contain a particular target sequence.
 
 \begin{figure}[t]
 \begin{center}
@@ -192,8 +193,6 @@ Individual genes and pangenome regions are connected to all the contigs they are
 \caption{Caption for figure within column.}
 \label{fig-ontology}
 \end{figure}
-
-blah...
 
 \subsection{Web design}
 % para
