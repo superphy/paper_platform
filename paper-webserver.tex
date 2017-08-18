@@ -202,8 +202,27 @@ Individual genes and pangenome regions are connected to all the contigs they are
 % 1. implementation: reactjs, react-md, ES6, JSX
 % 4. separation from Flask layer
 
-We designed Spfy's front-end following the Material Design standards \url{https://material.io/}, released by Google.
-The user interface is implemented with the React JavaScript library \url{https://facebook.github.io/react/}, by Facebook, as a single-page application to allow efficient data-flow without reloading the website.
+The front-end website displayed to users is written using the React JavaScript library \url{https://facebook.github.io/react/} as a single-page application to allow efficient data-flow without reloading the website.
+To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, and follow a card-based design.
+(see Figure \ref{fig-results})
+While data storage is graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download.
+(see Figure \ref{fig-tables})
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics{images/results.png}
+\end{center}
+\caption{Caption for figure within column.}
+\label{fig-results}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics{images/tables.png}
+\end{center}
+\caption{Caption for figure within column.}
+\label{fig-tables}
+\end{figure}
 
 \subsection{Real-time analysis pipelines}
 % para
