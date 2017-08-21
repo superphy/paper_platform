@@ -253,10 +253,10 @@ To ensure reliability of the platform, the open-source Sentry toolkit \url{https
 % 1. how we implemented docker
 % 3. how this lets us replicate worker containers and link everything together
 
-Containers are orchestrated through Docker-Compose allowing the entire platform: webservers, databases, and task workers, to be easily replicated by other researchers.
-Everything is compartmentalized within separate Docker containers where the front-end is networked, through Docker-Compose, to the back-end webserver.
-
+The Spfy platform depends on a series of webservers, databases, and task workers and uses \url{https://www.docker.com/}, a virtualization software package, to run self-contained operating systems on the same host computer.
+Software packages are installed within the conatiners and the entire platform is networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically and that runtimes in one service are separated from another service.
 
 \begin{figure}[t]
 \begin{center}
@@ -265,9 +265,6 @@ Everything is compartmentalized within separate Docker containers where the fron
 \caption{Caption for figure within column.}
 \label{fig-docker}
 \end{figure}
-
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically.
-
 
 \subsection{Continuous integration and testing}
 % Keep this short
