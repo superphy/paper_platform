@@ -272,10 +272,9 @@ Docker integration ensures that software dependencies, which typically must be m
 % 1. goals: why CI, testing is important
 % 2. how we've implemented it, integration with github 
 
-We developed Spfy using continuous integration (CI) techniques: all changes and update to the codebase is automatically ran against a series of tests ensuring functionality and backwards compatibility.
-We chose TravisCI \url{travisci.io} which offers free services for open-source projects.
-The individual tests use PyTest.
-
+TravisCI \url{travisci.io}, a continuous integration (CI) platform, is integrated into Spfy's Github repository \url{https://github.com/superphy/backend} and runs tests ensuring functionality and backwards compatibility with any changes to the codebase.
+The individual tests use PyTest \url{https://doc.pytest.org/} and are run within TravisCI's virtual environment.
+The current build status can be checked either on our Gtihub repository or at \url{https://travis-ci.org/superphy/backend}.
 
 \section{RESULTS}
 
@@ -348,6 +347,12 @@ Integrating results from multiple genomes, and examining shared connections, is 
 
 % para: \cite{joensen2014real,thomsen2016bacterial}
 % we have a lot of similar directions to this, but just try to make it prettier, more friendly to use, and faster
+The Bacterial Analysis Platform (BAP), developed out of the Technical University of Denmark, provides and integrated analysis pipeline for bacterial WGS data, as a web service.
+BAP is novel in its combined approach to genome analysis as different programs, such as for VF and AMR determination, are included by default into the pipeline; Spfy provides similar functionallity with an expanded focus on integrated result storage and big-data analyses.
+In place of a MySQL database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistant graph database.
+This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses.
+On run-times of analogous algorithmns for prediction tasks, Spfy performs at a similar speed to BAP, though Spfy does not provide genome assembly services.
+Spfy also uses a Python-based backend instead of PHP, and Spfy's use of Docker containerization and task queues is a novel as well.
 
 \section{CONCLUSIONS}
 
