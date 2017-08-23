@@ -331,7 +331,12 @@ Costs ...
 \subsection{Comparison with other bioinformatic pipeline technologies}
 
 % namely galaxy
-Other pipeline technologies such as Galaxy \cite{goecks2010galaxy}, Kepler ... \cite{de2015trends}.
+Other scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, Kepler \cite{ludascher2006scientific}, and Taverna \cite{oinn2004taverna} have been applied to bioinformatic tasks.
+Galaxy ...
+Taverna ...
+Kepler ...
+To approach the challenge of integrating different bioinformatics programs, Spfy instead uses technologies prevalent in common web services not necessarily related to scientific workflows.
+While we prefer to package individual bioinformatics programs using language-agnostic package managers such as Conda \url{https://conda.io/}, we do agree that suites of bioinformatics software benefits from having all dependencies installed and deployable in Docker containers \cite{di2015impact}.
 important to have rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}
 long term storage is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
 Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
@@ -351,8 +356,8 @@ The Bacterial Analysis Platform (BAP), developed out of the Technical University
 BAP is novel in its combined approach to genome analysis as different programs, such as for VF and AMR determination, are included by default into the pipeline; Spfy provides similar functionallity with an expanded focus on integrated result storage and big-data analyses.
 In place of a MySQL database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistant graph database.
 This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses.
-On run-times of analogous algorithmns for prediction tasks, Spfy performs at a similar speed to BAP, though Spfy does not provide genome assembly services.
-Spfy also uses a Python-based backend instead of PHP, and Spfy's use of Docker containerization and task queues is a novel as well.
+On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
+Spfy also processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
 
 \section{CONCLUSIONS}
 
