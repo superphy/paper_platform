@@ -321,13 +321,6 @@ These results can be shared with other ageencies and researchers over the intern
 Futhermore, using Spfy's database of pre-processed genomes, Spfy can determine all strains a sample may be related to which is useful for ...
 Cost benefits ...
 
-\subsection{Deployment to Cloud-Computing Platforms}
-% how costs can be saved because using standard web tech means you can deploy to different cloud computing services
-Spfy's common infrastructure allows the platform to be deployed to multiple cloud computing services, without need to modify the code.
-Docker containerization is supported by Amazon AWS, Google Cloud, ...
-Neglibble impact of Docker containers on performance \cite{di2015impact}.
-Costs ...
-
 \subsection{Comparison with other bioinformatic pipeline technologies}
 
 % namely galaxy
@@ -336,10 +329,18 @@ Galaxy ...
 Taverna ...
 Kepler ...
 To approach the challenge of integrating different bioinformatics programs, Spfy instead uses technologies prevalent in common web services not necessarily related to scientific workflows.
-While we prefer to package individual bioinformatics programs using language-agnostic package managers such as Conda \url{https://conda.io/}, we do agree that suites of bioinformatics software benefits from having all dependencies installed and deployable in Docker containers \cite{di2015impact}.
-important to have rapid access available for retrieval while maintaining long-term data storage \cite{schatz2015biological}
-long term storage is needed to prevent the constant re-computation of the same data, and to provide pre-computed analyses for common predictive genomic analyses needed by the public health, and research community \cite{de2015trends}.
-Integrating results from multiple genomes, and examining shared connections, is an area that currently requires more research \cite{fricke2014bacterial},
+While we prefer to package individual bioinformatics programs using language-agnostic package managers such as Conda \url{https://conda.io/}, we do agree that suites of bioinformatics software benefit from having all dependencies installed and deployable in Docker containers \cite{di2015impact}.
+These programs are connected to form a workflow using task queues; a design methodology used to offload long-running or non-instantaneous tasks over available computing infrastructure.
+Unlike platforms such as Galaxy which favor a drag-and-drop design for building workflows, Spfy favors a tightly coupled approach explicitedy linking together different bioinformatics programs within the task queue implemntation.
+In particular, Spfy uses asynchronous tasks queues which are tripped in response to user requests, thereby allowing immediate responsivity to users on the website, and processes generating human-readable results can be separated from processes handling long-term result storage.
+
+% standard web tech means you can deploy to different cloud computing services
+One of the key benefits of using more common-place technologies is the compatibility with other infrastructure resources.
+Docker containerization is widely supported by cloud computing services: Amazon Web Services (AWS) \url{https://aws.amazon.com/docker/}, Google Cloud Platform (GCloud) \url{https://cloud.google.com/container-engine/}, and Microsoft Azure \url{https://azure.microsoft.com/en-us/services/container-service/}, and self-hosted cloud computing technologies such as OpenStack \url{https://wiki.openstack.org/wiki/Docker}.
+% we may want to sign up for a free trial to give an example of this
+Spfy packages compute nodes, which manage a collection of task queue workers, as reproducible Docker containers which can be networked together to form a compute cluster.
+Docker containerization has a neglible impact on performance \cite{di2015impact}, and allows the platform to easily scale to demand.
+In contrast to Galaxy, Spfy is a targeted approach building a predictive analytics platform for \textit{E. coli} which leverages generic web technologies to favor a responsive, big-data design strategy tackling the challenge \cite{fricke2014bacterial} of integrating results from multiple genomes and examining shared connections.
 
 \subsection{Comparison with similar bioinformatic pipelines}
 
