@@ -123,11 +123,10 @@ Spfy also performs bioinformatics analyses: pangenome generation, statistical si
 We introduce one new bioinformatics program, Ecoli-Serotyper (ECTyper) \url{https://github.com/phac-nml/ecoli_serotyping}, for determining surface-antigen type and associated VFs, and utilize existing software: the Resistance Gene Identifier (RGI) program \cite{mcarthur2013comprehensive}, Phylotyper \cite{whiteside2017phylotyper}, and Panseq \cite{laing2010pan}.
 
 % para covering ectyper & RGI
-To further characterize strains ... serotyping, which detects the presence of specific cell surface antigens.
-O-antigen and H-antigen typing, and VF determination use our ECTyper software.
-ECTYper compares the user-submitted genomes against a curated set of sequences, an approach originally implemented in the VirulenceFinder \cite{joensen2014real} tool.
-The Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive} maintains a set of known AMR genes and develops the RGI program .
-Both ECTyper and RGI are based off of BLAST \cite{pmid2231712}.
+To characterize strains, one approach is serotyping, which detects the presence of specific cell surface antigens.
+ECTyper uses a curated set of O-type and H-type specific gene sequences and runs the Basic Local Alignment Search Tool (BLAST) \cite{pmid2231712} against the query genome, before ranking the determined serotype in order of probability.
+A reference set of VFs sequences, obtained from literature review and available at \url{https://github.com/phac-nml/ecoli_vf}, is used with BLAST to determine associated VFs in a genome, an approach originally implemented in the VirulenceFinder program \cite{joensen2014real}
+We difer to the RGI tool, based off of the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, maintains AMR gene determination.
 
 % para on phylotyper
 Stx typing looks at ...
