@@ -145,24 +145,24 @@ By retrieving results from the database, Spfy provides group comparisons using F
 
 \section{IMPLEMENTATION}
 % para: the semantic web
-Spfy is built around semantic web technologies which focuses on describing the relaions between different datum \cite{berners2001semantic}.
-In biological data, a semantic web focus describes individual data points by the type, for example as a genome, contiguous DNA sequence, or gene, and then link related data together in a queryable graph.
+Spfy is built around semantic web technologies which describe the relaions between different datum \cite{berners2001semantic}.
+In biological data, a semantic web focus describes individual data points by its type, for example as a genome, contiguous DNA sequence, or gene, and then links related data together in a queryable graph.
 Semantic web technlogies allow new, not previously described data to be seemlessly incorporated to the existing graph, and has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
 % para: semantic web in spfy
-In Spfy, the entirety of SuperPhy's previous code is replaced with methods for handling semantic web technologies.
+In Spfy, the entirety of SuperPhy's previous code was replaced with methods for handling semantic web technologies.
 Generalized functions are used to convert the results from different analysis modules into a graph object, and that graph object is used to update the main graph database; information contained in the WGS file is also converted into a graph object and stored.
 The use of semantic web technologies allows results to be linked to the genomes they were computed from, and all data points to share a common datastructure that can be queried together.
 
 % para: intro to the spfy stack
 Spfy's server-side code is developed in Python and the website served to users is developed using the React JavaScript library.
-When users upload genomes for analysis: (i) they first make the upload through the ReactJS-based website.
-The public web service accepts up to 200 MB of genome files (50 genomes compressed, or 120 genomes compressed).
+When users upload genomes for analysis: (i) they first start the upload through the ReactJS-based website.
+The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed).
 (ii) When files are uploaded, the user-selected analysis options are enqueued into the Redis Queue \url{http://python-rq.org/} task queue.
 Redis Queue consists of a Redis Database \url{https://redis.io/} and task queue workers which run as Python processes.
-(iii) The workers dequeue the various analyses and run them in parallel and results are stored back in the Redis database.
+(iii) The workers dequeue the various analyses, run them in parallel, and temporarily store results back in the Redis database.
 (iv) Python functions are then used to parse the results and permanently store them in Blazegraph \url{https://www.blazegraph.com/} - a graph database.
-The entire Spfy platform is packaged as a series of Docker \url{https://www.docker.com/} containers and orchestrated using Docker Compose \url{https://docs.docker.com/compose/}.
+The entire Spfy platform is packaged as a series of Docker \url{https://www.docker.com/} containers and connected together using Docker Compose \url{https://docs.docker.com/compose/}.
 
 \subsection{Data Storage}
 % para
@@ -180,9 +180,9 @@ The permanent storage of results serve as a one-time cost, and allows population
 
 % para
 % ontology
-Ontologies are indices which define types of data and the relations between them.
-By sharing ontologies, it is possible to link sources of data from different organizations together, and Spfy uses types defined in the  Genomic Epidemiology Application Ontology (GenEpiO) (\cite{griffiths2017context} and Feature Annotation Location Description Ontology (FALDO) \cite{bolleman2016faldo}.
-Spfy also connects genomes, contiguous sequences (contigs), pangenome regions, and predicted genes and alleles in novel ways; to allow the presence of various genes to be infered from a genome description, realtionship links are generically named.
+The structure of the graph database is handled using ontologies: indices which define types of data and the relations between them.
+By sharing ontologies, it is possible to link databases from different organizations together, and Spfy uses types defined in the  Genomic Epidemiology Application Ontology (GenEpiO) \cite{griffiths2017context} and the Feature Annotation Location Description Ontology (FALDO) \cite{bolleman2016faldo}.
+Spfy also connects genomes, contiguous sequences (contigs), pangenome regions, and predicted genes and alleles using generic realtion edges, to allow the presence of various genes to be infered from a genome description.
 (see Figure \ref{fig-ontology})
 Individual genes and pangenome regions are connected to all the contigs they are found on using this inferencing method, such that it is possible to determine all the genomes which contain a particular target sequence.
 
@@ -205,7 +205,7 @@ Individual genes and pangenome regions are connected to all the contigs they are
 The front-end website is written using the React JavaScript library \url{https://facebook.github.io/react/} as a single-page application to allow efficient data-flow without reloading the website.
 To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, surrounding a card-based design.
 (see Figure \ref{fig-results})
-Both the task selection and results display follow this card-based design: while data storage is actually graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download.
+Both the task selection and results page follow this card-based design: while data storage is actually graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download as .csv files.
 (see Figure \ref{fig-tables})
 
 \begin{figure}[t]
@@ -234,11 +234,11 @@ Both the task selection and results display follow this card-based design: while
 %	related: packaging of modules in conda
 
 Task queues are processes which schedule code exection across available computing infrastructure.
-In Spfy, the Python-based Redis Queue library \url{https://github.com/nvie/rq} is used to manage analysis tasks and have them run asynchronously in response to user requests.
-When a user submits files for analysis or population-wide anlayses, separate tasks are enqueued at different priorities, depending on when users might expect the result to be returned.
-For example, population-wide analyses have a higher priority than bulk subtyping analyses, as we want search-response queries to respond instantly whereas a delay in subtyping is typical in similar web services such as the Center for Genomic Epidemiology Pipeline (CGE Pipeline) \cite{thomsen2016bacterial}.
+In Spfy, the Python-based Redis Queue library \url{https://github.com/nvie/rq} is used to manage analysis tasks and run them asynchronously in response to user requests.
+When a user submits files for analysis or requests population-wide comparisons, separate tasks are enqueued at different priorities, depending on our user experience goals.
+For example, population-wide analyses have a higher priority than bulk subtyping analyses, as we want search-response queries to return instantly whereas a delay in subtyping is typical in similar web services, such as the Center for Genomic Epidemiology Pipeline (CGE Pipeline) \cite{thomsen2016bacterial}.
 Spfy enables processing of thousands of genome sequences by using task queue workers running in parallel, which also allows performance to scale to available infrastructure.
-To ensure reliability of the platform, the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} was integrated and used for real-time exception tracking.
+In addition, the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} was integrated and used for real-time exception tracking and to ensure reliability of the platform.
 
 % para
 % 1. goals: scale analyses to "big-data", error handling
@@ -253,10 +253,10 @@ To ensure reliability of the platform, the open-source Sentry toolkit \url{https
 % 1. how we implemented docker
 % 3. how this lets us replicate worker containers and link everything together
 
-The Spfy platform depends on a series of webservers, databases, and task workers and uses \url{https://www.docker.com/}, a virtualization software package, to run self-contained operating systems on the same host computer.
+The Spfy platform depends on a series of webservers, databases, and task workers and uses \url{https://www.docker.com/}, a virtualization technology, to run self-contained operating systems on the same host computer.
 Software packages are installed within the conatiners and the entire platform is networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically and that runtimes in one service are separated from another service.
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically, and that service runtimes are compartmentalized; this guarentees that code failures do not propagate to other services.
 
 \begin{figure}[t]
 \begin{center}
