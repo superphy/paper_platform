@@ -13,7 +13,7 @@
 
 \begin{document}
 
-\title{Spfy: distributed predictive genomics of E.coli with graph based result linkage}
+\title{Superphy: Real-time prediction of \textit{E. coli} phenotype using graph-based genome sequence storage and retrieval with the \textit{spfy} module}
 
 \author{%
 Corresponding Author\,$^{1,*}$,
@@ -61,38 +61,45 @@ Accepted March 1, 2009}
 % 6. short snippit on website link & github link
 
 % 1. brief: WGS is standard
-Whole genome sequencing (WGS) resolves the entire genetic content of an organism. WGS data can increase the resolution and sensitivity of bacterial surveillance \cite{ronholm2016navigating,lytsy2017time}, identification of potential disease mechanisms \cite{wang2014whole,yuen2015whole}, and clinical diagnoses \cite{willig2015whole,dewey2014clinical}.
+Whole genome sequencing (WGS) can in theory provide the entire genetic content of an organism. This unparalleled resolution and sensitivity has recently transformed public-health surveillance and outbreak response \cite{ronholm2016navigating,lytsy2017time}. Additionally, the identification of novel disease mechanisms \cite{wang2014whole,yuen2015whole}, and rapid clinical diagnoses and reference lab tests based on the specific mechanism of disease are now possible. \cite{willig2015whole,dewey2014clinical}.
+
 % 2. Big Problem: but tools are for individual analysis
-Targeted software, such as the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive} for antimicrobial resistance (AMR) gene prediction, Prokka for bacterial genome annotation \cite{doi:10.1093/bioinformatics/btu153}, and integrated platforms, such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, all leverage WGS data.
+The rapid characterization and comparison of bacterial pathogens relies principally on the combination of outputs from multiple software programs that are targeted for specific applications. Examples include the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive} for antimicrobial resistance (AMR) gene prediction, Prokka for bacterial genome annotation \cite{doi:10.1093/bioinformatics/btu153}, and {ANOTHER EXAMPLE}. Comprehensive platforms that combine individual programs into a cohesive whole also exist. These include free platforms such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial}, the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, and PATRIC. Commercial applications, such as Bionumerics, which is used by PulseNet international for the analyses of WGS data in outbreak situations also exist, and offer support as well as accredited, standardized tests {REF}.
+
 % 3. 100,000 genomes, (lookup number for Enterobase, GenBank), how do we run analysis on it
-WGS generates data at a break-neck speed; for \textit{Escherichia coli} alone, the public genome databases EnteroBase \url{https://enterobase.warwick.ac.uk/} and GenBank \cite{doi:10.1093/nar/gks1195} have, respectively, 60,206 and 2,779,008 sequences uploaded.
-To effectively exploit WGS "big-data" and maintain the rapid response time required by public health applications, one approach is to make results from WGS analysis integrated and progressive.
-Typical bioinformatics software, such as RGI and Prokka, take single files as input, and integrated platforms, such as BAP and IRIDA, build workflows linking different analyses modules.
-BAP and IRIDA begin to solve big-data challenges by offering a hosted solution which computes results in real-time, and distributes analyses across computing resources.
-While effective for self-contained workflows, many comparative analyses such as predictive genomics methods would benefit from a broad WGS reference base.
-To use vast amount of WGS data and maintain real-time results for comparative analyses, platforms would need store results in a way that avoids recomputation when adding new WGS data.
-A resource framework in which WGS results are integrated and searchable; whereby the storage of results avoids recomputation, persists, and allows for iterative, on-going learning, will expand the capacity of current comparative bioinformatics analyses.
-This increased capacity will further benefit surveillance, research, and clinical applications\par
+WGS data for bacterial pathogens of public health importance have recently accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. For \textit{Escherichia coli}, there are over sixty thousand publicly available genomes in EnteroBase \url{https://enterobase.warwick.ac.uk/} and X whole genomes in GenBank \cite{doi:10.1093/nar/gks1195}.
+
+To begin to solve this "big-data" problem, platforms such as BAP and IRIDA provide hosted solutions that compute results in real-time, and distribute analyses across computing resources. While effective for self-contained workflows, many of the comparative analyses that are run are broadly useful, and therefore computed multiple times. An effective method to mitigate the recomputing of analyses is to make the storage and retrieval of results part of the platform, and effectively linked to the organisms of interest with a standardized ontology. Such measures can help ensure the rapid response times required for public health applications, and allow results to be integrated and progressively updated as new data become available.
 
 % 1. Our specific problem, previous work
-We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
-Superphy integrates pre-computed results with domain-specific metadata to provide real-time analyses of epidemiology relations.
-While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens of thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
+We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}. Superphy integrates pre-computed results with domain-specific knowledge to provide real-time exploration of publicly available genomes. While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens-, and soon hundreds-of-thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
+
 % 2. Why solving it is important (for Public health / research)
-WGS offers improved resolution over traditional strain comparison methods, such as pulsed-field gel electrophoresis (PFGE) \cite{ronholm2016navigating}.
-Though the cost of developing, approving, and transforming existing workflows from wet-lab to sequence prediction approaches is time consuming and expensive \cite{koser2012routine}, platforms can only perform real-time analyses and linkage to thousands of historical results by leveraging WGS.
+- everything is being sequenced (surveillance / outbreak / research)
+- previously mentioned common analyses / want to leverage pre-computed results
+- WGS does not discard old methods, linkage to thousands of historical results by developing in-silico methods of traditional tests
+- need fast / standardized outbreak response
+- need fast / standardized in-silico reference lab
+- need fast / standardized storage and retrieval of results based on ontology
+- all known data can be leveraged, allows the most informed decisions possible
+- etc.
+
 % 3. how we solved it
-In this study, we present an update to the SuperPhy platform, called Spfy.
-The update rewrites result storage with backing by a graph database, takes a modular approach to tool integration, and distributes analyses over task queues, thereby allowing users to submit genomes and modules to run in parallel in real-time, and address code failures.
+In this study, we present an update to the SuperPhy platform, called Spfy. The update rewrites the result storage by using a graph database, and takes a modular approach to tool integration, and distributes analyses over task queues; this allows users to submit genomes and modules to run in parallel in real-time.
+
+{needs to be beefed up, in language a biologist / public health worker would care about}
+
 All results are stored as a series of linked nodes which enables the platform to build associations between results as they are generated. \par
 
 % 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
 By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
 Subtyping options are ..., pan-genome generation ..., group comparisons via Fisher's, ML, .... for E.coli.
+
 By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, with added support for big-data analyses.
 Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
-Future work will focus on adding more analysis modules and supporting different species, which can be connected to the existing graph database without need for recalculation.
-To complement existing platforms such as IRIDA, modules are self-contained and can easily be integrated into Galaxy \cite{goecks2010galaxy} based platforms.
+
+Future work will focus on adding additional analyses modules, using machine learning and artificial neural networks to aid genotype to phenotype predictions, and supporting different species. While the integrated approach or storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and can easily be integrated into existing platforms such as Galaxy \cite{goecks2010galaxy}, and IRIDA.
+
 The website and source code are available at \url{https://superphy.github.io/}. \par
 
 
@@ -118,15 +125,18 @@ The website and source code are available at \url{https://superphy.github.io/}. 
 % ONLY FOCUS ON THE ANALYSIS MODULES
 % Describe available functions in spfy
 % para covering everything
-Spfy performs reference laboratory tasks: O-antigen and H-antigen typing, Shiga-toxin (STX) typing,  virulence factor (VF) and antimicrobial resistance (AMR) gene determination, and related strain determination.
-Spfy also performs bioinformatics analyses: pangenome generation, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
-We introduce one new bioinformatics program, Ecoli-Serotyper (ECTyper) \url{https://github.com/phac-nml/ecoli_serotyping}, for determining surface-antigen type and associated VFs, and utilize existing software: the Resistance Gene Identifier (RGI) program \cite{mcarthur2013comprehensive}, Phylotyper \cite{whiteside2017phylotyper}, and Panseq \cite{laing2010pan}.
+Spfy performs reference laboratory tasks: O-antigen and H-antigen typing using ectyper \url{https://github.com/phac-nml/ecoli_serotyping}, Shiga-toxin (STX) typing,  virulence factor (VF) and antimicrobial resistance (AMR) gene determination, and related strain determination.
 
-% para covering ectyper & RGI
-To characterize strains, one approach is serotyping, which detects the presence of specific cell surface antigens.
-ECTyper uses a curated set of O-type and H-type specific gene sequences and runs the Basic Local Alignment Search Tool (BLAST) \cite{pmid2231712} against the query genome, before ranking the determined serotype in order of probability.
-A reference set of VFs sequences, obtained from literature review and available at \url{https://github.com/phac-nml/ecoli_vf}, is used with BLAST to determine associated VFs in a genome, an approach originally implemented in the VirulenceFinder program \cite{joensen2014real}
-We difer to the RGI tool, based off of the Comprehensive Antibiotic Resistance Database (CARD) \cite{mcarthur2013comprehensive}, maintains AMR gene determination.
+Spfy also performs bioinformatics analyses: pangenome generation, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
+
+
+TODO: List all of the below references in the above paragraphs.
+%We introduce one new bioinformatics program, Ecoli-Serotyper (ECTyper) , for determining surface-antigen type and associated VFs, and utilize existing software: the Resistance Gene Identifier (RGI) program \cite{mcarthur2013comprehensive}, Phylotyper \cite{whiteside2017phylotyper}, and Panseq \cite{laing2010pan}.
+
+% para covering ectyper & RGI -- don't really need this
+% RGI has its own paper and was in the previous SuperPhy paper
+% ectyper will get its own paper
+
 
 % para on phylotyper
 Stx typing looks at ...
@@ -145,24 +155,27 @@ By retrieving results from the database, Spfy provides group comparisons using F
 
 \section{IMPLEMENTATION}
 % para: the semantic web
-Spfy is built around semantic web technologies which describe the relaions between different datum \cite{berners2001semantic}.
-In biological data, a semantic web focus describes individual data points by its type, for example as a genome, contiguous DNA sequence, or gene, and then links related data together in a queryable graph.
-Semantic web technlogies allow new, not previously described data to be seemlessly incorporated to the existing graph, and has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
+Spfy is built around semantic web technologies which describe the relaions between different data \cite{berners2001semantic}. For biological data this means that individual data points such as genome, contiguous DNA sequence, or gene, are linked together in a queryable graph form. This allows novel data to be seamlessly incorporated into the existing graph, and has {TODO: what has been proposed specifically?} been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
 % para: semantic web in spfy
-In Spfy, the entirety of SuperPhy's previous code was replaced with methods for handling semantic web technologies.
-Generalized functions are used to convert the results from different analysis modules into a graph object, and that graph object is used to update the main graph database; information contained in the WGS file is also converted into a graph object and stored.
-The use of semantic web technologies allows results to be linked to the genomes they were computed from, and all data points to share a common datastructure that can be queried together.
+In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. TODO: need information about ontology, terms etc. for metadata.
+
+The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
 
 % para: intro to the spfy stack
-Spfy's server-side code is developed in Python and the website served to users is developed using the React JavaScript library.
-When users upload genomes for analysis: (i) they first start the upload through the ReactJS-based website.
-The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed).
-(ii) When files are uploaded, the user-selected analysis options are enqueued into the Redis Queue \url{http://python-rq.org/} task queue.
-Redis Queue consists of a Redis Database \url{https://redis.io/} and task queue workers which run as Python processes.
-(iii) The workers dequeue the various analyses, run them in parallel, and temporarily store results back in the Redis database.
-(iv) Python functions are then used to parse the results and permanently store them in Blazegraph \url{https://www.blazegraph.com/} - a graph database.
-The entire Spfy platform is packaged as a series of Docker \url{https://www.docker.com/} containers and connected together using Docker Compose \url{https://docs.docker.com/compose/}.
+Spfy's server-side code is developed in Python and the website served to users using the React JavaScript library.
+
+For the addition of new data to the database, the following steps are taken:
+
+i) The upload begins through the ReactJS-based website, where user-defined analyses options are selected. The results of these chosen analyses are immediately reported to the user following their completion, while the remaining analyses are subsequently completed and stored in the database without interaction from the user. The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed).
+
+ii) User-selected analyses are enqueued into the Redis Queue \url{http://python-rq.org/} task queue. Redis Queue consists of a Redis Database \url{https://redis.io/} and task queue workers which run as Python processes.
+
+iii) The workers dequeue the analyses, run them in parallel, and temporarily store results in the Redis database.
+
+iv) Python functions parse the results and permanently store them in Blazegraph \url{https://www.blazegraph.com/}, the graph database used for Superphy.
+
+The entire Spfy update is packaged as a series of Docker \url{https://www.docker.com/} containers and connected together using Docker Compose \url{https://docs.docker.com/compose/}.
 
 \subsection{Data Storage}
 % para
@@ -172,11 +185,11 @@ The entire Spfy platform is packaged as a series of Docker \url{https://www.dock
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-Graph databases describe relationships between different data points, is one of the emerging \cite{de2015trends} database types used for biological data, and is one of the core building blocks of a semantic web technology stack \cite{horrocks2005semantic}.
-Spfy uses the RDFLib Python library \url{https://rdflib.readthedocs.org/} to represent all data meant for long-term storage.
-When serotyping, VF, AMR predictions, and pangenome generation tasks are completed, the results are stored within the graph database.
+Graph databases describe relationships between data points, and are one of the emerging \cite{de2015trends} database types for biological data; they are one of the core building blocks of semantic web technology \cite{horrocks2005semantic}.
+Spfy uses the RDFLib Python library \url{https://rdflib.readthedocs.org/} to represent all data, including the results of the analyses modules.
+
 % note: below is a feature in development
-The permanent storage of results serve as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run.
+The permanent storage of results is as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run.
 
 % para
 % ontology
@@ -233,12 +246,13 @@ Both the task selection and results page follow this card-based design: while da
 % 1. how we implemented RQ
 %	related: packaging of modules in conda
 
-Task queues are processes which schedule code exection across available computing infrastructure.
-In Spfy, the Python-based Redis Queue library \url{https://github.com/nvie/rq} is used to manage analysis tasks and run them asynchronously in response to user requests.
-When a user submits files for analysis or requests population-wide comparisons, separate tasks are enqueued at different priorities, depending on our user experience goals.
-For example, population-wide analyses have a higher priority than bulk subtyping analyses, as we want search-response queries to return instantly whereas a delay in subtyping is typical in similar web services, such as the Center for Genomic Epidemiology Pipeline (CGE Pipeline) \cite{thomsen2016bacterial}.
-Spfy enables processing of thousands of genome sequences by using task queue workers running in parallel, which also allows performance to scale to available infrastructure.
-In addition, the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} was integrated and used for real-time exception tracking and to ensure reliability of the platform.
+TODO: The below was already covered above. No need to repeat. Either here or there, but combine.
+%% Task queues are processes which schedule code exection across available computing infrastructure.
+%% In Spfy, the Python-based Redis Queue library \url{https://github.com/nvie/rq} is used to manage analysis tasks and run them asynchronously in response to user requests.
+%% When a user submits files for analysis or requests population-wide comparisons, separate tasks are enqueued at different priorities, depending on our user experience goals.
+%% For example, population-wide analyses have a higher priority than bulk subtyping analyses, as we want search-response queries to return instantly whereas a delay in subtyping is typical in similar web services, such as the Center for Genomic Epidemiology Pipeline (CGE Pipeline) \cite{thomsen2016bacterial}.
+%% Spfy enables processing of thousands of genome sequences by using task queue workers running in parallel, which also allows performance to scale to available infrastructure.
+%% In addition, the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} was integrated and used for real-time exception tracking and to ensure reliability of the platform.
 
 % para
 % 1. goals: scale analyses to "big-data", error handling
@@ -253,10 +267,11 @@ In addition, the open-source Sentry toolkit \url{https://github.com/getsentry/se
 % 1. how we implemented docker
 % 3. how this lets us replicate worker containers and link everything together
 
+TODO: bring the docker information from above down here.
 The Spfy platform depends on a series of webservers, databases, and task workers and uses \url{https://www.docker.com/}, a virtualization technology, to run self-contained operating systems on the same host computer.
 Software packages are installed within the conatiners and the entire platform is networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically, and that service runtimes are compartmentalized; this guarentees that code failures do not propagate to other services.
+Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically, and that service runtimes are compartmentalized; this guarantees that code failures do not propagate to other services.
 
 \begin{figure}[t]
 \begin{center}
@@ -272,12 +287,12 @@ Docker integration ensures that software dependencies, which typically must be m
 % 1. goals: why CI, testing is important
 % 2. how we've implemented it, integration with github
 
-TravisCI \url{travisci.io}, a continuous integration (CI) platform, is integrated into Spfy's Github repository \url{https://github.com/superphy/backend} and, with any changes to the codebase, runs tests for functionality and backwards compatibility.
-The individual tests use PyTest \url{https://doc.pytest.org/}, are run within TravisCI's virtual environment, and the current build status can be checked either on our Gtihub repository or at \url{https://travis-ci.org/superphy/backend}.
+TravisCI \url{travisci.io}, a continuous integration (CI) platform, is used to ensure that Spfy \url{https://github.com/superphy/backend} does not break with any changes to the codebase, and runs tests for functionality and backwards compatibility.
+The individual tests use PyTest \url{https://doc.pytest.org/}, and are run within TravisCI's virtual environment, and the current build status can be checked either on our Gtihub repository or at \url{https://travis-ci.org/superphy/backend}.
 CI is also used to automatically build Spfy's core Docker images, and upload them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
-
+TODO: Update with all of Enterobase
 Spfy was tested with 25,185 public \textit{E. coli} genomes, 5,353 genomes from GenBank and 19,832 genomes from Enterobase, and 55,353 generated samples genomes (267GB), storing both the entire sequences and results for all included analysis modules.
 The resulting database had XYZ nodes and XYZ edges, with XYZ object properties, which worked out to XYZ GB of data stored.
 
@@ -292,8 +307,8 @@ Such tools were often script-based, with custom data formats, and only suitable 
 While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
 Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
-One of the key goals in developing Spfy is to maintain instantaneity: modern websites have accustomed users to instant results.
-We attempt to use innovations in web development and bring a similar experience to Spfy as a predictive genomics platform for \textit{E. coli}.
+One of the key goals in developing Spfy is to maintain instantaneity, as modern websites have accustomed users to instant results.
+We attempt to use innovations in web development to bring a similar experience to Spfy as a predictive genomics platform for \textit{E. coli}.
 % Mention where users / developers can find documentation
 Spfy's main documentation and codebase are provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
@@ -302,11 +317,14 @@ Spfy's main documentation and codebase are provided at \url{https://github.com/s
 % para
 % focus on application
 The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
-Until recently, Public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings.
-The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain.
-However, in \textit{Enterococcus faecium}, PFGE has been shown to misclassify 9 of 132 isolates, when compared to whole-genome sequencing (WGS) based discrimination \cite{pinholt2015multiple}.
-In \textit{Klebsiella pneumoniae} \cite{marsh2015genomic}, \textit{Yersinia enterocolitica} \cite{gilpin2014limitations}, and \textit{Staphylococcus aureus} \cite{doi:10.1093/ofid/ofu096}, WGS was used to discriminate isolates after initial clustering by PFGE resulted in indistinguishable samples.
-Examination of PFGE bands are also subjective, difficult to share \cite{lytsy2017time}, and collative platforms such as PulseNet reported \cite{gilpin2014limitations} that even after collecting 72\% of \textit{Campylobacter jejuni} in a given year in Minnesota (673 cases), 87\% of isolates could not be linked by PFGE pattern.
+Until recently, public-health agencies relied on laboratory tests such as XYZ to characterize bacterial isolates in outbreak and surveillance settings.
+
+TODO: The below has previously been covered by many papers, including our previous SuperPhy paper. We need to focus on the big-data aspect.
+%% The previous gold-standard in determining strain relatedness was pulsed-field gel electrophoresis (PFGE) {ronholm2016navigating}, which uses rare-cutting restriction enzymes to produce a unique banding pattern for each strain.
+%% However, in \textit{Enterococcus faecium}, PFGE has been shown to misclassify 9 of 132 isolates, when compared to whole-genome sequencing (WGS) based discrimination \cite{pinholt2015multiple}.
+%% In \textit{Klebsiella pneumoniae} \cite{marsh2015genomic}, \textit{Yersinia enterocolitica} \cite{gilpin2014limitations}, and \textit{Staphylococcus aureus} \cite{doi:10.1093/ofid/ofu096}, WGS was used to discriminate isolates after initial clustering by PFGE resulted in indistinguishable samples.
+%% Examination of PFGE bands are also subjective, difficult to share \cite{lytsy2017time}, and collative platforms such as PulseNet reported \cite{gilpin2014limitations} that even after collecting 72\% of \textit{Campylobacter jejuni} in a given year in Minnesota (673 c
+%% ases), 87\% of isolates could not be linked by PFGE pattern.
 Antimicrobial resistance testing, virulence factor testing ...
 However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence.
 , and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
@@ -323,6 +341,7 @@ Cost benefits ...
 % namely galaxy
 Other scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, Kepler \cite{ludascher2006scientific}, and Taverna \cite{oinn2004taverna} have been applied to bioinformatic tasks.
 Galaxy aims to provide a reproducible compuation-based research environment which is accessible to individuals without programming knowledge.
+TODO: BAP and IRIDA, since they were the examples from above
 Taverna ...
 Kepler ...
 To approach the challenge of integrating different bioinformatics programs, Spfy instead uses technologies prevalent in common web services not necessarily related to scientific workflows.
@@ -351,6 +370,8 @@ By packaging the individual bioinformatics software as Conda packages, they can 
 
 % para: \cite{joensen2014real,thomsen2016bacterial}
 % we have a lot of similar directions to this, but just try to make it prettier, more friendly to use, and faster
+
+TODO: The needs to be linked to the previous discussion above, as its absence was conspicuous.
 The Bacterial Analysis Platform (BAP), developed out of the Technical University of Denmark, is the closest analogue to Spfy, and provides an integrated analysis pipeline for bacterial WGS data as a web service.
 BAP is novel in its combined approach to genome analysis as different programs, such as for VF and AMR determination, are included by default into the pipeline; Spfy provides similar functionallity with an expanded focus on integrated result storage and big-data analyses.
 In place of a MySQL database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistant graph database.
