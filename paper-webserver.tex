@@ -75,6 +75,9 @@ To begin to solve this "big-data" problem, platforms such as BAP and IRIDA provi
 We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}. Superphy integrates pre-computed results with domain-specific knowledge to provide real-time exploration of publicly available genomes. While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens-, and soon hundreds-of-thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
 
 % 2. Why solving it is important (for Public health / research)
+WGS is becoming the norm for bacterial surveillance, outbreak tracing, and research \cite{ronholm2016navigating}. While pipelines exist \cite{joensen2014real} for running a variety of analyses on WGS data, 
+In order to  Existing annotation and analysis software for WGS data represent units of compuatation; we can optimize WGS pipelines if these results are stored to avoid recomputation, and extend results by viewing them in the context of other analysis modules and genomes.
+ these computations can be 
 - everything is being sequenced (surveillance / outbreak / research)
 - previously mentioned common analyses / want to leverage pre-computed results
 - WGS does not discard old methods, linkage to thousands of historical results by developing in-silico methods of traditional tests
@@ -85,13 +88,13 @@ We have previously developed Superphy \cite{whiteside2016superphy}, an online pr
 - etc.
 
 % 3. how we solved it
-In this study, we present an update to the SuperPhy platform, called Spfy. Spfy enables large-scale genome processing in real-time and uniquely decomposses results into graph datastructures for further comparative genomics. Unlike traditional approaches which store results in separate data files or in a relational database, our graph datastructures are then integrated into a knowledge graph identifying relationships between all genomes sequenced in the past, present, and future. We present the use of graph databases as a solution to storing genome analysis results in a meaningful manner, and to allow retrospective comparisons as more genomes are sequenced or populations change.
+In this study, we present an update to the SuperPhy platform, called Spfy. Spfy enables large-scale genome processing in real-time and uniquely decomposses results into graph datastructures for further comparative genomics. Unlike traditional approaches which store results in separate data files or in a relational database, the graph datastructures are then integrated into a knowledge graph identifying relationships between all genomes sequenced in the past, present, and future. We present the use of graph databases as a solution to storing genome analysis results in a meaningful manner, and to allow retrospective comparisons as more genomes are sequenced or populations change.
 
 {I'm not sure if we should include that the same graph database can be expanded to cover different spcies}
 
 {needs to be beefed up, in language a biologist / public health worker would care about}
 
-All results are stored as a series of linked nodes which enables the platform to build associations between results as they are generated. \par
+\par
 
 % 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
 By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
@@ -177,7 +180,7 @@ iii) The workers dequeue the analyses, run them in parallel, and temporarily sto
 
 iv) Python functions parse the results and permanently store them in Blazegraph \url{https://www.blazegraph.com/}, the graph database used for Superphy.
 
-The entire Spfy update is packaged as a series of Docker \url{https://www.docker.com/} containers and connected together using Docker Compose \url{https://docs.docker.com/compose/}.
+The entire Spfy update is packaged in Docker \url{https://www.docker.com/} containers and connected together using Docker Compose \url{https://docs.docker.com/compose/}.
 
 \subsection{Data Storage}
 % para
@@ -341,11 +344,19 @@ Cost benefits ...
 \subsection{Comparison with other bioinformatic pipeline technologies}
 
 % namely galaxy
-Other scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, Kepler \cite{ludascher2006scientific}, and Taverna \cite{oinn2004taverna} have been applied to bioinformatic tasks.
+Other scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, and bioinformatics pipelines IRIDA and BAP are used to run analysis modules on WGS data.
 Galaxy aims to provide a reproducible compuation-based research environment which is accessible to individuals without programming knowledge.
 TODO: BAP and IRIDA, since they were the examples from above
-Taverna ...
-Kepler ...
+IRIDA...
+BAP...
+
+The Bacterial Analysis Platform (BAP), developed out of the Technical University of Denmark, is the closest analogue to Spfy, and provides an integrated analysis pipeline for bacterial WGS data as a web service.
+BAP is novel in its combined approach to genome analysis as different programs, such as for VF and AMR determination, are included by default into the pipeline; Spfy provides similar functionallity with an expanded focus on integrated result storage and big-data analyses.
+In place of a MySQL database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistant graph database.
+This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses.
+On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
+Spfy also processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
+
 To approach the challenge of integrating different bioinformatics programs, Spfy instead uses technologies prevalent in common web services not necessarily related to scientific workflows.
 While we prefer to package individual bioinformatics programs using language-agnostic package managers such as Conda \url{https://conda.io/}, we do agree that suites of bioinformatics software benefit from having all dependencies installed and deployable in Docker containers \cite{di2015impact}.
 These programs are connected to form a workflow using task queues; a design methodology used to offload long-running or non-instantaneous tasks over available computing infrastructure.
@@ -360,26 +371,6 @@ Spfy packages compute nodes, which manage a collection of task queue workers, as
 Docker containerization has a neglible impact on performance \cite{di2015impact}, and allows the platform to easily scale to demand.
 In contrast to Galaxy, Spfy is a targeted approach building a predictive analytics platform for \textit{E. coli} which leverages generic web technologies to favor a responsive, big-data design strategy tackling the challenge \cite{fricke2014bacterial} of integrating results from multiple genomes and examining shared connections.
 By packaging the individual bioinformatics software as Conda packages, they can be easily ported to Galaxy.
-
-\subsection{Comparison with similar bioinformatic pipelines}
-
-% para: \cite{naccache2014cloud}
-% must install a ton of deps and even create dbs manually https://github.com/chiulab/surpi
-% im not actually sure where they're getting the 'cloud-compatible' aspect of their paper from - its cloud compatible in that you deploy in the same manner as you would to bare-metal, but that's just like saying it 'runs on a computer'
-
-% para: \cite{aanensen2016whole}
-% makes some pretty pictures, but not really a pipeline
-
-% para: \cite{joensen2014real,thomsen2016bacterial}
-% we have a lot of similar directions to this, but just try to make it prettier, more friendly to use, and faster
-
-TODO: The needs to be linked to the previous discussion above, as its absence was conspicuous.
-The Bacterial Analysis Platform (BAP), developed out of the Technical University of Denmark, is the closest analogue to Spfy, and provides an integrated analysis pipeline for bacterial WGS data as a web service.
-BAP is novel in its combined approach to genome analysis as different programs, such as for VF and AMR determination, are included by default into the pipeline; Spfy provides similar functionallity with an expanded focus on integrated result storage and big-data analyses.
-In place of a MySQL database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistant graph database.
-This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses.
-On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
-Spfy also processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
 
 \section{CONCLUSIONS}
 
