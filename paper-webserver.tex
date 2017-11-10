@@ -88,7 +88,7 @@ In order to  Existing annotation and analysis software for WGS data represent un
 - etc.
 
 % 3. how we solved it
-In this study, we present an update to the SuperPhy platform, called Spfy. Spfy enables large-scale genome processing in real-time and uniquely decomposses results into graph datastructures for further comparative genomics. Unlike traditional approaches which store results in separate data files or in a relational database, the graph datastructures are then integrated into a knowledge graph identifying relationships between all genomes sequenced in the past, present, and future. We present the use of graph databases as a solution to storing genome analysis results in a meaningful manner, and to allow retrospective comparisons as more genomes are sequenced or populations change.
+In this study, we present an update to the SuperPhy platform, called Spfy. Spfy enables large-scale genome processing in real-time and uniquely decomposses results into graph data structures for further comparative genomics. Unlike traditional approaches which store results in separate data files or in a relational database, the graph data structures are then integrated into a knowledge graph identifying relationships between all genomes sequenced in the past, present, and future. We present the use of graph databases as a solution to storing genome analysis results in a meaningful manner, and to allow retrospective comparisons as more genomes are sequenced or populations change.
 
 {I'm not sure if we should include that the same graph database can be expanded to cover different spcies}
 
@@ -130,18 +130,13 @@ The website and source code are available at \url{https://superphy.github.io/}. 
 % ONLY FOCUS ON THE ANALYSIS MODULES
 % Describe available functions in spfy
 % para covering everything
-Spfy performs reference laboratory tasks: O-antigen and H-antigen typing using ectyper \url{https://github.com/phac-nml/ecoli_serotyping}, Shiga-toxin (STX) typing,  virulence factor (VF) and antimicrobial resistance (AMR) gene determination, and related strain determination.
+Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, and virulence factor (VF) gene determination using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping}, Shiga-toxin (STX) typing using Phylotyper \cite{whiteside2017phylotyper}, and antimicrobial resistance (AMR) gene determination using the Resistance Gene Identifier (RGI) program \cite{mcarthur2013comprehensive}.
 
-Spfy also performs bioinformatics analyses: pangenome generation, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
-
-
-TODO: List all of the below references in the above paragraphs.
-%We introduce one new bioinformatics program, Ecoli-Serotyper (ECTyper) , for determining surface-antigen type and associated VFs, and utilize existing software: the Resistance Gene Identifier (RGI) program \cite{mcarthur2013comprehensive}, Phylotyper \cite{whiteside2017phylotyper}, and Panseq \cite{laing2010pan}.
+Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan}, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
 
 % para covering ectyper & RGI -- don't really need this
 % RGI has its own paper and was in the previous SuperPhy paper
 % ectyper will get its own paper
-
 
 % para on phylotyper
 Stx typing looks at ...
@@ -179,8 +174,6 @@ ii) User-selected analyses are enqueued into the Redis Queue \url{http://python-
 iii) The workers dequeue the analyses, run them in parallel, and temporarily store results in the Redis database.
 
 iv) Python functions parse the results and permanently store them in Blazegraph \url{https://www.blazegraph.com/}, the graph database used for Superphy.
-
-The entire Spfy update is packaged in Docker \url{https://www.docker.com/} containers and connected together using Docker Compose \url{https://docs.docker.com/compose/}.
 
 \subsection{Data Storage}
 % para
@@ -251,14 +244,6 @@ Both the task selection and results page follow this card-based design: while da
 % 1. how we implemented RQ
 %	related: packaging of modules in conda
 
-TODO: The below was already covered above. No need to repeat. Either here or there, but combine.
-%% Task queues are processes which schedule code exection across available computing infrastructure.
-%% In Spfy, the Python-based Redis Queue library \url{https://github.com/nvie/rq} is used to manage analysis tasks and run them asynchronously in response to user requests.
-%% When a user submits files for analysis or requests population-wide comparisons, separate tasks are enqueued at different priorities, depending on our user experience goals.
-%% For example, population-wide analyses have a higher priority than bulk subtyping analyses, as we want search-response queries to return instantly whereas a delay in subtyping is typical in similar web services, such as the Center for Genomic Epidemiology Pipeline (CGE Pipeline) \cite{thomsen2016bacterial}.
-%% Spfy enables processing of thousands of genome sequences by using task queue workers running in parallel, which also allows performance to scale to available infrastructure.
-%% In addition, the open-source Sentry toolkit \url{https://github.com/getsentry/sentry} was integrated and used for real-time exception tracking and to ensure reliability of the platform.
-
 % para
 % 1. goals: scale analyses to "big-data", error handling
 % 3. how we handle parallelization with RQ
@@ -272,9 +257,8 @@ TODO: The below was already covered above. No need to repeat. Either here or the
 % 1. how we implemented docker
 % 3. how this lets us replicate worker containers and link everything together
 
-TODO: bring the docker information from above down here.
-The Spfy platform depends on a series of webservers, databases, and task workers and uses \url{https://www.docker.com/}, a virtualization technology, to run self-contained operating systems on the same host computer.
-Software packages are installed within the conatiners and the entire platform is networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
+Docker \url{https://www.docker.com/} is a virtualization technology to run self-contained operating systems on the same host computer.
+The Spfy platform depends on a series of webservers, databases, and task workers and uses Docker to compartmentalize these services which are then networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
 Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically, and that service runtimes are compartmentalized; this guarantees that code failures do not propagate to other services.
 
