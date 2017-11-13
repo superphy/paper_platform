@@ -88,24 +88,15 @@ We have previously developed Superphy \cite{whiteside2016superphy}, an online pr
 % - etc.
 
 % 5. how we solved it
-In this study, we present an update to the SuperPhy platform, called Spfy. Spfy enables large-scale genome processing in real-time and uniquely decomposses results into graph data structures for further comparative genomics. Unlike traditional approaches which store results in separate data files or in a relational database, the graph data structures are then integrated into a knowledge graph identifying relationships between all genomes sequenced in the past, present, and future. We present the use of graph databases as a solution to storing genome analysis results in a meaningful manner, and to allow retrospective comparisons as more genomes are sequenced or populations change.
+In this study, we present an update to the SuperPhy platform, called Spfy. Spfy aims to solve the problem of real-time analysis and merging of results from different analysis methods. By merging results and creating links between genome data, we are able to identifying relationships between all genomes sequenced in the past, present, and future. This graph-based result storage allows retrospective comparisons as more genomes are sequenced or populations change, and is flexible enough to accomadate new analysis methods as they are developed.
 
-{I'm not sure if we should include that the same graph database can be expanded to cover different spcies}
+% {needs to be beefed up, in language a biologist / public health worker would care about}
 
-{needs to be beefed up, in language a biologist / public health worker would care about}
-
-\par
-
-% 4. benefits: rapid analyses in real-time -> huge comparisons, replace reference labs -> time & money saved, future work -> expand analyses, more genomes, more species
-By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups.
-Subtyping options are ..., pan-genome generation ..., group comparisons via Fisher's, ML, .... for E.coli.
-
-By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, with added support for big-data analyses.
-Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
+By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, with added support for big-data analyses. Subtyping options are ..., pan-genome generation ..., group comparisons via Fisher's, ML, .... for E.coli. These tasks are divided into subtasks, and distributed across a built-in task queue. Subtyping results are then decomposed into graph structures and stored within a larger graph database. By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups. Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
 
 Future work will focus on adding additional analyses modules, using machine learning and artificial neural networks to aid genotype to phenotype predictions, and supporting different species. While the integrated approach or storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and can easily be integrated into existing platforms such as Galaxy \cite{goecks2010galaxy}, and IRIDA.
 
-The website and source code are available at \url{https://superphy.github.io/}. \par
+The website and source code are available at \url{https://lfz.corefacility.ca/superphy/spfy/}. \par
 
 
 % end of new intro
