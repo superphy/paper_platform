@@ -133,16 +133,8 @@ By retrieving results from the database, Spfy provides group comparisons using F
 % Panpredic???
 
 \section{IMPLEMENTATION}
-% para: the semantic web
-Spfy is built around semantic web technologies which describe the relaions between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, are linked together in a queryable graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
-
-% para: semantic web in spfy
-In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. These graph objects, which consist of nodes and edges, must be annotated in order to attribute meaning to these data points. Spfy uses annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies, as well as custom terminology to enable graph traversals of related datum. The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
-
 % para: intro to the spfy stack
-Spfy's server-side code is developed in Python and the website served to users using the React JavaScript library.
-
-For the addition of new data to the database, the following steps are taken:
+Spfy's server-side code is developed in Python and the website served to users using the React JavaScript library. For the addition of new data to the database, the following steps are taken:
 
 i) The upload begins through the ReactJS-based website, where user-defined analyses options are selected. The results of these chosen analyses are immediately reported to the user following their completion, while the remaining analyses are subsequently completed and stored in the database without interaction from the user. The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed).
 
@@ -160,19 +152,11 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 2. ontoogies used
 % 3. inferencing
 % 3 1/2. SPARQL queries
-Graph databases describe relationships between data points, and are one of the emerging \cite{de2015trends} database types for biological data; they are one of the core building blocks of semantic web technology \cite{horrocks2005semantic}.
-Spfy uses the RDFLib Python library \url{https://rdflib.readthedocs.org/} to represent all data, including the results of the analyses modules.
+% para: the semantic web
+Spfy is built around semantic web technologies which describe the relaions between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, are linked together in a queryable graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
-% note: below is a feature in development
-The permanent storage of results is as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run.
-
-% para
-% ontology
-The structure of the graph database is handled using ontologies: indices which define types of data and the relations between them.
-By sharing ontologies, it is possible to link databases from different organizations together, and Spfy uses types defined in the  Genomic Epidemiology Application Ontology (GenEpiO) \cite{griffiths2017context} and the Feature Annotation Location Description Ontology (FALDO) \cite{bolleman2016faldo}.
-Spfy also connects genomes, contiguous sequences (contigs), pangenome regions, and predicted genes and alleles using generic realtion edges, to allow the presence of various genes to be infered from a genome description.
-(see Figure \ref{fig-ontology})
-Individual genes and pangenome regions are connected to all the contigs they are found on using this inferencing method, such that it is possible to determine all the genomes which contain a particular target sequence.
+% para: semantic web in spfy
+In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. These graph objects, which consist of nodes and edges, must be annotated in order to attribute meaning to these data points. Spfy uses annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies, as well as custom terminology to enable graph traversals and related data to be inferred from the ontology (see Figure \ref{fig-ontology}). The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
 
 \begin{figure}[t]
 \begin{center}
@@ -181,6 +165,11 @@ Individual genes and pangenome regions are connected to all the contigs they are
 \caption{Caption for figure within column.}
 \label{fig-ontology}
 \end{figure}
+
+% note: below is a feature in development
+The permanent storage of results is as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run. To identify analysis tasks, Spfy fingerprints requests by computing its SHA1 hash and tags the results in the graph database with this hash. Subsequent queries are then compared through fingerprinting, and results can be rebuilt from the graph by searching for matching fingerpirnts.
+
+For population analyses, Spfy searches the graph for all nodes annotated with the queried ontology term. Depending on the given analysis, this data is then typically vectorized into NumPy numerical arrays for use with the SciPy scientific computing library.
 
 \subsection{Web design}
 % para
