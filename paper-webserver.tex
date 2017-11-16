@@ -119,18 +119,12 @@ Future work will focus on adding additional analyses modules, using machine lear
 % ONLY FOCUS ON THE ANALYSIS MODULES
 % Describe available functions in spfy
 % para covering everything
-Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, and virulence factor (VF) gene determination using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping}, Shiga-toxin (STX) typing using Phylotyper \cite{whiteside2017phylotyper}, and antimicrobial resistance (AMR) gene determination using the Resistance Gene Identifier (RGI) program \cite{mcarthur2013comprehensive}.
-
-Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan}, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
+Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, and VF gene determination using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping}, STX typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR gene determination using the RGI program \cite{mcarthur2013comprehensive}. Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan}, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
 
 % para covering ectyper & RGI -- don't really need this
 % RGI has its own paper and was in the previous SuperPhy paper
 % ectyper will get its own paper
 % phylotyper also has its own paper
-
-% para on pangenome
-Bacterial species, pan-genome ...Panseq \cite{laing2010pan}, Roary \cite{page2015roary}, chewBBACA \url{https://github.com/mickaelsilva/chewBBACA}, and Graphtyper \cite{Eggertsson148403} can compute these pan-genomic regions, and are freely available.
-Spfy integrates panseq ...
 
 % group comparisons
 By retrieving results from the database, Spfy provides group comparisons using Fishers.
@@ -140,12 +134,10 @@ By retrieving results from the database, Spfy provides group comparisons using F
 
 \section{IMPLEMENTATION}
 % para: the semantic web
-Spfy is built around semantic web technologies which describe the relaions between different data \cite{berners2001semantic}. For biological data this means that individual data points such as genome, contiguous DNA sequence, or gene, are linked together in a queryable graph form. This allows novel data to be seamlessly incorporated into the existing graph, and has {TODO: what has been proposed specifically?} been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
+Spfy is built around semantic web technologies which describe the relaions between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, are linked together in a queryable graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
 % para: semantic web in spfy
-In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. TODO: need information about ontology, terms etc. for metadata.
-
-The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
+In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. These graph objects, which consist of nodes and edges, must be annotated in order to attribute meaning to these data points. Spfy uses annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies, as well as custom terminology to enable graph traversals of related datum. The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
 
 % para: intro to the spfy stack
 Spfy's server-side code is developed in Python and the website served to users using the React JavaScript library.
