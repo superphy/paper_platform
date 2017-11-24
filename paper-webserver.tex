@@ -94,7 +94,7 @@ In this study, we present an update to the SuperPhy platform, called Spfy. Spfy 
 
 By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, with added support for big-data analyses. Subtyping options for E.coli are O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing, VF and AMR annotation, pan-genome generation, group comparisons via Fisher's, and machine-learning (ML) based predictions for OmniLog AMR assays. These tasks are divided into subtasks, and distributed across a built-in task queue. Results are also decomposed into graph structures and stored within a larger graph database. By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups. Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
 
-Future work will focus on adding additional analyses modules, using machine learning and artificial neural networks to aid genotype to phenotype predictions, and supporting different species. While the integrated approach or storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and can easily be integrated into existing platforms such as Galaxy \cite{goecks2010galaxy}, and IRIDA. The website and source code are available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
+Future work will focus on adding additional analyses modules, using machine learning and artificial neural networks to aid genotype to phenotype predictions, and supporting different species. While the integrated approach or storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and can easily be integrated into existing platforms such as Galaxy \cite{goecks2010galaxy}, and IRIDA. The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Spfy's codebase is provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
 
 % end of new intro
@@ -252,17 +252,20 @@ The resulting database had XYZ nodes and XYZ edges, with XYZ object properties, 
 
 
 \section{DISCUSSION}
+% Gist, we address the the "Limitations" of \cite{de2015trends}.
+% Namely:
+% 1. Custom formats.
+% 2. Use of legacy tech (SQL) means youu can't accomadate "Big-Data" goals.
 
 % drawbacks - big data
-Many previous bioinformatics software programs have been developed \textit{ad hoc}, without the use of software engineering principles \cite{de2015trends}.
+Many previous bioinformatics software programs have been developed \textit{ad hoc}, with inividual researchers and laboratories developing software specific to their environment \cite{de2015trends}.
 Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
 While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
 Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
-One of the key goals in developing Spfy is to maintain instantaneity, as modern websites have accustomed users to instant results.
+One of the key goals in developing Spfy is to maintain instantaneity, as modern websites have accustomed users to immediate results.
 We attempt to use innovations in web development to bring a similar experience to Spfy as a predictive genomics platform for \textit{E. coli}.
-% Mention where users / developers can find documentation
-Spfy's main documentation and codebase are provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+The use of Docker containerization, task queues, and a graph database, were all chosen to support \textit{instantaneity}; modern analytics platforms must respond to user-requested analyses of big-data in the same efficiancy as old analyses of single files.
 
 \subsection{Impact on Public Health Efforts}
 
