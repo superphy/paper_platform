@@ -272,18 +272,18 @@ The use of Docker containerization, task queues, and a graph database, were all 
 % para
 % focus on application
 The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
-Until recently, public-health agencies relied on laboratory tests such as pulsed-field gel electrophoresis (PFGE) banding patterns {ronholm2016navigating}, XYZ to characterize bacterial isolates in outbreak and surveillance settings.
+Until recently, public-health agencies relied on laboratory tests such as serotyping, pulsed-field gel electrophoresis (PFGE) banding patterns {ronholm2016navigating}, or Polymerase Chain Reaction (PCR)-based amplication to identify known VFs or AMR genes, along with other tests, to characterize bacterial isolates in outbreak and surveillance settings.
 
-Antimicrobial resistance testing, virulence factor testing ...
-However, current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence.
-, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
+AMR testing, VF testing, and Shiga-toxin testing are of particular importance to surveillance efforts as the targets play a key role in a pathogen's lethality to humans.
+Current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence.
+WGS methods allow a single laboratory method - the sequencing step - to provide a variety of analysis options, such as AMR, VF, and Shiga-toxin results, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
 
 % application: results similar to a wet-lab
 Spfy uses WGS results.
 After intial sequencing of new isolates, Spfy can be used in place of a traditional reference laborartory, to determine the O-type and H-type, Stx type, and all known VFs and AMR genes in real-time.
 These results can be shared with other ageencies and researchers over the internet.
-Futhermore, using Spfy's database of pre-processed genomes, Spfy can determine all strains a sample may be related to which is useful for ...
-Cost benefits ...
+Futhermore, using Spfy's database of pre-processed genomes, Spfy can determine all strains a sample may be related to which is useful for monitoring the evolution of pathogens over time.
+A computational approach saves the time and cost associated with performing multiple tests per sample, and allows population comparisons which would not be possible with the current pace of WGS results.
 
 \subsection{Comparison with other bioinformatic pipeline technologies}
 
