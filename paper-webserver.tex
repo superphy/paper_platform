@@ -119,6 +119,8 @@ Future work will focus on adding additional analyses modules, using machine lear
 % ONLY FOCUS ON THE ANALYSIS MODULES
 % Describe available functions in spfy
 % para covering everything
+
+% Need a sentance introducing the tools otherwise this sounds just like the intro section
 Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, and VF gene determination using , STX typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR gene determination using the RGI program \cite{mcarthur2013comprehensive}. Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan}, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
 
 % para covering ectyper & RGI -- don't really need this
@@ -127,13 +129,13 @@ Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, an
 % phylotyper also has its own paper
 
 % group comparisons
-Knowledge graphs are a semantic method of linking data points by their relations. Spfy allows users to compare the results associated with particular genome types or metadata by storing all results in a graph structure. Comparisons can be made in real-time, as new genomes are submitted for analysis and the results stored in the existing graph. Any data type in the graph is valid for analysis, such as the presence or absence of pan-genome regions against determined serotypes or other subtyping options. In addition, Spfy supports the submission of user-specified metadata, such as location or source information.
+Knowledge graphs semantically link data points by relations defined in an ontology. Spfy allows users to compare the results associated with particular genome types or metadata by storing all results in a graph structure. Comparisons can be made in real-time, as new genomes are submitted for analysis and the results stored in the existing graph. Any data type or relation in the graph is valid for analysis, such as the presence or absence of pan-genome regions against determined serotypes or other subtyping options. In addition, Spfy supports the submission of user-specified metadata, such as location or source information. Results are displayed on-screen and available for download.
 
 \section{IMPLEMENTATION}
 % para: intro to the spfy stack
-Spfy's server-side code is developed in Python and the website served to users using the React JavaScript library. For the addition of new data to the database, the following steps are taken:
+Spfy's server-side code is developed in Python and the front-end website is developed using the React JavaScript library. For the addition of new data to the database, the following steps are taken:
 
-i) The upload begins through the ReactJS-based website, where user-defined analyses options are selected. The results of these chosen analyses are immediately reported to the user following their completion, while the remaining analyses are subsequently completed and stored in the database without interaction from the user. The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed).
+i) The upload begins through the ReactJS-based website, where user-defined analyses options are selected. The results of these chosen analyses are immediately reported to the user following their completion, while the remaining analyses are subsequently completed and stored in the database without interaction from the user. The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed) at a time.
 
 ii) User-selected analyses are enqueued into the Redis Queue \url{http://python-rq.org/} task queue. Redis Queue consists of a Redis Database \url{https://redis.io/} and task queue workers which run as Python processes.
 
@@ -150,10 +152,10 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 3. inferencing
 % 3 1/2. SPARQL queries
 % para: the semantic web
-Spfy is built around semantic web technologies which describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, are linked together in a query-able graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
+Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a query-able graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
 
 % para: semantic web in spfy
-In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. These graph objects, which consist of nodes and edges, must be annotated in order to attribute meaning to these data points. Spfy uses annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies, as well as custom terminology to enable graph traversals and related data to be inferred from the ontology (see Figure \ref{fig-ontology}). The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
+In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. These graph objects, which consist of nodes and edges, must be annotated with common terminology. Spfy uses annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies, as well as custom terminology to enable graph traversals and related data points to be inferred from the ontology (see Figure \ref{fig-ontology}). The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
 
 \begin{figure}[t]
 \begin{center}
@@ -179,7 +181,7 @@ For population analyses, Spfy searches the graph for all nodes annotated with th
 The front-end website is written using the React JavaScript library \url{https://facebook.github.io/react/} as a single-page application to allow efficient data-flow without reloading the website.
 To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, surrounding a card-based design.
 (see Figure \ref{fig-results})
-Both the task selection and results page follow this card-based design: while data storage is actually graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download as .csv files.
+Both the task selection and result displays follow this card-based design: while data storage is graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files.
 (see Figure \ref{fig-tables})
 
 \begin{figure}[t]
@@ -221,9 +223,10 @@ Both the task selection and results page follow this card-based design: while da
 % 3. how this lets us replicate worker containers and link everything together
 
 Docker \url{https://www.docker.com/} is a virtualization technology to run self-contained operating systems on the same host computer.
+lightweight...
 The Spfy platform depends on a series of webservers, databases, and task workers and uses Docker to compartmentalize these services which are then networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
-Docker integration ensures that software dependencies, which typically must be manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are handled automatically, and that service runtimes are compartmentalized; this guarantees that code failures do not propagate to other services.
+Docker integration ensures that software dependencies, which are typically manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are instead handled automatically. With compartmentalization of service runtimes, code failures can not propagate to other services.
 
 \begin{figure}[t]
 \begin{center}
