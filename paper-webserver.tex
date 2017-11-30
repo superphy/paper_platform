@@ -121,7 +121,9 @@ Future work will focus on adding additional analyses modules, using machine lear
 % para covering everything
 
 % Need a sentance introducing the tools otherwise this sounds just like the intro section
-Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, and VF gene determination using , STX typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR gene determination using the RGI program \cite{mcarthur2013comprehensive}. Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan}, statistical significance testing of genome markers for user-defined groups, and AMR predictions using support vector machines (SVMs).
+Prebuilt tools are available for a variety of reference laboratory tasks.
+Spfy performs reference laboratory tasks: O-antigen typing, H-antigen typing, and VF gene determination using ECtyper \url{https://github.com/phac-nml/ecoli_serotyping}, STX typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR gene determination using the RGI program \cite{mcarthur2013comprehensive}. Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan}, statistical significance testing of genome markers for user-defined groups using SciPy \cite{jones2014scipy}, and support vector machine (SVM)-backed AMR predictions using Scikit-learn \cite{pedregosa2011scikit}.
+These modules are used for the data-generation aspects of Spfy.
 
 % para covering ectyper & RGI -- don't really need this
 % RGI has its own paper and was in the previous SuperPhy paper
@@ -200,7 +202,7 @@ Both the task selection and result displays follow this card-based design: while
 \label{fig-tables}
 \end{figure}
 
-\subsection{Real-time analysis pipelines}
+\subsection{Service Virtualization}
 % para
 % 1. goals: real-time, support for pipelines (linked modules)
 % 2. how pipelines have been handled in the past: Galaxy, other examples
@@ -222,8 +224,9 @@ Both the task selection and result displays follow this card-based design: while
 % 1. how we implemented docker
 % 3. how this lets us replicate worker containers and link everything together
 
-Docker \url{https://www.docker.com/} is a virtualization technology to run self-contained operating systems on the same host computer.
-lightweight...
+% cost of docker < a full VM
+% it's not quite a full OS
+Docker \url{https://www.docker.com/} is a virtualization technology to simulate self-contained operating systems on the same host computer, without the overhead of full hardware virtualization \cite{felter2015updated}.
 The Spfy platform depends on a series of webservers, databases, and task workers and uses Docker to compartmentalize these services which are then networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
 Docker integration ensures that software dependencies, which are typically manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are instead handled automatically. With compartmentalization of service runtimes, code failures can not propagate to other services.
