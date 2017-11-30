@@ -251,8 +251,8 @@ CI is also used to automatically build Spfy's core Docker images, and upload the
 
 \section{RESULTS}
 TODO: Update with all of Enterobase
-Spfy was tested with 59,5323 public \textit{E. coli} genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase totaling 596 GB, storing both the entire sequences and results for all included analysis modules.
-The resulting database had XYZ nodes and XYZ edges, with XYZ object properties, which worked out to XYZ GB of data stored.
+Spfy was tested with 59,5323 public \textit{E. coli} genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
+The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to XYZ TB of data stored.
 
 % analysis run-time / throughput with different levels of parallelization
 
@@ -271,7 +271,7 @@ Additionally, many subsets of biology now require the analyses of big-data, wher
 
 One of the key goals in developing Spfy is to maintain instantaneity, as modern websites have accustomed users to immediate results.
 We attempt to use innovations in web development to bring a similar experience to Spfy as a predictive genomics platform for \textit{E. coli}.
-The use of Docker containerization, task queues, and a graph database, were all chosen to support \textit{instantaneity}; modern analytics platforms must respond to user-requested analyses of big-data in the same efficiency as old analyses of single files.
+The use of Docker containerization, task queues, and a graph database, were all chosen to support instantaneity; modern analytics platforms must respond to user-requested analyses of big-data in the same efficiency as old analyses of single files.
 
 \subsection{Impact on Public Health Efforts}
 
@@ -280,7 +280,7 @@ The use of Docker containerization, task queues, and a graph database, were all 
 The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
 Until recently, public-health agencies relied on laboratory tests such as serotyping, pulsed-field gel electrophoresis (PFGE) banding patterns, or Polymerase Chain Reaction (PCR)-based amplification to identify known VFs or AMR genes, along with other tests \citep{ronholm2016navigating}, to characterize bacterial isolates in outbreak and surveillance settings.
 
-AMR testing, VF testing, and Shiga-toxin testing are of particular importance to surveillance efforts as the targets play a key role in a pathogen's lethality to humans.
+AMR testing, VF testing, and Shiga-toxin testing are of particular importance to surveillance efforts due to their role in a pathogen's lethality.
 Current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence.
 WGS methods allow a single laboratory method - the sequencing step - to provide a variety of analysis options, such as AMR, VF, and Shiga-toxin results, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \citep{ronholm2016navigating}.
 
@@ -289,17 +289,17 @@ Spfy uses WGS results.
 After initial sequencing of new isolates, Spfy can be used in place of a traditional reference laboratory, to determine the O-type and H-type, Stx type, and all known VFs and AMR genes in real-time.
 These results can be shared with other agencies and researchers over the internet.
 Furthermore, using Spfy's database of pre-processed genomes, Spfy can determine all strains a sample may be related to which is useful for monitoring the evolution of pathogens over time.
-A computational approach saves the time and cost associated with performing multiple tests per sample, and allows population comparisons which would not be possible with the current pace of WGS results.
+A computational approach saves the time and cost associated with performing multiple tests per sample, and allows population comparisons to keep pace the current generation WGS data.
 
 \subsection{Comparison with other bioinformatic pipeline technologies}
 % trying to cut down on details that would be better suited for the "Implemntation" section.
 
 % namely galaxy
-Other scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and bioinformatics pipelines IRIDA and BAP are used to run analysis modules on WGS data.
-Galaxy aims to provide a reproducible computation-based research environment which is accessible to individuals without programming knowledge. Galaxy tackles the problem of linking different analysis software together, by defining interdependencies using a custom schema. A visual workflow editor is also provided for ease of use.
-IRIDA is build on top of the Galaxy framework, and adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results store linearly per sequence. Focus is given on refined controls for collaborating on projects, and common terms found in the GenEpiO ontology are used to describe results.
+Other scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and bioinformatics pipelines IRIDA and BAP also run analysis modules on WGS data.
+Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy tackles the problem of linking different analysis software together, by defining interdependencies using a custom schema. A visual workflow editor is also provided for ease of use.
+IRIDA is build on top of the Galaxy framework, and adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored linearly per sequence. IRIDA adds Controls for collaborating on projects, and uses common terms found in the GenEpiO ontology to describe results.
 
-The Bacterial Analysis Platform (BAP), developed out of the Technical University of Denmark provides an integrated analysis pipeline for bacterial WGS data as a web service.
+The Bacterial Analysis Platform (BAP), developed out of the Technical University of Denmark, provides an integrated analysis pipeline for bacterial WGS data as a web service.
 BAP takes a combined approach to genome analysis including different programs, such as for VF and AMR determination, by default into the pipeline.
 A record of the different files generated by an analysis are stored in a relational database, and the record is queried to determine which files are returned to the user \citep{thomsen2016bacterial}.
 
