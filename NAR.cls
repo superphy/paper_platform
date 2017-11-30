@@ -8,7 +8,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{NAR}
-              [2012/07/01 v1.5
+              [2007/03/23 v1.4b
  Standard LaTeX document class]
 \newif\if@restonecol
 \newif\if@titlepage\@titlepagefalse
@@ -321,7 +321,7 @@
 % Header
 \def\titlefont{\fontfamily{\sfdefault}\fontsize{20}{22}\fontseries{b}\selectfont\leftskip0pt\rightskip0pt plus1fill}
 \def\subtitlefont{\fontfamily{\sfdefault}\fontsize{14}{18}\fontseries{m}\selectfont\leftskip0pt\rightskip0pt plus1fill}
-\def\authorfont{\reset@font\fontfamily{\sfdefault}\fontsize{12}{14}\fontseries{b}\selectfont\leftskip0pt\rightskip0pt plus1fill\relax}
+\def\authorfont{\reset@font\fontfamily{\sfdefault}\fontsize{12}{14}\fontseries{b}\selectfont\leftskip0pt\rightskip0pt plus1fill}
 \def\addressfont{\reset@font\fontfamily{\sfdefault}\fontsize{10}{12}\fontseries{n}\selectfont\leftskip0pt\rightskip0pt plus1fill}
 \def\abstractfont{\fontfamily{\sfdefault}\fontsize{10}{12}\fontseries{b}\selectfont\leftskip0pt\rightskip0pt}
 \def\abstractheadfont{\normalfont\bf\selectfont}
