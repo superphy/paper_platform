@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  5 AUG 2017 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  30 NOV 2017 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,27 +6,1259 @@ entering extended mode
 (./paper-webserver.tex
 LaTeX2e <2016/03/31>
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(./NAR.cls
+Document Class: NAR 2012/07/01 v1.5 Standard LaTeX document class
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/fleqn.clo
+File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
+\mathindent=\dimen102
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/crop/crop.sty
+Package: crop 2003/05/20 v1.9 crop marks (mf)
+\stockwidth=\dimen103
+\stockheight=\dimen104
+\CROP@index=\count79
 
-! LaTeX Error: File `NAR.cls' not found.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cls)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 144.
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.2 ^^M
-       
-*** (cannot \read from terminal in nonstop modes)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
- 
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count80
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/05/09 v1.0r Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 96.
+)
+\CROP@offset=\count81
+Package crop Info: Local config file crop.cfg used on input line 605.
+
+(/usr/local/texlive/2016/texmf-dist/tex/xelatex/xetexconfig/crop.cfg))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/10 v2.15b AMS math features
+\@mathmargin=\skip41
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks16
+\ex@=\dimen105
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen106
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count82
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count83
+\leftroot@=\count84
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count85
+\DOTSCASE@=\count86
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen107
+LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+\macc@depth=\count87
+\c@MaxMatrixCols=\count88
+\dotsspace@=\muskip10
+\c@parentequation=\count89
+\dspbrk@lvl=\count90
+\tag@help=\toks17
+\row@=\count91
+\column@=\count92
+\maxfields@=\count93
+\andhelp@=\toks18
+\eqnshift@=\dimen108
+\alignsep@=\dimen109
+\tagshift@=\dimen110
+\tagwidth@=\dimen111
+\totwidth@=\dimen112
+\lineht@=\dimen113
+\@envbody=\toks19
+\multlinegap=\skip42
+\multlinetaggap=\skip43
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2739.
+LaTeX Info: Redefining \] on input line 2740.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count94
+\float@exts=\toks21
+\float@box=\box28
+\@float@everytoks=\toks22
+\@floatcapt=\box29
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+\epsfxsize=\dimen116
+\epsfysize=\dimen117
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen118
+\WF@size=\dimen119
+\c@WF@wrappedlines=\count95
+\WF@box=\box30
+\WF@everypar=\toks24
+Package: wrapfig 2003/01/31  v 3.6
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/sttools/stfloats.sty
+Package: stfloats 2016/02/08 v2.0 Improve float mechanism and baselineskip sett
+ings
+\@dblbotnum=\count96
+\c@dblbotnumber=\count97
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
+\c@tracingmulticols=\count98
+\mult@box=\box31
+\multicol@leftmargin=\dimen120
+\c@unbalance=\count99
+\c@collectmore=\count100
+\doublecol@number=\count101
+\multicoltolerance=\count102
+\multicolpretolerance=\count103
+\full@width=\dimen121
+\page@free=\dimen122
+\premulticols=\dimen123
+\postmulticols=\dimen124
+\multicolsep=\skip44
+\multicolbaselineskip=\skip45
+\partial@page=\box32
+\last@line=\box33
+\maxbalancingoverflow=\dimen125
+\mult@rightbox=\box34
+\mult@grightbox=\box35
+\mult@gfirstbox=\box36
+\mult@firstbox=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\c@columnbadness=\count104
+\c@finalcolumnbadness=\count105
+\last@try=\dimen126
+\multicolovershoot=\dimen127
+\multicolundershoot=\dimen128
+\mult@nat@firstbox=\box55
+\colbreak@box=\box56
+\mc@col@check@num=\count106
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count107
+\rotFPtop=\skip46
+\rotFPbot=\skip47
+\rot@float@box=\box57
+\rot@mess@toks=\toks25
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen129
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/dcolumn.sty
+Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen130
+\extrarowheight=\dimen131
+\NC@list=\toks26
+\extratabsurround=\skip48
+\backup@length=\skip49
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/boxedminipage/boxedminipage.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks27
+\SOUL@lasttoken=\toks28
+\SOUL@cmds=\toks29
+\SOUL@buffer=\toks30
+\SOUL@token=\toks31
+\SOUL@spaceskip=\skip50
+\SOUL@ttwidth=\dimen132
+\SOUL@uldp=\dimen133
+\SOUL@ulht=\dimen134
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+\jnameskip=\skip51
+\titleskip=\dimen135
+\ruleskip=\dimen136
+\ruleht=\dimen137
+\droplines=\count108
+\dropsep=\dimen138
+\capvskip=\skip52
+\caphskip=\skip53
+\capwd=\dimen139
+\droplinewd=\dimen140
+\c@part=\count109
+\c@section=\count110
+\c@subsection=\count111
+\c@subsubsection=\count112
+\c@paragraph=\count113
+\c@subparagraph=\count114
+\labelwidthi=\dimen141
+\labelwidthii=\dimen142
+\labelwidthiii=\dimen143
+\labelwidthiv=\dimen144
+\topsepi=\skip54
+\topsepii=\skip55
+\topsepiii=\skip56
+\topsepiv=\skip57
+\itemsepi=\skip58
+\itemsepii=\skip59
+\itemsepiii=\skip60
+\itemsepiv=\skip61
+\labelsepi=\dimen145
+\labelsepii=\dimen146
+\labelsepiii=\dimen147
+\labelsepiv=\dimen148
+\parsepi=\dimen149
+\parsepii=\dimen150
+\parsepiii=\dimen151
+\parsepiv=\dimen152
+\rightmargini=\dimen153
+\rightmarginii=\dimen154
+\rightmarginiii=\dimen155
+\rightmarginiv=\dimen156
+\itemindenti=\dimen157
+\itemindentii=\dimen158
+\itemindentiii=\dimen159
+\itemindentiv=\dimen160
+\labelleftmargin=\dimen161
+\c@figure=\count115
+\c@table=\count116
+\abovecaptionskip=\skip62
+\belowcaptionskip=\skip63
+\figurewidth=\dimen162
+\figureheight=\dimen163
+\dwidth=\dimen164
+\dheight=\dimen165
+\ncolumns=\count117
+\nrows=\count118
+\tablewd=\dimen166
+\tablewidth=\dimen167
+\captionwd=\dimen168
+\tempbox=\box58
+\tableleftskip=\skip64
+\tablerightskip=\skip65
+\tablecapleftskip=\skip66
+\tablecaprightskip=\skip67
+\tablefootleftskip=\skip68
+\tablefootrightskip=\skip69
+\footnumskip=\dimen169
+\bibindent=\dimen170
+\maxbibwd=\dimen171
+
+(./NAR-natbib.sty
+Package: NAR-natbib 2000/07/24 7.0a (PWD)
+\bibhang=\skip70
+\bibsep=\skip71
+LaTeX Info: Redefining \cite on input line 509.
+\c@NAT@ctr=\count119
+)
+\hours=\count120
+\minutes=\count121
+\grid@sidemargin=\dimen172
+\grid@wd=\dimen173
+\grid@ht=\dimen174
+\grid@linewd=\dimen175
+\grid@topofline=\dimen176
+LaTeX Info: Redefining \textso on input line 1856.
+\currfontsize=\dimen177
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2015/03/04 v2.20.2
+\thm@style=\toks32
+\thm@bodyfont=\toks33
+\thm@headfont=\toks34
+\thm@notefont=\toks35
+\thm@headpunct=\toks36
+\thm@preskip=\skip72
+\thm@postskip=\skip73
+\thm@headsep=\skip74
+\dth@everypar=\toks37
+)
+\@indexfile=\write3
+\openout3 = `paper-webserver.idx'.
+
+
+Writing index file paper-webserver.idx
+)
+\bibdata{paper-webserver.bib}
+(./paper-webserver.bbl) (./paper-webserver.aux)
+\openout1 = `paper-webserver.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 14.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count122
+\scratchdimen=\dimen178
+\scratchbox=\box59
+\nofMPsegments=\count123
+\nofMParguments=\count124
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen179
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
+\everyMPtoPDFconversion=\toks39
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package crop Info: requested driver: `' on input line 14.
+Package crop Info: detected driver: `pdftex' on input line 14.
+Package crop Info: using `pdftex' graphics driver on input line 14.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 38.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <20> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 38.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+
+LaTeX Font Warning: Font shape `OT1/phv/n/n' undefined
+(Font)              using `OT1/phv/m/n' instead on input line 38.
+
+
+Overfull \hbox (267.0pt too wide) in paragraph at lines 38--38
+[][] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
+
+Package natbib Warning: Citation `ronholm2016navigating' on page 1 undefined on
+ input line 64.
+
+
+Package natbib Warning: Citation `lytsy2017time' on page 1 undefined on input l
+ine 64.
+
+
+Package natbib Warning: Citation `wang2014whole' on page 1 undefined on input l
+ine 64.
+
+
+Package natbib Warning: Citation `yuen2015whole' on page 1 undefined on input l
+ine 64.
+
+
+Package natbib Warning: Citation `willig2015whole' on page 1 undefined on input
+ line 64.
+
+
+Package natbib Warning: Citation `dewey2014clinical' on page 1 undefined on inp
+ut line 64.
+
+
+Package natbib Warning: Citation `mcarthur2013comprehensive' on page 1 undefine
+d on input line 67.
+
+
+Package natbib Warning: Citation `kleinheinz2014applying' on page 1 undefined o
+n input line 67.
+
+
+Package natbib Warning: Citation `doi:10.1093/bioinformatics/btu153' on page 1 
+undefined on input line 67.
+
+
+Package natbib Warning: Citation `thomsen2016bacterial' on page 1 undefined on 
+input line 69.
+
+
+Package natbib Warning: Citation `wattam2013patric' on page 1 undefined on inpu
+t line 69.
+
+
+Package natbib Warning: Citation `swaminathan2001pulsenet' on page 1 undefined 
+on input line 69.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+[]\OT1/ptm/m/n/10 Comprehensive platforms that combine individual
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 69--70
+\OT1/ptm/m/n/10 international for the analyses of WGS data in outbreak
+ []
+
+
+Package natbib Warning: Citation `doi:10.1093/nar/gks1195' on page 1 undefined 
+on input line 72.
+
+
+Underfull \hbox (badness 4096) in paragraph at lines 72--73
+[]\OT1/ptm/m/n/10 WGS data for bacterial pathogens of public health
+ []
+
+
+Underfull \hbox (badness 1454) in paragraph at lines 72--73
+\OT1/ptm/m/n/10 in EnteroBase https://enterobase.warwick.ac.uk/ and three
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 74--75
+\OT1/ptm/m/n/10 linked to the organisms of interest with a standardized
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 74--75
+\OT1/ptm/m/n/10 to be integrated and progressively updated as new data
+ []
+
+
+Package natbib Warning: Citation `whiteside2016superphy' on page 1 undefined on
+ input line 77.
+
+
+Underfull \hbox (badness 6995) in paragraph at lines 77--78
+[]\OT1/ptm/m/n/10 We have previously developed Superphy (\OT1/ptm/b/n/10 ? \OT1
+/ptm/m/n/10 ), an
+ []
+
+
+Underfull \hbox (badness 4995) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 online predictive genomics platform targeting \OT1/ptm/m/it/10 
+E. coli\OT1/ptm/m/n/10 .
+ []
+
+
+Underfull \hbox (badness 3579) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 Superphy integrates pre-computed results with domain-
+ []
+
+
+Underfull \hbox (badness 3623) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 specific knowledge to provide real-time exploration of
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 77--78
+\OT1/ptm/m/n/10 referencing of these results, something that the original
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 91--92
+[]\OT1/ptm/m/n/10 In this study, we present an update to the SuperPhy
+ []
+
+
+Underfull \hbox (badness 1014) in paragraph at lines 91--92
+\OT1/ptm/m/n/10 methods. By merging results and creating links between
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 97.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 97.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
+(Font)              size <7> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
+(Font)              size <5> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `U/lasy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 97.
+
+
+LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 97.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 97.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.5> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 97.
+
+[1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+
+Package natbib Warning: Citation `goecks2010galaxy' on page 2 undefined on inpu
+t line 97.
+
+
+Underfull \hbox (badness 1286) in paragraph at lines 97--98
+[]\OT1/ptm/m/n/10 Future work will focus on adding additional analyses
+ []
+
+
+Underfull \hbox (badness 5637) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 modules, using machine learning and artificial neural
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 networks to aid genotype to phenotype predictions, and
+ []
+
+
+Underfull \hbox (badness 3009) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 the developed analyses modules are self-contained and
+ []
+
+
+Underfull \hbox (badness 1325) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 can easily be integrated into existing platforms such as
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 Galaxy (\OT1/ptm/b/n/10 ? \OT1/ptm/m/n/10 ), and IRIDA. The web
+site is available at
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 https://lfz.corefacility.ca/superphy/spfy/. Spfy's codebase
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 is provided at https://github.com/superphy/backend
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+\OT1/ptm/m/n/10 and a developer guide is provided at
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.125 ...s://github.com/phac-nml/ecoli_serotyping}
+                                                  , STX typing using Phyloty...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+! LaTeX Error: Command \bfseries invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 ...Phylotyper \cite{whiteside2017phylotyper}
+                                                  , and AMR gene determinati...
+
+Please use the math alphabet \mathbf instead of the \bfseries command. 
+
+
+Package natbib Warning: Citation `whiteside2017phylotyper' on page 2 undefined 
+on input line 125.
+
+
+! LaTeX Error: Command \bfseries invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 ... program \cite{mcarthur2013comprehensive}
+                                                  . Spfy also performs bioin...
+
+Please use the math alphabet \mathbf instead of the \bfseries command. 
+
+
+Package natbib Warning: Citation `mcarthur2013comprehensive' on page 2 undefine
+d on input line 125.
+
+
+! LaTeX Error: Command \bfseries invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 ...neration using Panseq \cite{laing2010pan}
+                                                  , statistical significance...
+
+Please use the math alphabet \mathbf instead of the \bfseries command. 
+
+
+Package natbib Warning: Citation `laing2010pan' on page 2 undefined on input li
+ne 125.
+
+
+! LaTeX Error: Command \bfseries invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 ... groups using SciPy \cite{jones2014scipy}
+                                                  , and support vector machi...
+
+Please use the math alphabet \mathbf instead of the \bfseries command. 
+
+
+Package natbib Warning: Citation `jones2014scipy' on page 2 undefined on input 
+line 125.
+
+
+! LaTeX Error: Command \bfseries invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 ...g Scikit-learn \cite{pedregosa2011scikit}
+                                                  .
+Please use the math alphabet \mathbf instead of the \bfseries command. 
+
+
+Package natbib Warning: Citation `pedregosa2011scikit' on page 2 undefined on i
+nput line 125.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.127 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 3449) in paragraph at lines 124--127
+\OT1/ptm/m/n/10 Prebuilt tools are available for a variety of reference
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--127
+\OT1/ptm/m/n/10 laboratory tasks. Spfy performs reference laboratory
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 124--127
+\OT1/ptm/m/n/10 tasks: O-antigen typing, H-antigen typing, and VF gene
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--127
+\OT1/ptm/m/n/10 determination using ECtyper https://github.com/phac-
+ []
+
+
+Overfull \hbox (419.97458pt too wide) in paragraph at lines 124--127
+\OT1/ptm/m/n/10 nml/ecoli$[]\OML/cmm/m/it/10 erotyping; STXtypingusingPhylotype
+r\OT1/cmr/m/n/10 ([])\OML/cmm/m/it/10 ; andAMRgenedeterminationusingtheRGIprogr
+am\OT1/cmr/m/n/10 ([])\OML/cmm/m/it/10 :Spfyalsoperformsbioinformaticsanalyses 
+\OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (186.42323pt too wide) in paragraph at lines 124--127
+\OML/cmm/m/it/10 pangenomegenerationusingPanseq\OT1/cmr/m/n/10 ([])\OML/cmm/m/i
+t/10 ; statisticalsignificancetestingofgenomemarkersforuser \OMS/cmsy/m/n/10 ^^
+@
+ []
+
+
+Overfull \hbox (44.5797pt too wide) in paragraph at lines 124--127
+\OML/cmm/m/it/10 definedgroupsusingSciPy\OT1/cmr/m/n/10 ([])\OML/cmm/m/it/10 ; 
+andsupportvectormachine\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 SVM\OT1/cmr/m/n/10 ) \
+OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--127
+\OML/cmm/m/it/10 backedAMRpredictionsusingScikit \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--127
+\OML/cmm/m/it/10 learn\OT1/cmr/m/n/10 ([])\OML/cmm/m/it/10 :Thesemodulesareused
+forthedata \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 134--135
+[]\OT1/ptm/m/n/10 Knowledge graphs semantically link data points by
+ []
+
+
+Underfull \hbox (badness 2556) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 relations defined in an ontology. Spfy allows users to
+ []
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 or metadata by storing all results in a graph structure.
+ []
+
+
+Underfull \hbox (badness 1742) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 regions against determined serotypes or other subtyping
+ []
+
+
+Package natbib Warning: Citation `berners2001semantic' on page 2 undefined on i
+nput line 157.
+
+
+Package natbib Warning: Citation `horrocks2005semantic' on page 2 undefined on 
+input line 157.
+
+
+Package natbib Warning: Citation `griffiths2017context' on page 2 undefined on 
+input line 160.
+
+
+Package natbib Warning: Citation `bolleman2016faldo' on page 2 undefined on inp
+ut line 160.
+
+
+Package natbib Warning: Citation `vaz2014typon' on page 2 undefined on input li
+ne 160.
+
+
+Underfull \hbox (badness 2495) in paragraph at lines 160--161
+\OT1/ptm/m/n/10 of nodes and edges, must be annotated with common
+ []
+
+
+! LaTeX Error: Unknown graphics extension: .svg.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \includegraphics{images/spfy_ontology-1.svg}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Reference `fig-results' on page 2 undefined on input line 185.
+
+
+LaTeX Warning: Reference `fig-tables' on page 2 undefined on input line 187.
+
+
+Underfull \hbox (badness 6559) in paragraph at lines 183--188
+\OT1/ptm/m/n/10 library https://facebook.github.io/react/ as a single-page
+ []
+
+<images/results.png, id=19, 1371.1225pt x 770.88pt>
+File: images/results.png Graphic file (type png)
+ <use images/results.png>
+Package pdftex.def Info: images/results.png used on input line 191.
+(pdftex.def)             Requested size: 1371.11916pt x 770.87813pt.
+
+Overfull \hbox (1124.11916pt too wide) in paragraph at lines 191--192
+ [] 
+ []
+
+
+LaTeX Warning: Float too large for page by 129.41006pt on input line 195.
+
+[2] <images/tables.png, id=27, 1920.17375pt x 999.735pt>
+File: images/tables.png Graphic file (type png)
+
+<use images/tables.png>
+Package pdftex.def Info: images/tables.png used on input line 199.
+(pdftex.def)             Requested size: 1920.16908pt x 999.73256pt.
+
+Overfull \hbox (1673.16908pt too wide) in paragraph at lines 199--200
+ [] 
+ []
+
+
+LaTeX Warning: Float too large for page by 358.2645pt on input line 203.
+
+
+Package natbib Warning: Citation `felter2015updated' on page 3 undefined on inp
+ut line 229.
+
+
+Package natbib Warning: Citation `doi:10.1093/bioinformatics/btu153' on page 3 
+undefined on input line 232.
+
+
+Package natbib Warning: Citation `laing2010pan' on page 3 undefined on input li
+ne 232.
+
+
+Package natbib Warning: Citation `inouye2014srst2' on page 3 undefined on input
+ line 232.
+
+
+Package natbib Warning: Citation `naccache2014cloud' on page 3 undefined on inp
+ut line 232.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 Docker https://www.docker.com/ is a virtualization
+ []
+
+
+Underfull \hbox (badness 2626) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 technology to simulate self-contained operating systems
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 hardware virtualization (\OT1/ptm/b/n/10 ? \OT1/ptm/m/n/10 ). T
+he Spfy platform depends
+ []
+
+
+Underfull \hbox (badness 1675) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 on a series of webservers, databases, and task workers
+ []
+
+
+Underfull \hbox (badness 8019) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 and uses Docker to compartmentalize these services
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 https://docs.docker.com/compose/. (see Figure 4[]) Docker
+ []
+
+
+Underfull \hbox (badness 7168) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 integration ensures that software dependencies, which
+ []
+
+
+Underfull \hbox (badness 1152) in paragraph at lines 229--233
+\OT1/ptm/m/n/10 are typically manually installed (\OT1/ptm/b/n/10 ? ? ? ? \OT1/
+ptm/m/n/10 ), are instead
+ []
+
+
+! LaTeX Error: Unknown graphics extension: .svg.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.236 \includegraphics{images/docker.svg}
+                                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 248--251
+\OT1/ptm/m/n/10 does not break with any changes to the codebase, and
+ []
+
+
+Package natbib Warning: Citation `de2015trends' on page 3 undefined on input li
+ne 267.
+
+
+Package natbib Warning: Citation `de2015trends' on page 3 undefined on input li
+ne 268.
+
+
+Package natbib Warning: Citation `schatz2015biological' on page 3 undefined on 
+input line 269.
+
+
+Package natbib Warning: Citation `swaminathan2016review' on page 3 undefined on
+ input line 270.
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 267--271
+\OT1/ptm/m/n/10 tools were often script-based, with custom data formats,
+ []
+
+
+Underfull \hbox (badness 3000) in paragraph at lines 267--271
+\OT1/ptm/m/n/10 this was acceptable for smaller analyses, bioinformatic
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 267--271
+\OT1/ptm/m/n/10 dependencies, which require the application of systems
+ []
+
+
+Underfull \hbox (badness 1043) in paragraph at lines 272--275
+\OT1/ptm/m/n/10 development to bring a similar experience to Spfy as a
+ []
+
+
+Package natbib Warning: Citation `ronholm2016navigating' on page 3 undefined on
+ input line 281.
+
+
+Underfull \hbox (badness 1158) in paragraph at lines 280--282
+\OT1/ptm/m/n/10 The isolation and characterization of bacterial pathogens
+ []
+
+
+Underfull \hbox (badness 6542) in paragraph at lines 280--282
+\OT1/ptm/m/n/10 are critical for Public Health laboratories to rapidly
+ []
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 280--282
+\OT1/ptm/m/n/10 emerging pathogens through surveillance programs. Until
+ []
+
+
+Package natbib Warning: Citation `ronholm2016navigating' on page 3 undefined on
+ input line 285.
+
+
+Underfull \hbox (badness 3179) in paragraph at lines 283--286
+\OT1/ptm/m/n/10 efforts are focused on predictive genomics, where the
+ []
+
+
+Package natbib Warning: Citation `goecks2010galaxy' on page 3 undefined on inpu
+t line 298.
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 298--301
+\OT1/ptm/m/n/10 Galaxy tackles the problem of linking different analysis
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 298--301
+\OT1/ptm/m/n/10 software together, by defining interdependencies using a
+ []
+
+[3]
+
+Package natbib Warning: Citation `thomsen2016bacterial' on page 4 undefined on 
+input line 304.
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 306--311
+\OT1/ptm/m/n/10 ontology as in IRIDA, are included in Spfy. On a per
+ []
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 306--311
+\OT1/ptm/m/n/10 file basis, Spfy performs at a similar speed to BAP on
+ []
+
+
+Package natbib Warning: Citation `di2015impact' on page 4 undefined on input li
+ne 313.
+
+
+Underfull \hbox (badness 8000) in paragraph at lines 312--317
+[]\OT1/ptm/m/n/10 To approach the challenge of integrating different
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 312--317
+\OT1/ptm/m/n/10 bioinformatics programs, Spfy instead uses technologies
+ []
+
+
+Underfull \hbox (badness 1189) in paragraph at lines 312--317
+\OT1/ptm/m/n/10 bioinformatics programs using language-agnostic package
+ []
+
+
+Underfull \hbox (badness 3758) in paragraph at lines 312--317
+\OT1/ptm/m/n/10 infrastructure. Unlike platforms such as Galaxy which
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 312--317
+\OT1/ptm/m/n/10 different bioinformatics programs within the task queue
+ []
+
+
+Package natbib Warning: Citation `di2015impact' on page 4 undefined on input li
+ne 323.
+
+
+Package natbib Warning: Citation `fricke2014bacterial' on page 4 undefined on i
+nput line 324.
+
+
+Underfull \hbox (badness 7433) in paragraph at lines 319--326
+\OT1/ptm/m/n/10 https://aws.amazon.com/docker/, Google Cloud Platform
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--326
+\OT1/ptm/m/n/10 (GCloud) https://cloud.google.com/container-engine/,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--326
+\OT1/ptm/m/n/10 and Microsoft Azure https://azure.microsoft.com/en-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--326
+\OT1/ptm/m/n/10 us/services/container-service/, and self-hosted
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--326
+\OT1/ptm/m/n/10 cloud computing technologies such as OpenStack
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 319--326
+\OT1/ptm/m/n/10 https://wiki.openstack.org/wiki/Docker all support Docker.
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 342.
+
+
+Package natbib Warning: There were undefined citations.
+
+[5
+
+] (./paper-webserver.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.25pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 10 strings out of 493014
- 200 string characters out of 6133351
- 53601 words of memory out of 5000000
- 3651 multiletter control sequences out of 15000+600000
- 3640 words of font info for 14 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 10i,0n,7p,58b,8s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 4256 strings out of 493014
+ 56147 string characters out of 6133351
+ 133994 words of memory out of 5000000
+ 7632 multiletter control sequences out of 15000+600000
+ 37390 words of font info for 84 fonts, out of 8000000 for 9000
+ 1150 hyphenation exceptions out of 8191
+ 38i,19n,34p,1026b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
+e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
+16/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/texlive/2
+016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
+/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
+/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/ut
+mr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+
+Output written on paper-webserver.pdf (5 pages, 166263 bytes).
+PDF statistics:
+ 88 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+
