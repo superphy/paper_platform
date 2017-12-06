@@ -2,24 +2,40 @@
 
 \begin{document}
 %contain, at the top, the following affirmative statement. "This website is free and open to all users and there is no login requirement." Additionally, any third party software employed by the website that has more restrictive usage terms must be listed.
-This website is free and open to all users and there is no login requirement. The code for this webserver and all third party software used by this website are available under the open-source Apache 2.0 or BSD 3-clause licenses.
+This website is free and open to all users and there is no login requirement. The code for this webserver and all third party software used by this website are available under the open-source Apache 2.0, BSD 3-clause, or similar licenses.
 
 % include the website address; website name; and the names, affiliations, and email addresses of all authors.
 The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Spfy's codebase is provided at \url{https://github.com/superphy/backend} and the documentation at \url{https://superphy.readthedocs.io/en/latest/}.
 
 % include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations.
 % For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue.
-We have previously developed Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}. Superphy integrates pre-computed results with domain-specific knowledge to provide real-time exploration of publicly available genomes.
-Our update, called Spfy, adds real-time analysis and merging of results from different analysis methods
-
-
-While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens-, and soon hundreds-of-thousands of genomes, and the long term storage and referencing of these results, something that the original SuperPhy platform was incapable of.
-
+Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
+The update, called Spfy, demonstrates a novel approach to result storage and retrieval for computational workflows.
+Many of the comparative analyses that are run on current computational workflows chain different analysis software, but lack storage methods which examine the relation between results.
 % IF THE WEBSITE IMPLEMENTS A META-SERVER OR COMPUTATIONAL WORKFLOW, the summary MUST describe 1) significant added value beyond the simple chaining together of existing third party software or the calculation of a consensus prediction from third party predictors and classifiers; and at least one of the following: 2) how user time for data gathering and multi-step analysis is significantly reduced, or 3) how the website offers significantly enhanced display of the data and results.
-By merging results and resolving connections between genome data, Spfy is able to identify relationships between all genomes sequenced in the past, present, and future. This graph-based result storage allows retrospective comparisons as more genomes are sequenced or populations change, and is flexible to accommodate new analysis methods as they are developed.
+Instead, we can store output from different software together, in the context of a genome graph and thus link analysis results with epidemiological data.
+In Spfy, we demonstrate the use knowledge graphs and a persistant graph database to store results from a variety of subtyping modules for \textit{E. coli} and integrate external sample information.
+This approach scales to the large number of WGS data being accumulated, and allows comparative analysis between different analysis software.
 
 % provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing.
-Spfy was tested with 59,5323 public \textit{E. coli} genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
+Spfy was tested with 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
 The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to XYZ TB of data stored.
+% up-time
+
+% collaborators
+
+% existing
+Existing scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and pipelines such as Integrated Rapid Infectious Disease Analysis (IRIDA) \url{http://www.irida.ca/} and the Bacterium Analysis Pipeline (BAP) \citep{thomsen2016bacterial} are well established.
+% data integration
+Results from these workflows are stored in tables, or the file is saved on disk.
+Because output from different analysis software can have different structures and terminology, formats must be converted before performing any sort of comparison.
+Without a unified structure, the number of conversions quickly become impractical broad usage.
+% ontologies
+We did not want to invent a new standard which would simply add to the number of current ones.
+Instead, Spfy uses annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies which describe biological data.
+
+is flexible to accommodate new analysis methods as they are developed.
+
+
 
 % analysis run-time / throughput with different levels of parallelization
