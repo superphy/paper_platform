@@ -1,40 +1,36 @@
 \bibliography{paper-webserver.bib}
 
 \begin{document}
-%contain, at the top, the following affirmative statement. "This website is free and open to all users and there is no login requirement." Additionally, any third party software employed by the website that has more restrictive usage terms must be listed.
+% "contain, at the top, the following affirmative statement. "This website is free and open to all users and there is no login requirement." Additionally, any third party software employed by the website that has more restrictive usage terms must be listed."
 This website is free and open to all users and there is no login requirement. The code for this webserver and all third party software used by this website are available under the open-source Apache 2.0, BSD 3-clause, or similar licenses.
 
-% include the website address; website name; and the names, affiliations, and email addresses of all authors.
+% "include the website address; website name; and the names, affiliations, and email addresses of all authors."
 The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Spfy's codebase is provided at \url{https://github.com/superphy/backend} and the documentation at \url{https://superphy.readthedocs.io/en/latest/}.
 
-% include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations.
-% For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue.
+% MAIN CONTENT
+% "include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations."
+% "For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue."
 Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
-The update, called Spfy, offers real-time subtyping options and uses graph datastructures to store and retrieve results for additional analyses.
-Many of the comparative analyses that are run on current workflows chain different analysis software, but lack storage methods which understand the relations between results.
-% IF THE WEBSITE IMPLEMENTS A META-SERVER OR COMPUTATIONAL WORKFLOW, the summary MUST describe 1) significant added value beyond the simple chaining together of existing third party software or the calculation of a consensus prediction from third party predictors and classifiers; and at least one of the following: 2) how user time for data gathering and multi-step analysis is significantly reduced, or 3) how the website offers significantly enhanced display of the data and results.
+The update, called Spfy, adds real-time subtyping options and uses graph datastructures to store and retrieve results for additional analyses.
+% I'm unsure if we should add more about the subtyping options. For example, see:
+% https://github.com/superphy/paper_platform/commit/c017b1e022d310e16a1433af9d58a73e9550a401
+Many of the comparative analyses that are run on current workflows chain different software, but lack storage methods which understand the relations between results.
+% "IF THE WEBSITE IMPLEMENTS A META-SERVER OR COMPUTATIONAL WORKFLOW, the summary MUST describe 1) significant added value beyond the simple chaining together of existing third party software or the calculation of a consensus prediction from third party predictors and classifiers; and at least one of the following: 2) how user time for data gathering and multi-step analysis is significantly reduced, or 3) how the website offers significantly enhanced display of the data and results."
 By making the storage and retrieval of results part of the platform, and effectively linked to the organisms of interest with a standardized ontology, we can mitigate the recomputing of analyses. We can also perform comparitive analyses between any data points in the pipeline.
-Integrated data storage will be necessary as WGS data for bacterial pathogens of public health importance have accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years.
+Integrated data storage will be necessary as whole genome sequencing (WGS) data for bacterial pathogens of public health importance have accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years.
 
-% provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing.
+% COMPARED TO EXISTING PLATFORMS
+% This aims to be more of an implementation paragraph.
+Existing scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and pipelines such as the Bacterium Analysis Pipeline (BAP) \citep{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/} help automate the use of WGS data for public-health surveillance.
+% data integration
+Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis. To these concepts, we add the use of Docker containerization for task queue workers, thus allowing anaylsis software to safely run in parallel. The main graph database uses annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies which describe biological data. The entire platform is packaged using Docker-Compose, and can be rebuilt with a simple command.
+
+% STATISTICS{}
+% "provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing."
 Spfy was tested with 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
-The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to XYZ TB of data stored.
+The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to X TB of data stored.
 % up-time
 
 % collaborators
-
-% existing
-Existing scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and pipelines such as Integrated Rapid Infectious Disease Analysis (IRIDA) \url{http://www.irida.ca/} and the Bacterium Analysis Pipeline (BAP) \citep{thomsen2016bacterial} are well established.
-% data integration
-Results from these workflows are stored in tables, or the file is saved on disk.
-Because output from different analysis software can have different structures and terminology, formats must be converted before performing any sort of comparison.
-Without a unified structure, the number of conversions quickly become impractical broad usage.
-% ontologies
-We did not want to invent a new standard which would simply add to the number of current ones.
-Instead, Spfy uses annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies which describe biological data.
-
-is flexible to accommodate new analysis methods as they are developed.
-
-
 
 % analysis run-time / throughput with different levels of parallelization
