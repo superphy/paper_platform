@@ -9,38 +9,35 @@ The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Sp
 
 % include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations.
 % For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue.
-Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}.
+Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{Escherichia coli}.
 The update, called Spfy, uses graph datastructures to store and retrieve results for computational workflows.
-We demonstrate how graph datastructures scale to the large number of WGS data being accumulated, and allows statistical significance testing between different analysis software.
-To build these graphs, Spfy first provides real-time subtyping through a ReactJS-based website, where user-defined analyses options are selected. 
-The chosen analyses are ran in parallel using task queues and Docker containerization, and the results immediately displayed to the user following their completion.
-Subtyping options are O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing, VF and AMR annotation, and pan-genome generation.
+We demonstrate the ability of graph data structures to scale to the [approximate number, eg. greater than 50,000]l of whole-genome sequences  accumulated so far, and show the ability to scale to X genomes.
 
-Many of the comparative analyses that are run on current computational workflows chain different analysis software, but lack storage methods which examine the relation between results.
+Spfy provides real-time subtyping through a ReactJS-based website, where user-defined analyses options are selected. Analyses are run in parallel using task queues and Docker containerization, and the results are immediately displayed to the user following their completion.
+Subtyping options include O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing. Reference-lab type tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed withing the pan-genome framework of \textit{E. coli}.
+
+
+
 % IF THE WEBSITE IMPLEMENTS A META-SERVER OR COMPUTATIONAL WORKFLOW, the summary MUST describe 1) significant added value beyond the simple chaining together of existing third party software or the calculation of a consensus prediction from third party predictors and classifiers; and at least one of the following: 2) how user time for data gathering and multi-step analysis is significantly reduced, or 3) how the website offers significantly enhanced display of the data and results.
-Instead, we can store output from different software together, in the context of a genome graph and thus link analysis results with epidemiological data.
-In Spfy, we demonstrate the use knowledge graphs and a persistant graph database to store results from a variety of subtyping modules for \textit{E. coli} and integrate external sample information.
-This approach 
+Current comparative computational workflows chain different analysis software, but lack storage and retrieval methods for generated results.
+
+Within Spfy, we store the output from every analysis, and link them together in the context of a genome graph. This graph also stores metadata for each genome, facilitating inquiries ranging from population genomics to epidemiological investigations.
 
 % provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing.
-Spfy was tested with 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
+Spfy currently contains 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing the genome sequences and results from all analyses.
+
 The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to XYZ TB of data stored.
 % up-time
 
 % collaborators
 
 % existing
-Existing scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and pipelines such as Integrated Rapid Infectious Disease Analysis (IRIDA) \url{http://www.irida.ca/} and the Bacterium Analysis Pipeline (BAP) \citep{thomsen2016bacterial} are well established.
+Existing scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and pipelines such as the Integrated Rapid Infectious Disease Analysis (IRIDA) \url{http://www.irida.ca/} and the Bacterium Analysis Pipeline (BAP) \citep{thomsen2016bacterial} are well established.
 % data integration
 Results from these workflows are stored in tables, or the file is saved on disk.
-Because output from different analysis software can have different structures and terminology, formats must be converted before performing any sort of comparison.
-Without a unified structure, the number of conversions quickly become impractical broad usage.
+Because output from different analyses are structured differently using distinct terminology, formats must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage.
 % ontologies
-We did not want to invent a new standard which would simply add to the number of current ones.
-Instead, Spfy uses annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies which describe biological data.
-
-is flexible to accommodate new analysis methods as they are developed.
-
+To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies are used to describe biological data.
 
 
 % analysis run-time / throughput with different levels of parallelization
