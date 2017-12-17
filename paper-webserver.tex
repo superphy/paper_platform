@@ -122,7 +122,7 @@ Future work will focus on adding additional analyses modules, using machine lear
 
 % Need a sentance introducing the tools otherwise this sounds just like the intro section
 Prebuilt tools are available for a variety of reference laboratory tasks.
-Spfy performs: O-antigen typing, H-antigen typing, and VF gene determination using ECtyper \url{https://github.com/phac-nml/ecoli\_serotyping}, STX typing using Phylotyper \citep{whiteside2017phylotyper}, and AMR gene determination using the RGI program \citep{mcarthur2013comprehensive}. Spfy also performs bioinformatics analyses: pangenome generation using Panseq \citep{laing2010pan}, statistical significance testing of genome markers for user-defined groups using SciPy \citep{jones2014scipy}, and support vector machine (SVM)-backed AMR predictions using Scikit-learn \citep{pedregosa2011scikit}.
+Spfy performs: O-antigen typing, H-antigen typing, and VF gene determination using ECtyper \url{https://github.com/phac-nml/ecoli\_serotyping}, STX typing using Phylotyper \citep{whiteside2017phylotyper}, and AMR gene determination using the RGI program \citep{mcarthur2013comprehensive}. Spfy also performs bioinformatics analyses: pangenome generation using Panseq \citep{laing2010pan}, statistical significance testing using SciPy \citep{jones2014scipy}, and support vector machine (SVM)-backed AMR predictions using Scikit-learn \citep{pedregosa2011scikit}.
 For the larger population comparisons, we store and aggregate the results from individual genome analyses.
 
 % para covering ectyper & RGI -- don't really need this
@@ -295,7 +295,7 @@ A computational approach saves the time and cost associated with performing mult
 % trying to cut down on details that would be better suited for the "Implemntation" section.
 
 % namely galaxy
-Other scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and bioinformatics pipelines IRIDA and BAP also run analysis modules on WGS data.
+Scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and bioinformatics pipelines IRIDA and BAP run analysis modules on WGS data.
 Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy tackles the problem of linking different analysis software together, by defining interdependencies using a custom schema. A visual workflow editor is also provided for ease of use.
 IRIDA is build on top of the Galaxy framework, and adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored linearly per sequence. IRIDA adds Controls for collaborating on projects, and uses common terms found in the GenEpiO ontology to describe results.
 
