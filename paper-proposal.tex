@@ -14,7 +14,7 @@ The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Sp
 % "include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations."
 % "For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue."
 Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{Escherichia coli}.
-The update, called Spfy, uses graph datastructures to store and retrieve results for computational workflows.
+The update, called Spfy, uses graph data structures to store and retrieve results for computational workflows.
 We demonstrate the ability of graph data structures to scale to the [approximate number, eg. greater than 50,000]l of whole-genome sequences  accumulated so far, and show the ability to scale to X genomes.
 % I'm unsure if we should add more about the subtyping options. For example, see:
 % https://github.com/superphy/paper_platform/commit/c017b1e022d310e16a1433af9d58a73e9550a401
@@ -35,7 +35,7 @@ The resulting database had XYZ million nodes and XYZ million edges, with XYZ obj
 % This aims to be more of an implementation paragraph.
 Existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, and pipelines such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/} help automate the use of WGS data for public-health surveillance.
 % data integration
-Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis. File uploads begin through the ReactJS-based website, where user-defined analyses options are selected. To these concepts, we add the use of Docker containerization for task queue workers, thus allowing anaylsis software to safely run in parallel.
+Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis. File uploads begin through the ReactJS-based website, where user-defined analyses options are selected. To these concepts, we add the use of Docker containerization for task queue workers, thus allowing analysis software to safely run in parallel.
 To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies are used to describe biological data.
 The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \para
 
