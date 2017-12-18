@@ -15,20 +15,20 @@ The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Sp
 % "For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue."
 Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{Escherichia coli}.
 The update, called Spfy, uses graph data structures to store and retrieve results for computational workflows.
-We demonstrate the ability of graph data structures to scale to the [approximate number, eg. greater than 50,000]l of whole-genome sequences  accumulated so far, and show the ability to scale to X genomes.
+We demonstrate the ability of graph data structures to scale to the [approximate number, eg. greater than 50,000]l of whole-genome sequences accumulated so far, and show the ability to scale to X genomes.
 % I'm unsure if we should add more about the subtyping options. For example, see:
 % https://github.com/superphy/paper_platform/commit/c017b1e022d310e16a1433af9d58a73e9550a401
 Current comparative computational workflows chain different analysis software, but lack storage and retrieval methods for generated results.
 % "IF THE WEBSITE IMPLEMENTS A META-SERVER OR COMPUTATIONAL WORKFLOW, the summary MUST describe 1) significant added value beyond the simple chaining together of existing third party software or the calculation of a consensus prediction from third party predictors and classifiers; and at least one of the following: 2) how user time for data gathering and multi-step analysis is significantly reduced, or 3) how the website offers significantly enhanced display of the data and results."
 By making the storage and retrieval of results part of the platform, with data effectively linked to the organisms of interest through a standardized ontology, we can mitigate the recomputing of analyses.
 Within Spfy, we store the output from every analysis, and link them together in the context of a genome graph. This graph also stores metadata for each genome, facilitating inquiries ranging from population genomics to epidemiological investigations.
-Integrated data storage will be necessary as whole genome sequencing (WGS) data for bacterial pathogens have accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. \para
+Integrated data storage will be necessary as whole genome sequencing data for bacterial pathogens have accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. \para
 
 % STATISTICS{}
 % "provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing."
 Spfy was tested with 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
 Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
-Subtyping options include O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing. Reference-lab type tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed withing the pan-genome framework of \textit{E. coli}.
+Subtyping options include O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing. Reference-lab type tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed withing the pan-genome framework of \textit{E. coli}, and results from different analysis software can be grouped back to the source genome.
 The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to X TB of data stored. \para
 
 % COMPARED TO EXISTING PLATFORMS
@@ -36,6 +36,10 @@ The resulting database had XYZ million nodes and XYZ million edges, with XYZ obj
 Existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, and pipelines such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/} help automate the use of WGS data for public-health surveillance.
 % data integration
 Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis. File uploads begin through the ReactJS-based website, where user-defined analyses options are selected. To these concepts, we add the use of Docker containerization for task queue workers, thus allowing analysis software to safely run in parallel.
+% re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
+For result storage, existing workflow technologies use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
+Because output from different analyses are structured differently using distinct terminology, formats must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage solves this problem.
+% as before
 To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies are used to describe biological data.
 The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \para
 
