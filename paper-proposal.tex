@@ -5,10 +5,10 @@
 
 \begin{document}
 % "contain, at the top, the following affirmative statement. "This website is free and open to all users and there is no login requirement." Additionally, any third party software employed by the website that has more restrictive usage terms must be listed."
-This website is free and open to all users and there is no login requirement. The code for this webserver, and all third party software used, are available under the open-source Apache 2.0, BSD 3-clause, or similar licenses. \para
+This website is free and open to all users and there is no login requirement. The code for this webserver, and all third party software used, are available under the open-source Apache 2.0, BSD 3-clause, or similar licenses. \par
 
 % "include the website address; website name; and the names, affiliations, and email addresses of all authors."
-The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Spfy's code is provided at \url{https://github.com/superphy/backend} and documentation at \url{https://superphy.readthedocs.io/en/latest/}. \para
+The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Spfy's code is provided at \url{https://github.com/superphy/backend} and documentation at \url{https://superphy.readthedocs.io/en/latest/}. \par
 
 % MAIN CONTENT
 % "include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations."
@@ -22,14 +22,14 @@ Current comparative computational workflows chain different analysis software, b
 % "IF THE WEBSITE IMPLEMENTS A META-SERVER OR COMPUTATIONAL WORKFLOW, the summary MUST describe 1) significant added value beyond the simple chaining together of existing third party software or the calculation of a consensus prediction from third party predictors and classifiers; and at least one of the following: 2) how user time for data gathering and multi-step analysis is significantly reduced, or 3) how the website offers significantly enhanced display of the data and results."
 By making the storage and retrieval of results part of the platform, with data effectively linked to the organisms of interest through a standardized ontology, we can mitigate the recomputing of analyses.
 Within Spfy, we store the output from all analyses, and link them together in the context of a genome graph. This graph also stores metadata for each genome, facilitating inquiries ranging from population genomics to epidemiological investigations.
-Integrated data storage will be necessary as whole genome sequencing data for bacterial pathogens have accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. \para
+Integrated data storage will be necessary as whole genome sequencing data for bacterial pathogens have accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. \par
 
 % STATISTICS{}
 % "provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing."
 Spfy was tested with 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes \note{are the GenBank genomes not included in the Enterobase set?} from Enterobase (\~596 GB), storing every sequence and results for all included analysis modules.
 Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
 Subtyping options include O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing. Reference-lab tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
-The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to X TB of data stored. \para
+The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to X TB of data stored. \par
 
 % COMPARED TO EXISTING PLATFORMS
 % This aims to be more of an implementation paragraph.
@@ -41,12 +41,12 @@ For result storage, existing workflow technologies use relational tables \cite{g
 Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
 % as before
 To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies are used to describe biological data.
-The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \para
+The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \par
 
 % up-time
+Superphy has been up since early 2016 and the Spfy update has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are checked against a reference set of \textit{E. coli} gene sequences before running analyses. Outputs are displayed on the website in tables and can be downloaded as \textit{.csv} files. 
+\par
 
-% collaborators
-
-% analysis run-time / throughput with different levels of parallelization
-\para
+% "and two to four keywords."
+Keywords: Bioinformatics, Graph database, Real-time analysis
 \end{document}
