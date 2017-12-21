@@ -14,7 +14,7 @@ The website is available at \url{https://lfz.corefacility.ca/superphy/spfy/}. Sp
 % MAIN CONTENT
 % "include a notification if this is an update from a previous publication in the Web Server issue, and in that case, include an estimate of the number of users and the number of citations."
 % "For web servers, or essentially similar web servers, that have been the subject of a previous publication, including publication in journals other than NAR, there is a minimum two-year interval before re-publication in the Web Server Issue."
-Our proposal covers an update to Superphy \citep{whiteside2016superphy}, an online predictive genomics platform targeting \textit{Escherichia coli}.
+Our proposal covers an update to Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{Escherichia coli}.
 The update, called Spfy, uses graph data structures to store and retrieve results for computational workflows.
 We demonstrate the ability of graph data structures to manage the ~60,000 whole-genome sequences of \textit{E. coli} accumulated so far, and show the ability to scale to X genomes.
 % I'm unsure if we should add more about the subtyping options. For example, see:
@@ -27,10 +27,10 @@ Integrated data storage will be necessary as whole genome sequencing data for ba
 
 % STATISTICS{}
 % "provide descriptions of the input data, the output, and the processing method; complete citations for previous publications of the method or the web server; and two to four keywords. Additionally, authors must indicate how long the server has been running, the number of inputs analyzed during testing, and an estimate of the number of individuals outside of the authors' group who have been involved in the testing."
-Spfy was tested with 59,5323 public \textit{E. coli} assembled genomes, 5,353 genomes from GenBank and 54,181 genomes \note{are the GenBank genomes not included in the Enterobase set?} from Enterobase (\~596 GB), storing every sequence and results for all included analysis modules.
+Spfy was tested with 4,622 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and results for all included analysis modules.
 Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
 Subtyping options include O-antigen, H-antigen, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing. Reference-lab tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
-The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to X TB of data stored. \par
+The resulting database had 1,333 nodes and 683,666 leaves, with 374,836,872 object properties. \par
 
 % COMPARED TO EXISTING PLATFORMS
 % This aims to be more of an implementation paragraph.
@@ -41,11 +41,11 @@ Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy us
 For result storage, existing workflow technologies use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
 Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
 % as before
-To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies are used to describe biological data.
+To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used to describe biological data.
 The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \par
 
 % up-time
-Superphy has been up since early 2016 and the Spfy update has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are checked against a reference set of \textit{E. coli} gene sequences before running analyses. Outputs are displayed on the website in tables and can be downloaded as \textit{.csv} files. 
+The Spfy update has been up since May 2017 and Superphy has been up since early 2016. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are checked against a reference set of \textit{E. coli} gene sequences before running analyses. Outputs are displayed on the website in tables and can be downloaded as \textit{.csv} files. 
 \par
 
 % "and two to four keywords."
