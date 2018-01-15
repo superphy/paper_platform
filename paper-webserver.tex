@@ -13,7 +13,7 @@
 
 \begin{document}
 
-\title{Superphy: Real-time prediction of \textit{E. coli} phenotype using graph-based genome sequence storage and retrieval with the \textit{spfy} module}
+\title{Spfy: a graph-based genome sequence database for real-time prediction of \textit{E. coli} phenotypes}
 
 \author{%
 Corresponding Author\,$^{1,*}$,
@@ -38,6 +38,14 @@ Accepted March 1, 2009}
 \maketitle
 
 \begin{abstract}
+
+Spfy, uses graph data structures to store and retrieve results for computational workflows, facilitating the management and querying of tens of thousands of whole-genome \textit{E. coli} sequences, and efficient downstream processing.
+Current comparative computational workflows chain different analysis software, but lack storage and retrieval methods for generated results.
+By making the storage and retrieval of results part of the platform, with data effectively linked to the organisms of interest through a standardized ontology, we can mitigate the recomputing of analyses.
+Within Spfy, the output from all analyses is stored, and linked together in the context of a genome graph. This graph also stores metadata for each genome, facilitating inquiries ranging from population genomics to epidemiological investigations.
+Integrated data storage will be necessary as publicly available whole genome sequencing data for bacterial pathogens currently numbers in the tens of thousands, with hundreds of thousands set to be available within the next few years. \par
+
+The database is available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
 \end{abstract}
 
@@ -88,7 +96,7 @@ We have previously developed Superphy \citep{whiteside2016superphy}, an online p
 % - etc.
 
 % 5. how we solved it
-In this study, we present an update to the SuperPhy platform, called Spfy. Spfy aims to solve the problem of real-time analysis and merging of results from different analysis methods. By merging results and resolving connections between genome data, Spfy is able to identify relationships between all genomes sequenced in the past, present, and future. This graph-based result storage allows retrospective comparisons as more genomes are sequenced or populations change, and is flexible to accommodate new analysis methods as they are developed.
+In this study, we present the Spfy platform, which was built with a graph database at its core. Spfy aims to solve the problem of real-time analysis and merging of results from different analysis methods. By merging results and resolving connections between genome data, Spfy is able to identify relationships between all genomes sequenced in the past, present, and future. This graph-based result storage allows retrospective comparisons as more genomes are sequenced or populations change, and is flexible to accommodate new analysis methods as they are developed.
 
 % {needs to be beefed up, in language a biologist / public health worker would care about}
 
@@ -250,9 +258,13 @@ The individual tests use PyTest \url{https://doc.pytest.org/}, and are run withi
 CI is also used to automatically build Spfy's core Docker images, and upload them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
-TODO: Update with all of Enterobase
-Spfy was tested with 59,5323 public \textit{E. coli} genomes, 5,353 genomes from GenBank and 54,181 genomes from Enterobase (\~596 GB), storing both the entire sequences and results for all included analysis modules.
-The resulting database had XYZ million nodes and XYZ million edges, with XYZ object properties, which worked out to XYZ TB of data stored.
+Spfy was tested with 4,622 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and results for all included analysis modules.
+Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
+Subtyping options include O-antigen, H-antigen, Shiga-toxin 1, Shiga-toxin 2, and Intimin typing. Reference-lab tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
+The resulting database had 1,333 nodes and 683,666 leaves, with 374,836,872 object properties. \par
+
+Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are checked against a reference set of \textit{E. coli} gene sequences before running analyses. Outputs are displayed on the website in tables and can be downloaded as \textit{.csv} files. 
+\par
 
 % analysis run-time / throughput with different levels of parallelization
 
@@ -295,7 +307,7 @@ A computational approach saves the time and cost associated with performing mult
 % trying to cut down on details that would be better suited for the "Implemntation" section.
 
 % namely galaxy
-Scientific workflow technologies such as Galaxy \citep{goecks2010galaxy}, and bioinformatics pipelines IRIDA and BAP run analysis modules on WGS data.
+Existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, and pipelines such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} and the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/} help automate the use of WGS data for public-health surveillance.
 Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy tackles the problem of linking different analysis software together, by defining interdependencies using a custom schema. A visual workflow editor is also provided for ease of use.
 IRIDA is build on top of the Galaxy framework, and adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored linearly per sequence. IRIDA adds Controls for collaborating on projects, and uses common terms found in the GenEpiO ontology to describe results.
 
@@ -303,7 +315,14 @@ The Bacterial Analysis Platform (BAP), developed out of the Technical University
 BAP takes a combined approach to genome analysis including different programs, such as for VF and AMR determination, by default into the pipeline.
 A record of the different files generated by an analysis are stored in a relational database, and the record is queried to determine which files are returned to the user \citep{thomsen2016bacterial}.
 
-In Spfy, we take a more opinionated approach to result storage and data integration. The benefits of real-time analysis pipelines as found in BAP, and the use of the GenEpiO ontology as in IRIDA, are included in Spfy.
+Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis. File uploads begin through the ReactJS-based website, where user-defined analyses options are selected. To these concepts we add Docker containerization for task queue workers, allowing analysis software to safely run in parallel.
+% re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
+For result storage, existing workflow technologies use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
+Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
+% as before
+To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used to describe biological data.
+The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \par
+
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
 Spfy also processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
 In place of a relational database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistent graph database.
