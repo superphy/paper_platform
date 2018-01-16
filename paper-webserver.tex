@@ -39,8 +39,8 @@ Accepted March 1, 2009}
 
 \begin{abstract}
 
-Spfy, uses graph data structures to store and retrieve results for computational workflows, facilitating the management and querying of tens of thousands of whole-genome \textit{E. coli} sequences, and efficient downstream processing.
 Current comparative computational workflows chain different analysis software, but lack storage and retrieval methods for generated results.
+Spfy uses graph data structures to store and retrieve results for computational workflows, facilitating the management and querying of tens of thousands of whole-genome \textit{E. coli} sequences, and efficient downstream processing.
 By making the storage and retrieval of results part of the platform, with data effectively linked to the organisms of interest through a standardized ontology, we can mitigate the recomputing of analyses.
 Within Spfy, the output from all analyses is stored, and linked together in the context of a genome graph. This graph also stores metadata for each genome, facilitating inquiries ranging from population genomics to epidemiological investigations.
 Integrated data storage will be necessary as publicly available whole genome sequencing data for bacterial pathogens currently numbers in the tens of thousands, with hundreds of thousands set to be available within the next few years. \par
@@ -165,7 +165,10 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 Semantic web technologies describe the relations between different data \citep{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a query-able graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \citep{horrocks2005semantic}.
 
 % para: semantic web in spfy
-In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database. These graph objects, which consist of nodes and edges, must be annotated with common terminology. Spfy uses annotations from the GenEpiO \citep{griffiths2017context}, FALDO \citep{bolleman2016faldo}, and TypOn \citep{vaz2014typon} ontologies, as well as custom terminology to enable graph traversals and related data points to be inferred from the ontology (see Figure \ref{fig-ontology}). The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
+In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database.
+These graph objects, which consist of nodes and edges, must be annotated with common terminology.
+To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used to describe biological data.
+The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
 
 \begin{figure}[t]
 \begin{center}
@@ -320,7 +323,6 @@ Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy us
 For result storage, existing workflow technologies use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
 Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
 % as before
-To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used to describe biological data.
 The entire platform is packaged using Docker-Compose, and can be recreated with a simple command. \par
 
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
