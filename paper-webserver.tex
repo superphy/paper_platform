@@ -252,10 +252,12 @@ The individual tests use PyTest \url{https://doc.pytest.org/}, and are run withi
 CI is also used to automatically build Spfy's core Docker images, and upload them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
-Spfy was tested with 4,622 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and results for all included analysis modules.
+Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and results for all included analysis modules.
 Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
 Subtyping options include O-antigen, H-antigen, Shiga-toxin 1, Shiga-toxin 2, and Intimin typing. Reference-lab tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
 The resulting database had 1,333 nodes and 683,666 leaves, with 374,836,872 object properties. \par
+
+\small \input{tables/database}
 
 Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are checked against a reference set of \textit{E. coli} gene sequences before running analyses. Outputs are displayed on the website in tables and can be downloaded as \textit{.csv} files. 
 \par
