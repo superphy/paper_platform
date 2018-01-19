@@ -1,0 +1,20 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllllllll}
+name               & indexType & m    & height & nnodes & nleaves & nentries  & nodeBytes & leafBytes   & totalBytes  \\
+\_\_globalRowStore & BTree     & 32   & 1      & 1      & 6       & 102       & 193       & 8537        & 8730        \\
+kb.lex.BLOBS       & BTree     & 692  & 2      & 17     & 6727    & 3227686   & 90596     & 60187016    & 89331537662 \\
+kb.lex.ID2TERM     & BTree     & 905  & 2      & 88     & 39912   & 18080577  & 515355    & 293436043   & 2058798455  \\
+kb.lex.TERM2ID     & BTree     & 193  & 3      & 1153   & 147978  & 18080577  & 5596557   & 1152764154  & 1158360711  \\
+kb.spo.JUST        & BTree     & 284  & 3      & 13213  & 2042532 & 299426518 & 77979362  & 15527483178 & 15605462540 \\
+kb.spo.OSP         & BTree     & 708  & 3      & 1649   & 639325  & 262364538 & 11448125  & 3760927987  & 3772376112  \\
+kb.spo.POS         & BTree     & 990  & 2      & 864    & 463188  & 262364538 & 8347594   & 2246478879  & 2254826473  \\
+kb.spo.SPO         & BTree     & 1024 & 2      & 835    & 471805  & 262364538 & 10308603  & 2661857997  & 2672166600 
+\end{tabular}%
+}
+\end{table}
