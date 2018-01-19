@@ -8,6 +8,8 @@
 \usepackage{authblk}
 % Images
 \usepackage{graphicx}
+\usepackage{lscape}
+\usepackage{longtable}
 % \usepackage{svg}
 
 %\articlesubtype{This is the article type (optional)}
@@ -255,7 +257,7 @@ CI is also used to automatically build Spfy's core Docker images, and upload the
 Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and results for all included analysis modules.
 Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
 Subtyping options include O-antigen, H-antigen, Shiga-toxin 1, Shiga-toxin 2, and Intimin typing. Reference-lab tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
-The resulting database had 1,333 nodes and 683,666 leaves, with 374,836,872 object properties. \par
+The resulting database had 17,820 nodes and 3,811,473 leaves, with 1,125,909,074 object properties. \par
 
 \small \input{tables/database}
 
@@ -348,5 +350,9 @@ By packaging the individual bioinformatics software as Conda packages, they can 
 
 \bibliographystyle{unsrt}
 \bibliography{paper-webserver}
+
+\newpage
+
+\section{APPENDIX}
 
 \end{document}
