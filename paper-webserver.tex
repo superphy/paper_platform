@@ -147,13 +147,7 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 3. inferencing
 % 3 1/2. SPARQL queries
 % para: the semantic web
-Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a query-able graph structure. This allows novel data to be seamlessly incorporated into the existing graph, and has the use of graph databases for relational information has been proposed as a common standard for the open sharing of data \cite{horrocks2005semantic}.
-
-% para: semantic web in spfy
-In Spfy, the results from all the analysis modules are converted into graph objects, which are used to update the main graph database.
-These graph objects, which consist of nodes and edges, must be annotated with common terminology.
-To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used to describe biological data.
-The use of semantic web technologies allows results to be linked to the genomes they were computed from, and for all data points to share a common data structure that can be queried together.
+Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a searchable graph structure. This allows novel data to be incorporated into the existing graph, and has the use of graph databases for semantic information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. Data points are annotated with terms from published ontologies. To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used for our annotations.
 
 \begin{figure}[t]
 \begin{center}
@@ -163,10 +157,8 @@ The use of semantic web technologies allows results to be linked to the genomes 
 \label{fig-ontology}
 \end{figure}
 
-% note: below is a feature in development
-The permanent storage of results is as a one-time cost, and allows population-wide analyses of all stored genomes; result storage also enables Spfy to avoid recomputation when the same analysis is re-run. To identify analysis tasks, Spfy fingerprints requests by computing its SHA1 hash and tags the results in the graph database with this hash. Subsequent queries are then compared through fingerprinting, and results can be rebuilt from the graph by searching for matching fingerprints.
-
-For population analyses, Spfy searches the graph for all nodes annotated with the queried ontology term. Depending on the given analysis, this data is then vectorized into NumPy numerical arrays for use with the SciPy scientific computing library, or the Scikit-learn machine learning library.
+% Permanent storage + why a graph is preferable over tables
+The permanent storage of results is as a one-time cost to avoid recomputation when the same analysis is re-run. For population analyses, Spfy searches the graph for all data points annotated with the queried ontology term. This graph data is then converted into the required structure, usually numerical arrays, for the given analysis modules.
 
 \subsection{Web design}
 % para
