@@ -160,6 +160,8 @@ Semantic web technologies describe the relations between different data \cite{be
 % Permanent storage + why a graph is preferable over tables
 The permanent storage of results is as a one-time cost to avoid recomputation when the same analysis is re-run. For population analyses, Spfy searches the graph for all data points annotated with the queried ontology term. This graph data is then converted into the required structure, usually numerical arrays, for the given analysis modules.
 
+% TODO: add figure illustrating search.
+
 \subsection{Web design}
 % para
 % 1. goals: intuitive/familar, ease of use
@@ -168,10 +170,10 @@ The permanent storage of results is as a one-time cost to avoid recomputation wh
 % 1. implementation: reactjs, react-md, ES6, JSX
 % 4. separation from Flask layer
 
-The front-end website is written using the React JavaScript library \url{https://facebook.github.io/react/} as a single-page application to allow efficient data-flow without reloading the website.
+The front-end website is written using the React JavaScript library \url{https://facebook.github.io/react/} as a single-page application resembling a traditional desktop application.
 To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, surrounding a card-based design.
 (see Figure \ref{fig-results})
-Both the task selection and result displays follow this card-based design: while data storage is graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files.
+Both the task selection and result displays follow the same design pattern: while data storage is graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files.
 (see Figure \ref{fig-tables})
 
 \begin{figure}[t]
