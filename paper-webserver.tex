@@ -236,13 +236,12 @@ Docker integration ensures that software dependencies, which are typically manua
 % 2. how we've implemented it, integration with github
 
 TravisCI \url{travisci.io}, a continuous integration (CI) platform, is used to ensure that Spfy \url{https://github.com/superphy/backend} does not break with any changes to the codebase, and runs tests for functionality and backwards compatibility.
-The individual tests use PyTest \url{https://doc.pytest.org/}, and are run within TravisCI's virtual environment, and the current build status can be checked either on our Gtihub repository or at \url{https://travis-ci.org/superphy/backend}.
-CI is also used to automatically build Spfy's core Docker images, and upload them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
+The individual tests use PyTest \url{https://doc.pytest.org/}, and are run within TravisCI's virtual environment. The current build status can be checked either on our Gtihub repository or at \url{https://travis-ci.org/superphy/backend}.
+The CI is also used to automatically build Spfy's core Docker images, and upload them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
 Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and results for all included analysis modules.
-Spfy provides real-time subtyping, and the results are immediately displayed to the user following their completion.
-Subtyping options include O-antigen, H-antigen, Shiga-toxin 1, Shiga-toxin 2, and Intimin typing. Reference-lab tests include virulence factor and anti-microbial resistance annotation. All genomes are analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
+All subtyping options: O-antigen, H-antigen, Shiga-toxin 1, Shiga-toxin 2, and Intimin typing, VF and AMR annotation were ran on the reference set. The genomes were also analyzed within the pan-genome framework of \textit{E. coli}, and results from all analyses are automatically associated with the source genome.
 The resulting database had 17,820 nodes and 3,811,473 leaves, with 1,125,909,074 object properties. \par
 
 \small \input{tables/database}
@@ -262,7 +261,7 @@ Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} g
 % drawbacks - big data
 Many previous bioinformatics software programs have been developed \textit{ad hoc}, with individual researchers and laboratories developing software specific to their environment \cite{de2015trends}.
 Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
-While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which require the application of systems engineering principles \cite{schatz2015biological}.
+While this was acceptable for smaller analyses, bioinformatic pipelines utilizing WGS data are larger and involve linked dependencies, which would benefit from a more standardized design \cite{schatz2015biological}.
 Additionally, many subsets of biology now require the analyses of big-data, where the ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required \cite{swaminathan2016review}.
 
 One of the key goals in developing Spfy is to maintain instantaneity, as modern websites have accustomed users to immediate results.
