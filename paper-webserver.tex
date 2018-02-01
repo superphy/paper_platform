@@ -149,7 +149,7 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % para: the semantic web
 Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a searchable graph structure. This allows novel data to be incorporated into the existing graph, and has the use of graph databases for semantic information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. Data points are annotated with terms from published ontologies. To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used for our annotations.
 
-\begin{figure}[t]
+\begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/ontology}
 \end{center}
@@ -176,7 +176,7 @@ To ensure a familiar user interface, we followed the Material Design specificati
 Both the task selection and result displays follow the same design pattern: while data storage is graph-based, the results of various analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files.
 (see Figure \ref{fig-tables})
 
-\begin{figure}[t]
+\begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/results.png}
 \end{center}
@@ -184,7 +184,7 @@ Both the task selection and result displays follow the same design pattern: whil
 \label{fig-results}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/tables.png}
 \end{center}
@@ -223,7 +223,7 @@ The Spfy platform depends on a series of webservers, databases, and task workers
 (see Figure \ref{fig-docker})
 Docker integration ensures that software dependencies, which are typically manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are instead handled automatically. With compartmentalization of service runtimes, code failures do not propagate to other services.
 
-\begin{figure}[t]
+\begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/docker}
 \end{center}
