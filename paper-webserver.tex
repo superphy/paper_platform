@@ -231,6 +231,13 @@ Docker integration ensures that software dependencies, which are typically manua
 \label{fig-docker}
 \end{figure}
 
+% standard web tech means you can deploy to different cloud computing services
+One of the key benefits of using more common-place technologies is the compatibility with other infrastructure resources.
+Docker containerization is widely supported by cloud computing services: Amazon Web Services (AWS) \url{https://aws.amazon.com/docker/}, Google Cloud Platform (GCloud) \url{https://cloud.google.com/container-engine/}, and Microsoft Azure \url{https://azure.microsoft.com/en-us/services/container-service/}, and self-hosted cloud computing technologies such as OpenStack \url{https://wiki.openstack.org/wiki/Docker} all support Docker.
+% we may want to sign up for a free trial to give an example of this
+Spfy packages compute nodes, which manage a collection of task queue workers, as reproducible Docker containers which can be networked together to form a compute cluster.
+Docker containerization has a negligible impact on performance \cite{di2015impact}, and allows the platform to easily scale to demand.
+
 \subsection{Continuous integration}
 % Keep this short
 % para
@@ -293,37 +300,24 @@ A computational approach saves the time and cost associated with performing mult
 
 % namely galaxy
 Existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, and pipelines such as the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/} and the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} help automate the use of WGS data for public-health surveillance.
-Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy tackles the problem of linking different analysis software together, by defining interdependencies using a custom schema. A visual workflow editor is also provided for ease of use.
-IRIDA is build on top of the Galaxy framework, and adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored linearly per whole-genome sequence. Simiarily, BAP provides an integrated analysis pipeline for bacterial WGS data as a web service.
-BAP intergrats different programs, such as for VF and AMR determination, into one pipeline. For result storage, these workflow technologies either use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
+Reproducibility is important to science, and Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so analyses can be replicated end-to-end.
+Building on top of the Galaxy framework, IRIDA adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored linearly per whole-genome sequence. Simiarily, BAP provides an integrated analysis pipeline for bacterial WGS data as a web service.
+For result storage, these workflow technologies either use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
 
 Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis.
 % re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
-Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
-
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
 Spfy also processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
-In place of a relational database for storing the location of result files, Spfy parses result data into graph objects and integrates results into a persistent graph database.
-This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses. In all, Spfy provides similar functionality with an expanded focus on integrated result storage and big-data analyses.
+We also focus on the data warehousing problem in bioinformatics: storing results as in IRIDA and BAP, but in a way where we can integrate results for further analyses.
+Like BAP, Spfy intergrates different programs, such as for VF and AMR determination, into one pipeline. 
+Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
 
-To approach the challenge of integrating different bioinformatics programs, Spfy instead uses technologies prevalent in common web services not necessarily related to scientific workflows.
-While we prefer to package individual bioinformatics programs using language-agnostic package managers such as Conda \url{https://conda.io/}, we do agree that suites of bioinformatics software benefit from having all dependencies installed and deployable in Docker containers \cite{di2015impact}.
-These programs are connected to form a workflow using task queues; a design methodology used to offload long-running or non-instantaneous tasks over available computing infrastructure.
-Unlike platforms such as Galaxy which favor a drag-and-drop design for building workflows, Spfy favors a tightly coupled approach explicitly linking together different bioinformatics programs within the task queue implementation.
-In particular, Spfy uses asynchronous tasks queues which are tripped in response to user requests, thereby allowing immediate responsivity to users on the website, and processes generating human-readable results can be separated from processes handling long-term result storage.
-
-% standard web tech means you can deploy to different cloud computing services
-One of the key benefits of using more common-place technologies is the compatibility with other infrastructure resources.
-Docker containerization is widely supported by cloud computing services: Amazon Web Services (AWS) \url{https://aws.amazon.com/docker/}, Google Cloud Platform (GCloud) \url{https://cloud.google.com/container-engine/}, and Microsoft Azure \url{https://azure.microsoft.com/en-us/services/container-service/}, and self-hosted cloud computing technologies such as OpenStack \url{https://wiki.openstack.org/wiki/Docker} all support Docker.
-% we may want to sign up for a free trial to give an example of this
-Spfy packages compute nodes, which manage a collection of task queue workers, as reproducible Docker containers which can be networked together to form a compute cluster.
-Docker containerization has a negligible impact on performance \cite{di2015impact}, and allows the platform to easily scale to demand.
-In contrast to Galaxy, Spfy is a targeted approach building a predictive analytics platform for \textit{E. coli} which leverages generic web technologies to favor a responsive, big-data design strategy tackling the challenge \cite{fricke2014bacterial} of integrating results from multiple genomes and examining shared connections.
-By packaging the individual bioinformatics software as Conda packages, they can be easily ported to Galaxy.
+In place of a relational database for storing the location of result files, Spfy parses and maps results to formal ontologies, with the end result stored in a persistent graph database.
+This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses. In all, Spfy provides similar functionality to IRIDA and BAP with an expanded focus on integrated result storage and big-data analyses.
 
 \section{CONCLUSIONS}
 
-Future work will focus on adding additional analyses modules, using machine learning and artificial neural networks to aid genotype to phenotype predictions, and supporting different species. While the integrated approach of storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and can easily be integrated into existing platforms such as Galaxy \cite{goecks2010galaxy}, and IRIDA. Spfy's codebase is provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+Future work will focus on adding additional analyses modules to aid genotype to phenotype predictions, and supporting different species. We're currently working on an approach using support vector machiens to predict \textit{E.coli} phenotypes \url{https://github.com/superphy/kmer} which will be integerated into Spfy. While the integrated approach of storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and can easily be integrated into existing platforms such as Galaxy \cite{goecks2010galaxy}, and IRIDA. Spfy's codebase is provided at \url{https://github.com/superphy/backend} and a developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
 \textit{Conflict of interest}. None declared.
 
