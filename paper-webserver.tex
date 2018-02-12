@@ -33,12 +33,12 @@
 \begin{abstract}
 
 Current comparative computational workflows chain different analysis software, but lack storage and retrieval methods for generated results.
-Spfy uses graph data structures to store and retrieve results for computational workflows, facilitating the management and querying of tens of thousands of whole-genome \textit{E. coli} sequences, and efficient downstream processing.
+Spfy uses graph data structures to store and retrieve results for computational workflows, facilitating the management and querying of tens of thousands of whole-genome \textit{Escherichia coli} sequences, and efficient downstream processing.
 By making the storage and retrieval of results part of the platform, with data effectively linked to the organisms of interest through a standardized ontology, we can mitigate the recomputing of analyses.
 Within Spfy, the output from all analyses is stored, and linked together in the context of a genome graph. This graph also stores metadata for each genome, facilitating inquiries ranging from population genomics to epidemiological investigations.
 Integrated data storage will be necessary as publicly available whole genome sequencing data for bacterial pathogens currently numbers in the tens of thousands, with hundreds of thousands set to be available within the next few years. \par
 
-The database is available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
+Database URL: \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
 \end{abstract}
 
@@ -67,10 +67,10 @@ Whole genome sequencing (WGS) can in theory provide the entire genetic content o
 % 2. Big Problem: but tools are for individual analysis
 The rapid characterization and comparison of bacterial pathogens relies principally on the combination of outputs from multiple software programs that are targeted for specific applications. Examples include the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive} for antimicrobial resistance (AMR) gene prediction, VirulenceFinder \cite{kleinheinz2014applying} for virulence factor (VF) annotation, and Prokka for bacterial genome annotation with external tools \cite{doi:10.1093/bioinformatics/btu153}. In particular, RGI and VirulenceFinder represent a series of \textit{in-silico} methods which have been developed to replicate the results of traditional wet-lab tests; this allows new WGS results to be viewed in the context of historical tests.
 
-Comprehensive platforms that combine individual programs into a cohesive whole also exist. These include free platforms such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial}, the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, and PATRIC \cite{wattam2013patric}. Commercial applications, such as Bionumerics, which is used by PulseNet international for the analyses of WGS data in outbreak situations also exist, and offer support as well as accredited, standardized tests \cite{swaminathan2001pulsenet}.
+Comprehensive platforms that combine individual programs into a cohesive whole also exist. These include free platforms such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial}, the Integrated Rapid Infectious Disease Analysis (IRIDA) project \url{http://www.irida.ca/}, and the Pathosystems Resource Integration Center (PATRIC) \cite{wattam2013patric}. Commercial applications, such as Bionumerics, which is used by PulseNet International for the analyses of WGS data in outbreak situations also exist, and offer support as well as accredited, standardized tests \cite{swaminathan2001pulsenet}.
 
 % 3. 100,000 genomes, (lookup number for Enterobase, GenBank), how do we run analysis on it
-Traditionally, these platforms have been applied to samples numbering only a few dozens while WGS data for bacterial pathogens of public health importance have recently accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. For \textit{Escherichia coli}, there are over sixty thousand publicly available genomes in EnteroBase \url{https://enterobase.warwick.ac.uk/} and three million whole genomes in GenBank \cite{doi:10.1093/nar/gks1195}.
+Traditionally, these platforms have been applied to samples numbering only a few dozen while WGS data for bacterial pathogens of public health importance have recently accumulated in public databases in the tens of thousands, with hundreds of thousands set to be available within the next few years. For \textit{Escherichia coli}, there are over sixty thousand publicly available genomes in EnteroBase \url{https://enterobase.warwick.ac.uk/} and three million whole genomes in GenBank \cite{doi:10.1093/nar/gks1195}.
 
 Many of the comparative analyses that are run are broadly useful, and therefore computed multiple times. To begin to compute results on all available genomes, an effective method to mitigate the recomputing of analyses is to make the storage and retrieval of results part of the platform, and effectively linked to the organisms of interest with a standardized ontology. Such measures can help ensure the rapid response times required for public health applications, and allow results to be integrated and progressively updated as new data becomes available.
 
@@ -119,7 +119,7 @@ In this study, we present the Spfy platform, which integrates a graph database w
 By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, while adding support for population analyses. Subtyping options for \textit{E.coli} are O-antigen, H-antigen, and VF gene determination using ECtyper \url{https://github.com/phac-nml/ecoli\_serotyping}, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR annotation using the RGI program \cite{mcarthur2013comprehensive}.
 Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan} and support vector machine (SVM)-backed AMR predictions for OmniLog AMR assays using Scikit-learn \cite{pedregosa2011scikit}.
 
-These tasks are divided into subtasks, and distributed across a built-in task queue. Results are converted to individual graphs and stored within a larger graph database. By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups using SciPy \cite{jones2014scipy}. Any data type or relation in the graph is valid for analysis, such as the presence or absence of pan-genome regions against determined serotypes or other subtyping options. In addition, Spfy supports the submission of user-specified metadata, such as location or source information. Currently, the platform has been tested with XXX genome files and result storage for XX analyses modules.
+These tasks are divided into subtasks, and distributed across a built-in task queue. Results are converted to individual graphs and stored within a larger graph database. By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups. Any data type or relation in the graph is valid for analysis, such as the presence or absence of pan-genome regions against determined serotypes or other subtyping options. In addition, Spfy supports the submission of user-specified metadata, such as location or source information.
 
 % para covering ectyper & RGI -- don't really need this
 % RGI has its own paper and was in the previous SuperPhy paper
@@ -128,7 +128,7 @@ These tasks are divided into subtasks, and distributed across a built-in task qu
 
 \section{IMPLEMENTATION}
 % para: intro to the spfy stack
-Spfy's server-side code is developed in Python and the front-end website is developed using the React JavaScript library. For the addition of new data to the database, the following steps are taken:
+Spfy's server-side code, graph generation, and analysis modules are developed in Python and the front-end website is developed using the React JavaScript library. For the addition of new data to the database, the following steps are taken:
 
 i) The upload begins through the ReactJS-based website, where user-defined analyses options are selected. The results of these chosen analyses are immediately reported to the user following their completion, while the remaining analyses are subsequently completed and stored in the database without interaction from the user. The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed) at a time, though an unlimited amount of data can be submitted locally.
 
@@ -147,7 +147,7 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 3. inferencing
 % 3 1/2. SPARQL queries
 % para: the semantic web
-Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a searchable graph structure. This allows novel data to be incorporated into the existing graph, and has the use of graph databases for semantic information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. Data points are annotated with terms from published ontologies. To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used for our annotations.
+Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a searchable graph structure. This allows novel data to be incorporated into the existing graph, and the use of graph databases for semantic information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. Data points are annotated with terms from published ontologies. To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon} ontologies are used for our annotations.
 
 \begin{figure}[!hb]
 \begin{center}
@@ -161,6 +161,9 @@ Semantic web technologies describe the relations between different data \cite{be
 The permanent storage of results is as a one-time cost to avoid recomputation when the same analysis is re-run. For population analyses, Spfy searches the graph for all data points annotated with the queried ontology term. This graph data is then converted into the required structure, usually numerical arrays, for the given analysis modules.
 
 % TODO: add figure illustrating search.
+In a graph database, search begins...
+Comparison to SQL...
+NoSQL...
 
 \subsection{Web design}
 % para
@@ -192,7 +195,7 @@ Both the task selection and result displays follow the same design pattern: whil
 \label{fig-tables}
 \end{figure}
 
-No account creation is required to use the platform. A sharable token is automatically created for users upon opening the website, and is embedded into the website address. Users can share results with their colleagues by copying the URL, and files can be submitted for analysis from different computers with results reflected on each others' screens.
+No account creation is required to use the platform. A sharable token is automatically created for users upon opening the website, and is embedded into the website address. Users can share results by copying the URL, and files submitted from different computers using the same token will have the results visible to anyone with the same URL.
 
 \subsection{Service Virtualization}
 % para
@@ -307,13 +310,11 @@ For result storage, these workflow technologies either use relational tables \ci
 Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis.
 % re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
-Spfy also processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
-We also focus on the data warehousing problem in bioinformatics: storing results as in IRIDA and BAP, but in a way where we can integrate results for further analyses.
-Like BAP, Spfy integrates different programs, such as for VF and AMR determination, into one pipeline. 
-Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems.
+Spfy processes XXXX files over XX tasks in XXXX time by using a novel approach of distributing computations over a task queue and multiple Docker compartmentalized containers.
 
-In place of a relational database for storing the location of result files, Spfy parses and maps results to formal ontologies, with the end result stored in a persistent graph database.
-This enables Spfy to create large datasets where analysis results are linked to genomes, and to perform population-wide analyses. In all, Spfy provides similar functionality to IRIDA and BAP with an expanded focus on integrated result storage and big-data analyses.
+We also focus on the data warehousing problem in bioinformatics: storing results as in IRIDA and BAP, but using a graph database to integrate results for further analyses.
+Like BAP, Spfy integrates different programs, such as for VF and AMR determination, into one pipeline.
+Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems and allows Spfy to perform population-wide analyses, regardless of the individual analysis software used to generate the datasets.
 
 \section{CONCLUSIONS}
 
