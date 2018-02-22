@@ -250,10 +250,9 @@ The individual tests use PyTest \url{https://doc.pytest.org/}, and the current b
 TravisCI also builds the core Docker images for Spfy, and uploads them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
-Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and the results for all included analysis modules.
-All subtyping options: O-antigen, H-antigen, Shiga-toxin 1, Shiga-toxin 2, and Intimin typing, VF and AMR annotation were ran on the test set. The genomes were also analyzed within the pan-genome framework of \textit{E. coli}.
+Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and the results for all included analysis modules. This included: serotypeing (O-antigen, H-antigen), toxin sub-typing (Shiga-toxin 1, Shiga-toxin 2, and Intimin), the identification of VF and AMR determinants, and determination of pan-genome content \textit{E. coli}.
 The resulting database had 17,820 nodes and 3,811,473 leaves, with 1,125,909,074 object properties.
-Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are checked against a reference set of \textit{E. coli} gene sequences before running analyses.
+Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are subjected to quality control, ensuring the submitted genomes are \textit{E. coli} sequences before subsequent analyses are run.
 \par
 
 \small \input{tables/database}
@@ -275,49 +274,37 @@ Many bioinformatics software programs have been developed \textit{ad hoc}, with 
 Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
 Recent efforts \cite{goecks2010galaxy,thomsen2016bacterial} have focused on providing a common web interface for these programs, while still returning the same result files.
 However, many subsets of biology now require the analyses of big-data, where inputs are taken from a variety of analysis programs, and involve large-scale data warehousing \cite{schatz2015biological}.
-The ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are required for these analyses \cite{swaminathan2016review}.
+The ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are now required for types of analyses that need to be performed \cite{swaminathan2016review}.
 
-One of the key goals in developing Spfy was to accommodate a variety of result formats, from storing subtyping data to retrieving results as inputs for downstream analyses, such as statistical significance testing. We've shown how a graph database can accommodate a variety of programs used by bioinformaticians and is performant for data retrieval on the results of 10,000+ genomes. Spfy maintains instantaneity, as modern analytics platforms must respond to user-requested analyses of big-data in the same efficiency as old analyses of single files.
+One of the key goals in developing Spfy was to accommodate and store a variety of result formats, and then to make the data from these results retrievable and usable as inputs for downstream analyses, such as predictive biomarker discovery. We have shown how a graph database can accommodate the results given by a variety of bioinformatics programs, and how Spfy is performant for data retrieval on the results for multiple analyses among over 10,000 genomes, providing results from big-data comparisons in the same efficiency as old analyses on single files.
 
 \subsection{Impact on Public Health Efforts}
 
 % para
 % focus on application
 The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
-Until recently, public-health agencies relied on laboratory tests such as serotyping, pulsed-field gel electrophoresis (PFGE) banding patterns, or Polymerase Chain Reaction (PCR)-based amplification to identify known VFs or AMR genes, along with other tests \cite{ronholm2016navigating}, to characterize bacterial isolates in outbreak and surveillance settings.
+Until recently, public-health agencies relied on laboratory tests such as serotyping, pulsed-field gel electrophoresis (PFGE), PCR-based amplification of known VFs, and disc-diffusion assays to identify AMR, for the characterization of bacterial isolates in outbreak, surveillance, and reference laboratory settings \cite{ronholm2016navigating}.
 
-AMR testing, VF testing, and Shiga-toxin testing are of particular importance to surveillance efforts due to their role in a pathogen's lethality.
-Current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence.
-WGS methods allow a single laboratory method - the sequencing step - to provide a variety of analysis options, such as AMR, VF, and Shiga-toxin results, and as such can be used to evaluate the spread of outbreaks with better resolution and context than traditional methods \cite{ronholm2016navigating}.
-
-% application: results similar to a wet-lab
-Spfy uses WGS results.
-After initial sequencing of new isolates, Spfy can be used in place of a traditional reference laboratory, to determine the O-type and H-type, Stx type, and all known VFs and AMR genes in real-time.
-These results can be shared with other agencies and researchers over the internet.
-Furthermore, using Spfy's database of pre-processed genomes, Spfy can determine all strains a sample may be related to which is useful for monitoring the evolution of pathogens over time.
-A computational approach saves the time and cost associated with performing multiple tests per sample, and allows population comparisons to keep pace the current generation WGS data.
+Current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence without need for the traditional laboratory test. Spfy provides rapid and easy predictive genomic analyses of \textit{E. coli} genomes.
 
 \subsection{Comparison with other bioinformatic pipeline technologies}
 % trying to cut down on details that would be better suited for the "Implemntation" section.
 
 % namely galaxy
-Existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, and pipelines such as the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/} and the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} help automate the use of WGS data.
-Reproducibility is important, and Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire analysis pipeline can be replicated.
-Building on top of the Galaxy framework, IRIDA adds prebuilt pipelines specific to bioinformatics uses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored linearly per whole-genome sequence. Similarly, BAP provides an integrated analysis pipeline for bacterial WGS data as a web service.
-For result storage, these workflow technologies either use relational tables \cite{goecks2010galaxy}, or store resulting files to disk \cite{thomsen2016bacterial}.
+The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}, the Integrated Rapid Infectious Disease Analysis (IRIDA) platform \url{http://www.irida.ca/}, and the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial}.
+Galaxy aims to provide a reproducible, computation-based research environment which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire analysis pipeline can be replicated.
+IRIDA is built on top of Galaxy and adds prebuilt pipelines for specific analyses, as well as sequence and result storage. IRIDA takes a project-based approach, with sequences stored per project, and results stored per project. Similarly, BAP provides an integrated analysis pipeline for bacterial WGS data as a web service.
+These workflow technologies store their results using relational tables \cite{goecks2010galaxy}, or as files on disk \cite{thomsen2016bacterial}.
 
-Like IRIDA and BAP, Spfy automates workflows for users, and like Galaxy, Spfy uses task queues to distribute selected analysis.
+Spfy is similar to these technologies in that it automates workflows for users, and like Galaxy, uses task queues to distribute selected analysis.
 % re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
 Spfy processes XXXX files over XX tasks in XXXX time, distributing computations over a task queue and multiple Docker compartmentalized containers.
-We also focus on the data warehousing problem in bioinformatics: storing results as in IRIDA and BAP, but using a graph database to integrate results for further analyses.
-Like BAP, Spfy integrates different programs, such as for VF and AMR determination, into one pipeline. \par
-
-Because output from these programs is user-specific or transitory, results from identical comparisons are often recomputed. Additionally, output from different analyses are structured using distinct terminology and formats, which must be converted before they can be compared. Without a unified structure, these conversions quickly become impractical for broad usage. Graph-based storage of all results solves these problems and allows Spfy to perform population-wide analyses, regardless of the individual analysis software used to generate the datasets.
+However, unlike these workflow managers, Spfy is designed to help solve the needless recomputation of analyses by storing results in a graph database for future use. This allows Spfy to perform population-wide analyses, regardless of the individual analysis software used to generate the results for an individual genome.
 
 \section{CONCLUSIONS}
 
-Future work will focus on adding additional analyses modules to aid genotype to phenotype predictions, and supporting different species. We're currently working on an approach using support vector machines to predict \textit{E.coli} phenotypes \url{https://github.com/superphy/kmer} which will be integrated into Spfy. While the integrated approach of storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and be transfered to existing platforms such as Galaxy, and IRIDA. Spfy's code is hosted at \url{https://github.com/superphy/backend}, and is available for free under the open-source Apache 2.0 license. A developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+Future work will focus on adding additional analyses modules to aid genotype to phenotype predictions using machine learning modules, and supporting bacterial species such as \textit{Salmonella}, and \textit{Campylobater}. While the integrated approach of storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and be transfered to existing platforms such as Galaxy, and IRIDA. The source code for Spfy is hosted at \url{https://github.com/superphy/backend}, and is available for free under the open-source Apache 2.0 license. A developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
 \textit{Conflict of interest}. None declared.
 
