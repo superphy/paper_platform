@@ -116,10 +116,13 @@ In this study, we present the Spfy update to the SuperPhy platform, which integr
 % Describe available functions in spfy
 % para covering everything
 
-By supporting multiple \textit{in-silico} subtyping options, the platform functions similar to a reference laboratory, while adding support for population analyses. Subtyping options for \textit{E.coli} are O-antigen, H-antigen, and VF gene determination using ECTyper \url{https://github.com/phac-nml/ecoli\_serotyping}, Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR annotation using the RGI program \cite{mcarthur2013comprehensive}.
-Spfy also performs bioinformatics analyses: pangenome generation using Panseq \cite{laing2010pan} and support vector machine (SVM)-backed AMR predictions for OmniLog AMR assays using Scikit-learn \cite{pedregosa2011scikit}.
+Spfy provides rapid in-silco versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification {ectyper ref}; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}, VF gene determination using ECTyper \url{https://github.com/phac-nml/ecoli\_serotyping}, and AMR annotation using the RGI program \cite{mcarthur2013comprehensive}.
 
-These tasks are divided into subtasks, and distributed across a built-in task queue. Results are converted to individual graphs and stored within a larger graph database. By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological associations between specific genotypes, biomarkers, host, source, and other metadata, and statistical significance testing of genome markers for user-defined groups. Any data type or relation in the graph is valid for analysis, such as the presence or absence of pan-genome regions against determined serotypes or other subtyping options. In addition, Spfy supports the submission of user-specified metadata, such as location or source information.
+Spfy also performs pangenome analyses using Panseq \cite{laing2010pan}, and provides machine learning modules for biomarker discovery among groups using Scikit-learn \cite{pedregosa2011scikit}.
+
+Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to standard ontologies {list}, where metadata including genotypes, biomarkers, host, source, and statistical significance testing of genome markers for user-defined groups are stored.
+
+By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological association studies. Any data type or relation in the graph is a valid option for analysis. This means that genomes can be compared on the basis of the presence or absence of pan-genome regions, serotype, subtyping data, or provided metadata such as location or host-source.
 
 % para covering ectyper & RGI -- don't really need this
 % RGI has its own paper and was in the previous SuperPhy paper
@@ -128,9 +131,9 @@ These tasks are divided into subtasks, and distributed across a built-in task qu
 
 \section{IMPLEMENTATION}
 % para: intro to the spfy stack
-Spfy's server-side code, graph generation, and analysis modules are developed in Python and the front-end website is developed using the React JavaScript library \url{https://facebook.github.io/react/}. For the addition of new data to the database, the following steps are taken:
+The server-side code for Spfy, graph generation, and analysis modules, are developed in Python, with the front-end website developed using the React JavaScript library \url{https://facebook.github.io/react/}. When new data is added to the database, the following steps are taken:
 
-i) The upload begins through the website, where user-defined analyses options are selected. The results of these chosen analyses are immediately reported to the user following their completion, while the remaining analyses are subsequently completed and stored in the database without interaction from the user. The public web service accepts up to 200 MB of genome files (50 genomes uncompressed, or 120 genomes compressed) at a time, though an unlimited amount of data can be submitted locally.
+i) The upload begins through the website, where user-defined analyses options are selected. The results of these analyses are immediately reported to the user following their completion, while all other non-selected analyses are subsequently completed in the background and stored in the database without interaction from the user. The public web service accepts uploads of up to 200 MB (approximately 50 \textit {E. coli} genomes uncompressed, or 120 genomes compressed) at a time, though an unlimited amount of data can be submitted to a local instance.
 
 ii) User-selected analyses are enqueued into the Redis Queue \url{http://python-rq.org/} task queue. Redis Queue consists of a Redis Database \url{https://redis.io/} and task queue workers which run as Python processes.
 
@@ -147,8 +150,7 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 3. inferencing
 % 3 1/2. SPARQL queries
 % para: the semantic web
-Semantic web technologies describe the relations between different data \cite{berners2001semantic}. For biological data, individual data points such as genome, contiguous DNA sequence, or gene, can be linked together in a searchable graph structure. This allows novel data to be incorporated into the existing graph, and the use of graph databases for semantic information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. Data points are annotated with terms from published ontologies. To avoid proliferating ontologies, and to allow Spfy to integrate with existing ones, we use annotations from the GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}.
-
+Semantic web technologies describe the relationships between data \cite{berners2001semantic}, and graph databases for the storage of this information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. For biological data, individual data points can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies, including annotations from GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}. This system is flexible and allows novel data to be incorporated into the existing graph.
 \begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/ontology}
@@ -158,12 +160,9 @@ Semantic web technologies describe the relations between different data \cite{be
 \end{figure}
 
 % Permanent storage + why a graph is preferable over tables
-The permanent storage of results is as a one-time cost to avoid recomputation when the same analysis is re-run. For population analyses, Spfy searches the graph for all data points annotated with the queried ontology term. This graph data is then converted into the required structure, usually numerical arrays, as required for the given analysis modules.
-In a graph database, search begins at any node or attribute.
-This is in contrast to a SQL database which requires a predefined schema, or a NoSQL database which treats data as documents with varying structure.
-For example, the addition of a new analysis module would typically require a new table definition in a SQL database, or the addition of a new document type in a NoSQL database.
-A graph database instead adds new nodes or attributes which can be connected to existing data, so explicit joins or data conversions are not required.
-Spfy also adds the graph results in parts, and allows the database to infer their connections.
+The permanent storage of results is as a one-time cost to avoid recomputation when the same analysis is re-run. For analyses, Spfy searches the graph for all data points annotated with the queried ontology term. This graph data is then converted into the required structure, usually numerical arrays, or as required for the given analysis module.
+In a graph database, a search can begin at any node or attribute. This is in contrast to a SQL database which requires a predefined schema, or a NoSQL database which treats data as documents with varying structure.
+For example, the addition of a new analysis module would typically require a new table definition in a SQL database, or the addition of a new document type in a NoSQL database. With a graph database, new nodes or attributes are added and then connected to existing data, removing the need for explicit joins or data conversions. Additionally, data can be added to Spfy in parts, and the database will infer the correct connections between the data.
 
 \subsection{Web design}
 % para
@@ -195,7 +194,7 @@ Both the task selection and result displays follow the same design pattern: whil
 \label{fig-tables}
 \end{figure}
 
-No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone one the same link.
+No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone with the same link.
 
 \subsection{Service Virtualization}
 % para
@@ -222,7 +221,7 @@ No account creation is required to use the platform. A sharable token is automat
 % cost of docker < a full VM
 % it's not quite a full OS
 Docker \url{https://www.docker.com/} is a virtualization technology to simulate self-contained operating systems on the same host computer, without the overhead of full hardware virtualization \cite{felter2015updated}.
-The Spfy platform depends on a series of webservers, databases, and task workers and uses Docker to compartmentalize these services which are then networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
+The Spfy platform depends on a series of webservers, databases, and task workers, and uses Docker to compartmentalize these services, which are then networked together using Docker-Compose \url{https://docs.docker.com/compose/}.
 (see Figure \ref{fig-docker})
 Docker integration ensures that software dependencies, which are typically manually installed \cite{doi:10.1093/bioinformatics/btu153,laing2010pan,inouye2014srst2,naccache2014cloud}, are instead handled automatically.
 
@@ -235,8 +234,8 @@ Docker integration ensures that software dependencies, which are typically manua
 \end{figure}
 
 % standard web tech means you can deploy to different cloud computing services
-One of the key benefits of using more common-place technologies is the compatibility with other infrastructure resources.
-Docker containers are widely supported by cloud computing services: Amazon Web Services (AWS) \url{https://aws.amazon.com/docker/}, Google Cloud Platform (GCloud) \url{https://cloud.google.com/container-engine/}, and Microsoft Azure \url{https://azure.microsoft.com/en-us/services/container-service/}, and self-hosted cloud computing technologies such as OpenStack \url{https://wiki.openstack.org/wiki/Docker} all support Docker.
+One of the key benefits of using common-place technologies is the compatibility with other infrastructure resources.
+Docker containers are widely supported by cloud computing services: Amazon Web Services (AWS) \url{https://aws.amazon.com/docker/}, Google Cloud Platform (GCloud) \url{https://cloud.google.com/container-engine/}, and Microsoft Azure \url{https://azure.microsoft.com/en-us/services/container-service/}, and self-hosted cloud computing technologies such as OpenStack \url{https://wiki.openstack.org/wiki/Docker}.
 % we may want to sign up for a free trial to give an example of this
 Spfy packages compute nodes as reproducible Docker containers, and allows the platform to easily scale to demand.
 
@@ -248,7 +247,7 @@ Spfy packages compute nodes as reproducible Docker containers, and allows the pl
 
 Our tests for functionality and backwards compatibility run on TravisCI \url{https://travisci.io}, a continuous integration (CI) platform.
 The individual tests use PyTest \url{https://doc.pytest.org/}, and the current build status can be checked either on our GitHub repository or at \url{https://travis-ci.org/superphy/backend}.
-TravisCI also builds Spfy's core Docker images, and uploads them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
+TravisCI also builds the core Docker images for Spfy, and uploads them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
 Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and the results for all included analysis modules.
