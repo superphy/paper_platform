@@ -17,7 +17,7 @@
 
 \begin{document}
 
-\title{Spfy: an integrated graph-based sequence database for real-time prediction of Escherichia coli phenotypes}
+\title{Spfy: an integrated graph-based sequence database for real-time prediction of Escherichia coli phenotypes using the SuperPhy platform}
 
 \author[1]{Kevin K Le\thanks{kevin.le@canada.ca}}
 \author[1]{Matthew D Whiteside}
@@ -32,11 +32,11 @@
 
 \begin{abstract}
 
-Current comparative computational workflows chain different analysis software, but lack storage and retrieval methods for generated results.
-Spfy uses a graph database to store and retrieve results for computational workflows, facilitating the management and querying of tens of thousands of whole-genome \textit{Escherichia coli} sequences, and efficient downstream processing.
-By making the storage and retrieval of results part of the platform, with data effectively linked to the organisms of interest through a standardized ontology, we can facilitate inquiries ranging from population genomics to epidemiological investigations, and mitigate the recomputing of analyses.
-A graph approach is flexible to accommodate new analysis software as they are developed.
-Integrated data storage will be necessary as publicly available whole genome sequencing data for bacterial pathogens currently numbers in the tens of thousands, with hundreds of thousands set to be available within the next few years. \par
+Current workflows in comparative computational genomics rely on chaining different analysis software together, but lack storage and retrieval methods for the generated results. Reference laboratories are currently moving to whole-genome sequencing based analyses, and require rapid analyses coupled to efficient storage and retrieval of data. 
+To solve this problem, we have created Spfy, which uses a graph database to store and retrieve results from computational workflows. This facilitates rapid analyses, as well as the efficient management and downstream processing of tens of thousands of whole-genome sequences. Though generally applicable to bacterial genome sequences, Spfy currently contains X \textit{Escherichia coli} genomes, for which \textit{in-silico} serotype and Shiga-toxin subtype, as well as the presence of known virulence factors and antimicrobial resistance determinants have been computed.
+Spfy links the results and metadata to the genome sequences through a standardized ontology, which facilitates hypothesis testing in fields ranging from population genomics to epidemiology, while mitigating the recomputing of analyses.
+The graph approach is flexible, and can accommodate new analysis software modules as they are developed, and easily link new results to those already stored.
+Integrated data storage and analyses are currently necessary as the number of publicly available whole genome sequences is currently in the hundreds of thousands, with millions likely to be available within the next few years. \par
 
 Database URL: \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
