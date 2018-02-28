@@ -23,7 +23,7 @@
 
 \mwcomment{I would suggest we avoid the comparison to sequence databases or genome sequence platforms (e.g. assembly, gene annotation etc). We really don't have the capacity to replace EnteroBase, Genbank, IRIDA, etc. I see Spfy as a repository of E.coli phenotypes important for public health. It allows users to rapidly predict phenotypes and retrieve the phenotypes of historical strains to: track trends, observe context amoung evolutionary related strains, identify biomarkers, etc. In other words, Spfy provides WGS-based phenotypes + big picture comparative genomics. The big picture is only possible by 1. recomputing everything everytime, or 2. storing the results as genomes are analysed. With size of WGS data, option 2 is only viable option}
 \mwcomment{Title may need work. Should it mention comparative genomics? Can't be too long thou}
-\title{Spfy: an integrated graph database and analysis platform for real-time prediction of Escherichia coli phenotypes}
+\title{Spfy: an integrated graph database for real-time prediction of Escherichia coli phenotypes and downstream comparative genomics}
 
 \author[1]{Kevin K Le\thanks{kevin.le@canada.ca}}
 \author[1]{Matthew D Whiteside}
@@ -128,7 +128,7 @@ Spfy provides rapid in-silco versions of common reference laboratory tests for t
 
 Spfy also performs pangenome analyses using Panseq \cite{laing2010pan}, and provides machine learning modules for biomarker discovery among groups using Scikit-learn \cite{pedregosa2011scikit}.
 
-Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to standard ontologies {list}, where metadata including genotypes, biomarkers, host, source, and statistical significance testing of genome markers for user-defined groups are stored.
+Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to the standard ontologies GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}, where metadata including genotypes, biomarkers, host, source, and statistical significance testing of genome markers for user-defined groups are stored.
 
 By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological association studies. Any data type or relation in the graph is a valid option for analysis. This means that genomes can be compared on the basis of the presence or absence of pan-genome regions, serotype, subtyping data, or provided metadata such as location or host-source.
 
@@ -158,12 +158,12 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 3. inferencing
 % 3 1/2. SPARQL queries
 % para: the semantic web
-Semantic web technologies describe the relationships between data \cite{berners2001semantic}, and graph databases for the storage of this information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. For biological data, individual data points can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies, including annotations from GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}. This system is flexible and allows novel data to be incorporated into the existing graph.
+Semantic web technologies describe the relationships between data \cite{berners2001semantic}, and graph databases for the storage of this information has been proposed as a open standard for sharing public information \cite{horrocks2005semantic}. For biological data, individual data points can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies, including annotations from given ontologies. This system is flexible and allows novel data to be incorporated into the existing graph.
 \begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/ontology}
 \end{center}
-\caption{An example of how data is stored in Spfy. Brackets highlight the source of different data points and the software it was generated from. These parts are added in as the analyis modules complete, at varying times, and the overall connections are inferred by the database.}
+\caption{Structure of Spfy's graph database. Brackets highlight the source of different data points and the software it was generated from. These parts are added in as the analyis modules complete, at varying times, and the overall connections are inferred by the database. Non-bracketed sections are sourced from the uploaded genome files or user-supplied metadata.}
 \label{fig-ontology}
 \end{figure}
 
@@ -190,7 +190,7 @@ Both the task selection and result displays follow the same design pattern: whil
 \begin{center}
 \includegraphics[width=\textwidth]{images/results.png}
 \end{center}
-\caption{Caption for figure within column.}
+\caption{First entry into the results interface for submitted tasks. Cards represent individual tasks and the entire collection can be viewed by sharing the URL with the embedded token.}
 \label{fig-results}
 \end{figure}
 
@@ -198,7 +198,7 @@ Both the task selection and result displays follow the same design pattern: whil
 \begin{center}
 \includegraphics[width=\textwidth]{images/tables.png}
 \end{center}
-\caption{Caption for figure within column.}
+\caption{An expanded result for a subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The result can also be shared using the URL with the embedded token.}
 \label{fig-tables}
 \end{figure}
 
@@ -237,7 +237,7 @@ Docker integration ensures that software dependencies, which are typically manua
 \begin{center}
 \includegraphics[width=\textwidth]{images/docker}
 \end{center}
-\caption{Caption for figure within column.}
+\caption{The various Docker containers used in Spfy. Arrows represent the connections between different containers, and the entire platform can be recreated with a single command using Docker-Compose.}
 \label{fig-docker}
 \end{figure}
 
@@ -302,7 +302,7 @@ Current efforts are focused on predictive genomics, where the relevant phenotypi
 
 
 % namely galaxy
-The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}. Galaxy aims to provide a reproducible, computational inferface which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire analysis pipeline can be replicated and also extended as new analysis tools are developed. The Galaxy worklow focus is on running an individual analysis pipeline. In does not include functionality to store and collate analysis results for large-scale comparative analysis.
+The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}. Galaxy aims to provide a reproducible, computational inferface which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire analysis pipeline can be replicated and also extended as new analysis tools are developed. The Galaxy worklow focus is on running an individual analysis pipeline. It does not include functionality to store and collate analysis results for large-scale comparative analysis.
 
 The Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} provides an integrated analysis pipeline for bacterial WGS data as a web service. It provides an individual per-genome report of \mwcomment{list the features BAP provides}. \cite{thomsen2016bacterial}.
 
