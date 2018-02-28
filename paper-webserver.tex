@@ -282,31 +282,31 @@ Many bioinformatics software programs have been developed \textit{ad hoc}, with 
 Such tools were often script-based, with custom data formats, and only suitable for small collections of data \cite{de2015trends}.
 Recent efforts \cite{goecks2010galaxy,thomsen2016bacterial} have focused on providing a common web interface for these programs, while still returning the same result files.
 However, many subsets of biology now require the analyses of big-data, where inputs are taken from a variety of analysis programs, and involve large-scale data warehousing \cite{schatz2015biological}.
-The ability to perform computations in real-time, store data in flexible databases, and utilize a common application programming interface (API) linking resources are now required for types of analyses that need to be performed \cite{swaminathan2016review}.
+The ability to integrate data from different source technologies, merge submissions from other labs, and distribute computations over fault-tolerant systems are now required for types of analyses that need to be performed \cite{schatz2015biological}.
 
 One of the key goals in developing Spfy was to accommodate and store a variety of result formats, and then to make the data from these results retrievable and usable as inputs for downstream analyses, such as predictive biomarker discovery. We have shown how a graph database can accommodate the results given by a variety of bioinformatics programs, and how Spfy is performant for data retrieval on the results for multiple analyses among over 10,000 genomes, providing results from big-data comparisons in the same efficiency as old analyses on single files.
 
 \mwcomment{I think this discussion sets the perfect tone for the big data applications provided by spfy. My only suggestion is to give examples of the types analysis that are mentioned in the review. One idea, instead of dropping "Impact on Public Heath Efforts" entirely, you can convert it into a use case example that highlights the benefit spfy provides.}
 
-\subsection{Impact on Public Health Efforts}
+\subsection{Impact on Public Heath Efforts}
 
 % para
 % focus on application
 The isolation and characterization of bacterial pathogens are critical for Public Health laboratories to rapidly respond to outbreaks, and to effectively monitor known and emerging pathogens through surveillance programs.
-Until recently, public-health agencies relied on laboratory tests such as serotyping, pulsed-field gel electrophoresis (PFGE), PCR-based amplification of known VFs, and disc-diffusion assays to identify AMR, for the characterization of bacterial isolates in outbreak, surveillance, and reference laboratory settings \cite{ronholm2016navigating}.
+Until recently, public-health agencies relied on laboratory tests such as serotyping, pulsed-field gel electrophoresis (PFGE), PCR-based amplification of known VFs, and disc-diffusion assays to identify AMR, for the characterization of bacterial isolates in outbreak, surveillance, and reference laboratory settings \cite{ronholm2016navigating}. Current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence without need for the traditional laboratory test.
 
-Current efforts are focused on predictive genomics, where the relevant phenotypic information can be determined through examination of the whole-genome sequence without need for the traditional laboratory test. Spfy provides rapid and easy predictive genomic analyses of \textit{E. coli} genomes.
+Spfy provides rapid and easy predictive genomic analyses of \textit{E. coli} genomes while also addressing the problem of large scale comparisons. With the larger datasets involved in population genomics, it is no longer viable for individual researchers to download data to perform comparisons. Instead, efforts have focused on storing biological data online and enabling analyses on that data \cite{schatz2015biological}. By using a graph database, Spfy can integrate results from  different technologies including software predicted phenotypes as well as laboratory results and user-submitted metadata. In addition, datasets can be built and submitted from multiple labs for joint analysis. 
 
 \subsection{Comparison with other bioinformatic pipeline technologies}
 % trying to cut down on details that would be better suited for the "Implemntation" section.
 
 
 % namely galaxy
-The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}. Galaxy aims to provide a reproducible, computational inferface which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire analysis pipeline can be replicated and also extended as new analysis tools are developed. The Galaxy worklow focus is on running an individual analysis pipeline. It does not include functionality to store and collate analysis results for large-scale comparative analysis.
+The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}. Galaxy aims to provide a reproducible, computational interface which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire analysis pipeline can be replicated and also extended as new analysis tools are developed. The Galaxy worklow focus is on running an individual analysis pipeline. It does not include functionality to store and collate analysis results for large-scale comparative analysis.
 
-The Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} provides an integrated analysis pipeline for bacterial WGS data as a web service. It provides an individual per-genome report of \mwcomment{list the features BAP provides}. \cite{thomsen2016bacterial}.
+The Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} provides an integrated analysis pipeline for bacterial WGS data as a web service. It provides an individual per-genome report of the determined species, multilocus sequence type, VF and AMR genes \cite{thomsen2016bacterial}.
 
-Spfy is similar to these technologies in that it automates workflows for users, and like Galaxy, uses task queues to distribute selected analysis.
+Spfy is similar to these technologies in that it automates workflows for users, and as in Galaxy, uses task queues to distribute selected analyses.
 % re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
 Spfy processes XXXX files over XX tasks in XXXX time, distributing computations over a task queue and multiple Docker compartmentalized containers.
