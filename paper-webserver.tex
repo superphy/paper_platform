@@ -312,9 +312,17 @@ On a per file basis, Spfy performs at a similar speed to BAP on predictive genom
 Spfy processes XXXX files over XX tasks in XXXX time, distributing computations over a task queue and multiple Docker compartmentalized containers.
 However, unlike these workflow managers, Spfy is designed to help solve the needless recomputation of analyses by storing results in a graph database for downstream comparative analysis. This allows Spfy to perform population-wide analyses, regardless of the individual analysis software used to generate the results for an individual genome.
 
-PATRIC \cite{wattam2016improvements} adds support for comparing user-submitted genomes and pre-analyzed public data, enabling comparisons of gene annotations for user-submitted genomes against reference genomes. PATRIC indexes a NoSQL document store to comparison similar document types. Unlike PATRIC which is targeted towards comparative genomics, Spfy's graph database enables broader generic comparisons against any population groupings. For example, Spfy can compare all genomes with a particular subtype for gene annotations, source metadata for gene annotations, or any two (or more) node or attribute data.
-
 \small \input{tables/comparison}
+
+PATRIC \cite{wattam2016improvements} adds support for comparing up to nine user-submitted genomes against a reference genome, targeting various gene annotations. PATRIC indexes a NoSQL document store to compare similar document types and is beneficial for comparative genomics. Unlike PARTIC, Spfy is targeted towards statistical comparisons of any population grouping, and Spfy's graph database has no limit on the number of genomes grouped for comparison. For example, Spfy can compare all genomes with a particular subtype for gene annotations, source metadata targets for gene annotations, or any two (or more) node or attribute types as shown in \ref{fig-groupings}.
+
+\begin{figure}[!hb]
+\begin{center}
+\includegraphics[width=\textwidth]{images/groupings}
+\end{center}
+\caption{Genomes can be grouped by any node or attribute type for comparisons, and Spfy has no upper bound for the number of genomes in a group. Different types can also be joined into a group through logical connectives AND, OR, Negation, and any data type is also a valid target. This approach can be used to compare any data regardless of source software.}
+\label{fig-groupings}
+\end{figure}
 
 \mwcomment{Maybe should include a comparison to PATRIC. Patric does offer some comparative genomic analysis, however they are not health focused (pathways, gene presence/absence etc), and you cannnot add your own data to the repository}
 
