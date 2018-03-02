@@ -20,9 +20,6 @@
 
 \begin{document}
 
-
-\mwcomment{I would suggest we avoid the comparison to sequence databases or genome sequence platforms (e.g. assembly, gene annotation etc). We really don't have the capacity to replace EnteroBase, Genbank, IRIDA, etc. I see Spfy as a repository of E.coli phenotypes important for public health. It allows users to rapidly predict phenotypes and retrieve the phenotypes of historical strains to: track trends, observe context amoung evolutionary related strains, identify biomarkers, etc. In other words, Spfy provides WGS-based phenotypes + big picture comparative genomics. The big picture is only possible by 1. recomputing everything everytime, or 2. storing the results as genomes are analysed. With size of WGS data, option 2 is only viable option}
-\mwcomment{Title may need work. Should it mention comparative genomics? Can't be too long thou}
 \title{Spfy: an integrated graph database for real-time prediction of Escherichia coli phenotypes and downstream comparative analyses}
 
 \author[1]{Kevin K Le\thanks{kevin.le@canada.ca}}
@@ -38,8 +35,7 @@
 
 \begin{abstract}
 
-Public health laboratories are currently moving to whole-genome sequencing based analyses, and require rapid prediction of relevant pathogen phenotypes impacting health. Current workflows in comparative computational genomics rely on chaining different analysis software together, but lack storage and retrieval methods for the generated results.
-\mwcomment{Reference laboratories do not care about data retrieval, only real-time results. Researchers care more about context and thus would use a historical record of phenotypes for all predicted strains} 
+Public health laboratories are currently moving to whole-genome sequencing based analyses, and require rapid prediction of relevant pathogen phenotypes impacting health. Current workflows in comparative computational genomics rely on chaining different analysis software together, but lack storage and retrieval methods for the generated results. 
 To solve this problem, we have created Spfy, which uses a graph database to store and retrieve results from computational workflows. The newly developed Spfy platform facilitates rapid phenotype identification, as well as the efficient storage and downstream comparative analysis of tens of thousands of genome sequences. Though generally applicable to bacterial genome sequences, Spfy currently contains 10,243 \textit{Escherichia coli} genomes, for which \textit{in-silico} serotype and Shiga-toxin subtype, as well as the presence of known virulence factors and antimicrobial resistance determinants have been computed.
 Spfy links the results and metadata to the genome sequences through a standardized ontology, which facilitates hypothesis testing in fields ranging from population genomics to epidemiology, while mitigating the recomputing of analyses.
 The graph approach is flexible, and can accommodate new analysis software modules as they are developed, and easily link new results to those already stored.
@@ -121,7 +117,7 @@ In this article, we present a new platform merging Superphy's pre-computed resul
 % Describe available functions in spfy
 % para covering everything
 
-Spfy provides rapid in-silco versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR annotation using the RGI program \cite{mcarthur2013comprehensive}. Spfy also performs pangenome analyses using Panseq \cite{laing2010pan}, with the entire pangenome stored in the database and associated with source genomes.
+Spfy provides rapid in-silico versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}, and AMR annotation using the RGI program \cite{mcarthur2013comprehensive}. Spfy also performs pangenome analyses using Panseq \cite{laing2010pan}, with the entire pangenome stored in the database and associated with source genomes.
 
 Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to the standard ontologies GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}, where metadata including genotypes, biomarkers, host, source, and statistical significance testing of genome markers for user-defined groups are stored.
 
@@ -281,8 +277,6 @@ The ability to integrate data from different source technologies, merge submissi
 
 One of the key goals in developing Spfy was to accommodate and store a variety of result formats, and then to make the data from these results retrievable and usable as inputs for downstream analyses, such as predictive biomarker discovery. We have shown how a graph database can accommodate the results from a variety of bioinformatics programs, and how Spfy is performant for data retrieval on the results for multiple analyses among over 10,000 genomes, providing results from big-data comparisons in the same efficiency as old analyses on single files.
 
-% \mwcomment{I think this discussion sets the perfect tone for the big data applications provided by spfy. My only suggestion is to give examples of the types analysis that are mentioned in the review. One idea, instead of dropping "Impact on Public Heath Efforts" entirely, you can convert it into a use case example that highlights the benefit spfy provides.}
-
 \subsection{Impact on Public Heath Efforts}
 
 % para
@@ -292,7 +286,7 @@ Until recently, public-health agencies relied on laboratory tests such as seroty
 
 Spfy provides rapid and easy predictive genomic analyses of \textit{E. coli} genomes while also addressing the problem of large scale comparisons. With the larger datasets involved in population genomics, it is no longer viable for individual researchers to download data to perform comparisons. Instead, efforts have focused on storing biological data online and enabling analyses on that data \cite{schatz2015biological}. By using a graph database, Spfy can integrate results from  different technologies including software predicted phenotypes as well as laboratory results and user-submitted metadata. In addition, datasets can be built and submitted from multiple labs for joint analyses. 
 
-\subsection{Comparison with other bioinformatic pipeline technologies}
+\subsection{Comparison with other bioinformatics pipeline technologies}
 % trying to cut down on details that would be better suited for the "Implemntation" section.
 
 
@@ -318,11 +312,9 @@ PATRIC \cite{wattam2016improvements} and Spfy share the same goal of integrated 
 \label{fig-groupings}
 \end{figure}
 
-% \mwcomment{Maybe should include a comparison to PATRIC. Patric does offer some comparative genomic analysis, however they are not health focused (pathways, gene presence/absence etc), and you cannnot add your own data to the repository}
-
 \section{CONCLUSIONS}
 
-Future work will focus on adding additional analysis modules to aid genotype to phenotype predictions using machine learning modules, and supporting bacterial species such as \textit{Salmonella}, and \textit{Campylobater}. While the integrated approach of storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and be transfered to existing platforms such as Galaxy. The source code for Spfy is hosted at \url{https://github.com/superphy/backend}, and is available for free under the open-source Apache 2.0 license. A developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+Future work will focus on adding additional analysis modules to aid genotype to phenotype predictions using machine learning modules, and supporting bacterial species such as \textit{Salmonella}, and \textit{Campylobacter}. While the integrated approach of storing and retrieving results provides enormous benefits, the developed analyses modules are self-contained and be transferred to existing platforms such as Galaxy. The source code for Spfy is hosted at \url{https://github.com/superphy/backend}, and is available for free under the open-source Apache 2.0 license. A developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
 \textit{Conflict of interest}. None declared.
 
