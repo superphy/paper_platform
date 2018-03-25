@@ -1,0 +1,6 @@
+[submodule "scripts/spfy"]
+	path = scripts/spfy
+	url = https://github.com/superphy/spfy.git
+[submodule "scripts/cge-tools-docker"]
+	path = scripts/cge-tools-docker
+	url = https://bitbucket.org/genomicepidemiology/cge-tools-docker
