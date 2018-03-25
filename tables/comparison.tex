@@ -1,0 +1,15 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[!hb]
+\centering
+\caption{Comparison of four bioinformatic pipelines and their underlying database. Functionally, Spfy integrates different analysis modules as in BAP while also merging large datasets as in PATRIC.}
+\label{Table 2.}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+         & Spfy                & Galaxy              & BAP                 & PATRIC              \\
+Database & Blazegraph          & PostgreSQL          & MySQL + File System & MongoDB + Shock     \\
+Type     & Graph               & SQL                 & SQL + File System   & NoSQL               \\
+Focus    & Integrated Analyses & Workflow Technology & Batch Analysis      & Integrated Analyses
+\end{tabular}%
+}
+\end{table}
