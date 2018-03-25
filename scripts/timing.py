@@ -16,6 +16,12 @@ def _plot(x):
 def _spfy(list_genomes):
     pass
 
+def _spfy_gc():
+    # analysis run-time / throughput with different levels of parallelization
+    # particularly for statistical tests
+    # should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
+    pass
+
 def _bap(list_genomes):
     pass
 
