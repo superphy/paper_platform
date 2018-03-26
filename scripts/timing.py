@@ -19,16 +19,39 @@ ROOT = os.getenv(
 )
 API = ROOT + 'api/v0/'
 
+class Result:
+    def __init__(self):
+        self.x_values = []
+        self.y_values = []
+
+    def update(self, x, y):
+        self.x_values.append(x)
+        self.y_values.append(y)
+
+    def as_np(self):
+        return np.array([self.x_values, self.y_values])
+
 def _plot(x):
     pass
 
 def _spfy(list_genomes):
     pass
 
-def _run_gc(rl_a, attr_a, rl_b, attr_b, target):
+def _find_rl(attr):
+    if attr[0] == 'O':
+        return 'http://purl.obolibrary.org/obo/GENEPIO_0001076'
+    elif attr[0] == 'H':
+        return 'http://purl.obolibrary.org/obo/GENEPIO_0001077'
+    else:
+        raise Exception('_find_rl() couldnt find relation for {0}'.format(attr))
+
+def _run_gc(attr_a, attr_b, target):
     """
     POSTs the comparison and retrieves its runtime.
     """
+    rl_a = _find_rl(attr_a)
+    rl_b = _find_rl(attr_b)
+
     groups = [
         [
             {
@@ -72,7 +95,7 @@ def _run_gc(rl_a, attr_a, rl_b, attr_b, target):
     sec = requests.get(API + 'timings/' + jobid)
     return (size_attr_a, size_attr_b, size_targets, sec)
 
-def _spfy_gc():
+def _attr_gc():
     """
     analysis run-time / throughput with different levels of parallelization
     particularly for statistical tests
@@ -86,7 +109,24 @@ def _spfy_gc():
     o_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001076')
     o_types = o_types.values()
 
-    pass
+    l = h_types + o_types
+    return l
+
+def _time_gc():
+    attributes = _attr_gc()
+    r = Result()
+    for target in ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor'):
+        p = 0
+        q = 1
+        while p <= len(attributes) - 2:
+            while q <= len(attribuetes) - 1:
+                st = _run_gc(attributes[p], attributes[q], target)
+                attr_x_targets = (st(0) + st(1)) * st(3)
+                r.update(attr_x_targets, st(4))
+                q += 1
+            p += 1
+            q = p + 1
+    return r.as_np()
 
 def _bap(list_genomes):
     # BAP throws an error without KmerFinder.
@@ -110,18 +150,6 @@ def _seed_genomes(size):
             pick = random.choice(os.listdir(GENOME_POOL))
         st.add(pick)
     return list(st)
-
-class Result:
-    def __init__(self):
-        self.x_values = []
-        self.y_values = []
-
-    def update(self, x, y):
-        self.x_values.append(x)
-        self.y_values.append(y)
-
-    def as_np(self):
-        return np.array([self.x_values, self.y_values])
 
 def _timing(func, seeds):
     r = Result()
