@@ -4,8 +4,10 @@ import random
 import subprocess
 import requests
 import numpy as np
+import cPickle as pickle
 
 from time import sleep
+from datetime import datetime
 from bokeh.plotting import figure, show, output_file
 
 GENOME_POOL = os.getenv(
@@ -115,6 +117,10 @@ def _attr_gc():
 def _time_gc():
     attributes = _attr_gc()
     r = Result()
+    raws = []
+    now = datetime.now()
+    now = now.strftime("%Y-%m-%d-%H-%M-%S")
+    # Loop.
     for target in ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor'):
         p = 0
         q = 1
@@ -122,11 +128,17 @@ def _time_gc():
             while q <= len(attribuetes) - 1:
                 st = _run_gc(attributes[p], attributes[q], target)
                 attr_x_targets = (st(0) + st(1)) * st(3)
+                # Update our main Result instance with the values.
                 r.update(attr_x_targets, st(4))
+                # Also saves the raws for writing out.
+                raws.append(st)
                 q += 1
             p += 1
             q = p + 1
-    return r.as_np()
+    array = r.as_np()
+    pickle.dump(raws, open(now + '_raws.p', "wb" ))
+    pickle.dump(array, open(now + '_array.p', "wb" ))
+    return array
 
 def _bap(list_genomes):
     # BAP throws an error without KmerFinder.
