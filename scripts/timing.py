@@ -1,6 +1,7 @@
 import os
 import time
 import random
+import subprocess
 import numpy as np
 
 from bokeh.plotting import figure, show, output_file
@@ -23,7 +24,9 @@ def _spfy_gc():
     pass
 
 def _bap(list_genomes):
-    pass
+    # BAP throws an error without KmerFinder.
+    r = subprocess.check_call("""docker run -ti --rm -w /workdir -v $(pwd):/workdir    cgetools BAP --dbdir /usr/src/cgepipeline/test/databases  --services KmerFinder,ResFinder,VirulenceFinder  --fa /usr/src/cgepipeline/test/test.fa""", shell=True)
+    return True
 
 def _time(func, list_genomes):
     '''func provided should block until complete.
