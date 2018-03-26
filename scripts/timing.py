@@ -2,8 +2,10 @@ import os
 import time
 import random
 import subprocess
+import requests
 import numpy as np
 
+from time import sleep
 from bokeh.plotting import figure, show, output_file
 
 GENOME_POOL = os.getenv(
@@ -11,16 +13,79 @@ GENOME_POOL = os.getenv(
     'data/'
 )
 
+ROOT = os.getenv(
+    'SPFY_API',
+    'https://localhost:9000/'
+)
+API = ROOT + 'api/v0/'
+
 def _plot(x):
     pass
 
 def _spfy(list_genomes):
     pass
 
+def _run_gc(rl_a, attr_a, rl_b, attr_b, target):
+    """
+    POSTs the comparison and retrieves its runtime.
+    """
+    groups = [
+        [
+            {
+                'negated': 'false',
+                'relation': rl_a,
+                'attribute': attr_a,
+                'logical': 'null'
+            }
+        ],
+        [
+            {
+                'negated': 'false',
+                'relation': rl_b,
+                'attribute': attr_b,
+                'logical': 'null'
+            }
+        ]
+    ]
+    data = {
+        'groups': groups,
+        'target': target
+    }
+    # POST and get the jobid from Spfy.
+    jobid = requests.post(API + 'newgroupcomparison')
+
+    # Loop until complete.
+    while requests.get(API + 'results/' + jobid) == 'pending':
+        # The length we sleep doesn't matter, as timing is retrieved directly
+        # from RQ.
+        sleep(4)
+    # Grab the result.
+    r = requests.get(API + 'results/' + jobid)
+    # Tell me how many rows (ie. how many found targets) there were.
+    size_targets = len(r['index'])
+    # Find the number of genoems for a given attribute.
+    row = r['data'][0]
+    size_attr_a = row[3] + row[4]
+    size_attr_b = row[5] + row[6]
+
+    # Request the time it took to run, in seconds.
+    sec = requests.get(API + 'timings/' + jobid)
+    return (size_attr_a, size_attr_b, size_targets, sec)
+
 def _spfy_gc():
-    # analysis run-time / throughput with different levels of parallelization
-    # particularly for statistical tests
-    # should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
+    """
+    analysis run-time / throughput with different levels of parallelization
+    particularly for statistical tests
+    should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
+    """
+    # Get all H-Types in the database.
+    h_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001077')
+    # This is a weird json format due to the Human-Readable conversion, convert it to a simple list.
+    h_types = h_types.values()
+    # Get all O-Types in the database.
+    o_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001076')
+    o_types = o_types.values()
+
     pass
 
 def _bap(list_genomes):
