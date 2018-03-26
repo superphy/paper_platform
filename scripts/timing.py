@@ -125,11 +125,11 @@ def _time_gc():
         p = 0
         q = 1
         while p <= len(attributes) - 2:
-            while q <= len(attribuetes) - 1:
+            while q <= len(attributes) - 1:
                 st = _run_gc(attributes[p], attributes[q], target)
-                attr_x_targets = (st(0) + st(1)) * st(3)
+                attr_x_targets = (st[0] + st[1]) * st[3]
                 # Update our main Result instance with the values.
-                r.update(attr_x_targets, st(4))
+                r.update(attr_x_targets, st[4])
                 # Also saves the raws for writing out.
                 raws.append(st)
                 q += 1
