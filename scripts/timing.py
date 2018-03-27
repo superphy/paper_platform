@@ -17,7 +17,7 @@ GENOME_POOL = os.getenv(
 
 ROOT = os.getenv(
     'SPFY_API',
-    'https://localhost:9000/'
+    'https://localhost:8000/'
 )
 API = ROOT + 'api/v0/'
 
