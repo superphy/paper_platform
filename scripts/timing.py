@@ -131,7 +131,7 @@ def _time_gc():
                 # Update our main Result instance with the values.
                 r.update(attr_x_targets, st[4])
                 # Also saves the raws for writing out.
-                raws.append(st)
+                raws.append(st + (attributes[p], attributes[q], target))
                 q += 1
             p += 1
             q = p + 1
