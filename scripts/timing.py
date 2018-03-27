@@ -104,11 +104,11 @@ def _attr_gc():
     should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
     """
     # Get all H-Types in the database.
-    h_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001077')
+    h_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001077').json()
     # This is a weird json format due to the Human-Readable conversion, convert it to a simple list.
     h_types = h_types.values()
     # Get all O-Types in the database.
-    o_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001076')
+    o_types = requests.get(API + 'get_attribute_values/type/http://purl.obolibrary.org/obo/GENEPIO_0001076').json()
     o_types = o_types.values()
 
     l = h_types + o_types
