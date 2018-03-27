@@ -78,7 +78,7 @@ def _run_gc(attr_a, attr_b, target):
     }
     # POST and get the jobid from Spfy.
     jobid = requests.post(API + 'newgroupcomparison').text
-
+    print("jobid", jobid)
     # Loop until complete.
     while requests.get(API + 'results/' + jobid).text == 'pending':
         # The length we sleep doesn't matter, as timing is retrieved directly
