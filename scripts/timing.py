@@ -76,6 +76,7 @@ def _run_gc(attr_a, attr_b, target):
         'groups': groups,
         'target': target
     }
+    print(data)
     # POST and get the jobid from Spfy.
     jobid = requests.post(API + 'newgroupcomparison', json=data).text
     print("jobid", jobid)
