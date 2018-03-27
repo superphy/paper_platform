@@ -80,29 +80,34 @@ def _run_gc(attr_a, attr_b, target):
     # POST and get the jobid from Spfy.
     jobid = requests.post(API + 'newgroupcomparison', json=data).text
     print("jobid", jobid)
-    # Loop until complete.
-    while requests.get(API + 'results/' + jobid).json() == unicode('pending'):
-        # The length we sleep doesn't matter, as timing is retrieved directly
-        # from RQ.
-        print "sleeping"
-        sleep(4)
-    # Grab the result.
-    r = requests.get(API + 'results/' + jobid).json()
-    print(r)
-    # Tell me how many rows (ie. how many found targets) there were.
-    size_targets = len(r['index'])
-    # Find the number of genoems for a given attribute.
-    if r['data']:
+    # Sleep at least 1 second.
+    sleep(1)
+    try:
+        # Loop until complete.
+        while requests.get(API + 'results/' + jobid).json() == unicode('pending'):
+            # The length we sleep doesn't matter, as timing is retrieved directly
+            # from RQ.
+            print "sleeping"
+            sleep(4)
+        # Grab the result.
+        r = requests.get(API + 'results/' + jobid).json()
+        print(r)
+        # Tell me how many rows (ie. how many found targets) there were.
+        size_targets = len(r['index'])
+        # Find the number of genoems for a given attribute.
         row = r['data'][0]
         size_attr_a = row[3] + row[4]
         size_attr_b = row[5] + row[6]
-    else:
-        # data is empty. May happen with a small db.
+        # Request the time it took to run, in seconds.
+        sec = requests.get(API + 'timings/' + jobid).text
+    except:
+        # Either:
+        # 1) data is empty. This can be due to a small db.
+        # 2) some other error. Likely something timed out.
+        size_targets = 0
         size_attr_a = 0
         size_attr_b = 0
-
-    # Request the time it took to run, in seconds.
-    sec = requests.get(API + 'timings/' + jobid).text
+        sec = 0
     return (size_attr_a, size_attr_b, size_targets, sec)
 
 def _attr_gc():
@@ -125,7 +130,7 @@ def _attr_gc():
     print(l)
     return l
 
-def _time_gc():
+def time_gc():
     attributes = _attr_gc()
     r = Result()
     raws = []
