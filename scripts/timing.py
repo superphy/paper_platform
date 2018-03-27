@@ -80,9 +80,10 @@ def _run_gc(attr_a, attr_b, target):
     jobid = requests.post(API + 'newgroupcomparison', json=data).text
     print("jobid", jobid)
     # Loop until complete.
-    while requests.get(API + 'results/' + jobid).text == 'pending':
+    while requests.get(API + 'results/' + jobid).text == unicode('pending'):
         # The length we sleep doesn't matter, as timing is retrieved directly
         # from RQ.
+        print "sleeping"
         sleep(4)
     # Grab the result.
     r = requests.get(API + 'results/' + jobid)
