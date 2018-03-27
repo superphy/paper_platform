@@ -120,6 +120,8 @@ def _attr_gc():
     o_types = o_types.values()
 
     l = h_types + o_types
+    # Rm unsuitable attributes.
+    l = [s for s in l if s[0] in ('O', 'H')]
     print(l)
     return l
 
