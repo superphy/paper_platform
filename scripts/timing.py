@@ -108,7 +108,9 @@ def _run_gc(attr_a, attr_b, target):
         size_attr_a = 0
         size_attr_b = 0
         sec = 0
-    return (size_attr_a, size_attr_b, size_targets, sec)
+    ret = (size_attr_a, size_attr_b, size_targets, sec)
+    print(ret)
+    return ret
 
 def _attr_gc():
     """
