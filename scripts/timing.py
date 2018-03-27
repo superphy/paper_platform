@@ -87,6 +87,7 @@ def _run_gc(attr_a, attr_b, target):
         sleep(4)
     # Grab the result.
     r = requests.get(API + 'results/' + jobid).json()
+    print(r)
     # Tell me how many rows (ie. how many found targets) there were.
     size_targets = len(r['index'])
     # Find the number of genoems for a given attribute.
