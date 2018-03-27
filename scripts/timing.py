@@ -77,15 +77,15 @@ def _run_gc(attr_a, attr_b, target):
         'target': target
     }
     # POST and get the jobid from Spfy.
-    jobid = requests.post(API + 'newgroupcomparison')
+    jobid = requests.post(API + 'newgroupcomparison').text
 
     # Loop until complete.
-    while requests.get(API + 'results/' + jobid) == 'pending':
+    while requests.get(API + 'results/' + jobid).text == 'pending':
         # The length we sleep doesn't matter, as timing is retrieved directly
         # from RQ.
         sleep(4)
     # Grab the result.
-    r = requests.get(API + 'results/' + jobid)
+    r = requests.get(API + 'results/' + jobid).json()
     # Tell me how many rows (ie. how many found targets) there were.
     size_targets = len(r['index'])
     # Find the number of genoems for a given attribute.
@@ -94,7 +94,7 @@ def _run_gc(attr_a, attr_b, target):
     size_attr_b = row[5] + row[6]
 
     # Request the time it took to run, in seconds.
-    sec = requests.get(API + 'timings/' + jobid)
+    sec = requests.get(API + 'timings/' + jobid).text
     return (size_attr_a, size_attr_b, size_targets, sec)
 
 def _attr_gc():
