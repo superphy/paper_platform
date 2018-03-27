@@ -130,7 +130,6 @@ def _time_gc():
     now = now.strftime("%Y-%m-%d-%H-%M-%S")
     # Loop.
     targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
-    targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
     for target in targets:
         p = 0
         q = 1
