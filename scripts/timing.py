@@ -88,6 +88,7 @@ def _run_gc(attr_a, attr_b, target):
     r = requests.get(API + 'results/' + jobid)
     try:
         r = r.json()
+        print ("r", r)
     except:
         print(r)
         raise Exception('failed')
