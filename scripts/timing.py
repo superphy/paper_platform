@@ -77,7 +77,7 @@ def _run_gc(attr_a, attr_b, target):
         'target': target
     }
     # POST and get the jobid from Spfy.
-    jobid = requests.post(API + 'newgroupcomparison', data=data).text
+    jobid = requests.post(API + 'newgroupcomparison', json=data).text
     print("jobid", jobid)
     # Loop until complete.
     while requests.get(API + 'results/' + jobid).text == 'pending':
