@@ -57,18 +57,18 @@ def _run_gc(attr_a, attr_b, target):
     groups = [
         [
             {
-                'negated': 'false',
+                'negated': False,
                 'relation': rl_a,
                 'attribute': attr_a,
-                'logical': 'null'
+                'logical': None
             }
         ],
         [
             {
-                'negated': 'false',
+                'negated': False,
                 'relation': rl_b,
                 'attribute': attr_b,
-                'logical': 'null'
+                'logical': None
             }
         ]
     ]
@@ -120,6 +120,7 @@ def _attr_gc():
     o_types = o_types.values()
 
     l = h_types + o_types
+    print(l)
     return l
 
 def _time_gc():
