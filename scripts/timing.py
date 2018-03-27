@@ -92,9 +92,14 @@ def _run_gc(attr_a, attr_b, target):
     # Tell me how many rows (ie. how many found targets) there were.
     size_targets = len(r['index'])
     # Find the number of genoems for a given attribute.
-    row = r['data'][0]
-    size_attr_a = row[3] + row[4]
-    size_attr_b = row[5] + row[6]
+    if r['data']:
+        row = r['data'][0]
+        size_attr_a = row[3] + row[4]
+        size_attr_b = row[5] + row[6]
+    else:
+        # data is empty. May happen with a small db.
+        size_attr_a = 0
+        size_attr_b = 0
 
     # Request the time it took to run, in seconds.
     sec = requests.get(API + 'timings/' + jobid).text
@@ -124,7 +129,9 @@ def _time_gc():
     now = datetime.now()
     now = now.strftime("%Y-%m-%d-%H-%M-%S")
     # Loop.
-    for target in ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor'):
+    targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
+    targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
+    for target in targets:
         p = 0
         q = 1
         while p <= len(attributes) - 2:
