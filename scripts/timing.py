@@ -80,19 +80,13 @@ def _run_gc(attr_a, attr_b, target):
     jobid = requests.post(API + 'newgroupcomparison', json=data).text
     print("jobid", jobid)
     # Loop until complete.
-    while requests.get(API + 'results/' + jobid).text == unicode('pending'):
+    while requests.get(API + 'results/' + jobid).json() == unicode('pending'):
         # The length we sleep doesn't matter, as timing is retrieved directly
         # from RQ.
         print "sleeping"
         sleep(4)
     # Grab the result.
-    r = requests.get(API + 'results/' + jobid)
-    try:
-        r = r.json()
-        print ("r", r)
-    except:
-        print(r)
-        raise Exception('failed')
+    r = requests.get(API + 'results/' + jobid).json()
     # Tell me how many rows (ie. how many found targets) there were.
     size_targets = len(r['index'])
     # Find the number of genoems for a given attribute.
