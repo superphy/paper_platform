@@ -248,7 +248,7 @@ def _timing(func, seeds):
         r.update(d)
     return r
 
-def main(spfy=True, bap=True, start=1, stop=22, step=5):
+def main(spfy=True, bap=False, start=1, stop=22, step=5):
     # Create groups of seed genomes.
     seeds = [_seed_genomes(i) for i in range(start,stop,step)]
     # Run timings
