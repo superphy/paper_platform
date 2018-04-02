@@ -314,7 +314,9 @@ Spfy is similar to these technologies in that it automates workflows for users a
 % re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
 
 % If we mention speed comparisons, we need to have actual data supporting them
-On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, usually completing within 2-3 minutes, though Spfy does not provide genome assembly services.
+On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
+After accounting for assembly services, BAP reported \cite{thomsen2016bacterial} an average runtime of 8-9 minutes per genome over 476 runs.
+ResFinder, which is similar to the RGI program used by Spfy, took an average of 3-4 minutes.
 However, unlike these workflow managers, Spfy is designed to help solve the needless re-computation of analyses by storing results in a graph database for downstream comparative studies. This allows Spfy to perform population-wide analyses, regardless of the individual software used to generate the results for a given genome.
 
 \small \input{tables/comparison}
