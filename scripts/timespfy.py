@@ -3,12 +3,12 @@ import time
 import random
 import subprocess
 import requests
-import zipfile
 import numpy as np
 import cPickle as pickle
 
 from time import sleep
 from datetime import datetime
+from zipfile import ZipFile
 
 GENOME_POOL = os.getenv(
     'GENOME_POOL',
@@ -56,7 +56,7 @@ class BarResult:
         self.list_sizes = list_sizes
         self.subtasks = None
         self.data = {
-            'size_increments': size_increments
+            'size_increments': list_sizes
         }
 
     def update(self, timing):
@@ -70,13 +70,18 @@ class BarResult:
 def _run_spfy(list_genomes):
     '''POSTs to Spfy's API.
     '''
-    # Zip the files.
-    name = _now() + '.zip'
-    with ZipFile(name, 'w') as z:
-        for f in list_genomes:
-            z.write(f)
-    # File payload.
-    files = {'file': open(name), 'rb'}
+    # Zip files if more than 1 genome.
+    if len(list_genomes)>1:
+        # Zip the files.
+        name = _now() + '.zip'
+        with ZipFile(name, 'w') as z:
+            for f in list_genomes:
+                z.write(f)
+        # File payload.
+        files = {'file': open(name, 'rb')}
+    else:
+        files = {'file': open(list_genomes[0], 'rb')}
+
     # Options payload.
     data = {
         'options.pi': 90,
@@ -99,13 +104,13 @@ def _run_spfy(list_genomes):
     sleep(4)
     try:
         # Loop until complete.
-        while requests.get(API + 'results/' + jobid).json() == unicode('pending'):
+        while requests.get(API + 'results/' + pipeline_id).json() == unicode('pending'):
             # The length we sleep doesn't matter, as timing is retrieved directly
             # from RQ.
             print "sleeping"
             sleep(4)
         # Request to timings for various sub-jobs.
-        timings = requests.get(API + 'timings/' + jobid).json()
+        timings = requests.get(API + 'timings/' + pipeline_id).json()
         return timings
     except:
         # Case connection broke.
