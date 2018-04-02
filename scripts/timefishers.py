@@ -1,15 +1,10 @@
 import os
-import time
-import random
-import subprocess
 import requests
-import zipfile
 import numpy as np
 import cPickle as pickle
 
 from time import sleep
 from datetime import datetime
-from bokeh.plotting import figure, show, output_file
 
 GENOME_POOL = os.getenv(
     'GENOME_POOL',
@@ -24,24 +19,12 @@ API = ROOT + 'api/v0/'
 
 # Utility functions.
 
-def _plot(x):
-    pass
-
 def _now():
     now = datetime.now()
     now = now.strftime("%Y-%m-%d-%H-%M-%S-%f")
     return now
 
-def _seed_genomes(size):
-    st = set()
-    pick = random.choice(os.listdir(GENOME_POOL))
-    for i in range(size):
-        while pick in st:
-            pick = random.choice(os.listdir(GENOME_POOL))
-        st.add(pick)
-    return list(st)
-
-# Result classes.
+# Result class.
 
 class Result:
     def __init__(self):
@@ -55,65 +38,7 @@ class Result:
     def as_np(self):
         return np.array([self.x_values, self.y_values])
 
-class BarResult:
-    def __init__(self, list_sizes):
-        self.list_sizes = list_sizes
-        self.subtasks = None
-        self.data = {
-            'size_increments': size_increments
-        }
-
-    def update(self, timing):
-        '''Variable "timing" should be of shape {sample_size(str): list_subtask_times(list)}
-        '''
-        assert isinstance(timing, dict)
-        self.data.update(timing)
-
 # Calling functions.
-
-def _run_spfy(list_genomes):
-    '''POSTs to Spfy's API.
-    '''
-    # Zip the files.
-    name = _now() + '.zip'
-    with ZipFile(name, 'w') as z:
-        for f in list_genomes:
-            z.write(f)
-    # File payload.
-    files = {'file': open(name), 'rb'}
-    # Options payload.
-    data = {
-        'options.pi': 90,
-        'options.amr': True,
-        'options.serotype': True,
-        'options.vf': True,
-        'options.stx1': True,
-        'options.stx2': True,
-        'options.eae': True,
-        'options.groupresults': True,
-        'options.bulk': False,
-        'options.pan': True
-    }
-
-    # POST.
-    r = requests.post(API + 'upload', data=data, files=files)
-    pipeline_id = r.text
-    print("pipeline_id", pipeline_id)
-    # Sleep at least 4 second.
-    sleep(4)
-    try:
-        # Loop until complete.
-        while requests.get(API + 'results/' + jobid).json() == unicode('pending'):
-            # The length we sleep doesn't matter, as timing is retrieved directly
-            # from RQ.
-            print "sleeping"
-            sleep(4)
-        # Request to timings for various sub-jobs.
-        timings = requests.get(API + 'timings/' + jobid).json()
-        return timings
-    except:
-        # Case connection broke.
-        return {}
 
 def _find_rl(attr):
     if attr[0] == 'O':
@@ -212,8 +137,7 @@ def time_gc():
     attributes = _attr_gc()
     r = Result()
     raws = []
-    now = datetime.now()
-    now = now.strftime("%Y-%m-%d-%H-%M-%S")
+    now = _now()
     # Loop.
     targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
     for target in targets:
@@ -235,28 +159,5 @@ def time_gc():
     pickle.dump(array, open(now + '_array.p', "wb" ))
     return array
 
-def _bap(list_genomes):
-    # BAP throws an error without KmerFinder.
-    r = subprocess.check_call("""docker run -ti --rm -w /workdir -v $(pwd):/workdir    cgetools BAP --dbdir /usr/src/cgepipeline/test/databases  --services KmerFinder,ResFinder,VirulenceFinder  --fa /usr/src/cgepipeline/test/test.fa""", shell=True)
-    return True
-
-def _timing(func, seeds):
-    list_sizes = [len(l) for l in seeds]
-    r = BarResult(list_sizes)
-    for list_genomes in seeds:
-        d = func(list_genomes)
-        r.update(d)
-    return r
-
-def main(spfy=True, bap=False, start=1, stop=22, step=5):
-    # Create groups of seed genomes.
-    seeds = [_seed_genomes(i) for i in range(start,stop,step)]
-    # Run timings
-    if spfy:
-        r_spfy = _timing(_run_spfy, seeds)
-    if bap:
-        r_bap = _timing(_bap, seeds)
-    return r_spfy, r_bap
-
 if __name__ == '__main__':
-    main()
+    time_gc()
