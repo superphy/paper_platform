@@ -33,7 +33,7 @@ def _seed_genomes(size):
     pick = random.choice(os.listdir(GENOME_POOL))
     for i in range(size):
         while pick in st:
-            pick = random.choice(os.listdir(GENOME_POOL))
+            pick = os.path.join(GENOME_POOL, random.choice(os.listdir(GENOME_POOL)))
         st.add(pick)
     return list(st)
 
