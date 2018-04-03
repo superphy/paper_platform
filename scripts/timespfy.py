@@ -158,7 +158,7 @@ def singlerun(n=100):
         # Run Spfy with a single genome.
         print('{0}/{1} Running Spfy with file: {2}'.format(index+1,len(seeds),genome))
         r = _run_spfy(genome)
-        l.append(r)
+        l.append({genome:r})
     # Pickle file.
     p = '{0}_singlerun_{1}.p'.format(now,n)
     pickle.dump(l, open(p, "wb" ))
