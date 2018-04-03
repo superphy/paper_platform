@@ -104,7 +104,7 @@ def _run_spfy(list_genomes):
 
     # POST.
     r = requests.post(API + 'upload', data=data, files=files)
-    pipeline_id = r.json.keys()[0]
+    pipeline_id = r.json().keys()[0]
     print("pipeline_id: ".format(pipeline_id))
     # Sleep at least 4 second.
     sleep(4)
@@ -156,7 +156,7 @@ def singlerun(n=100):
     seeds = _seed_genomes(n)
     for index, genome in enumerate(seeds):
         # Run Spfy with a single genome.
-        print('{0}/{1} Running Spfy with file: {2}'.format(index,len(seeds),genome))
+        print('{0}/{1} Running Spfy with file: {2}'.format(index+1,len(seeds),genome))
         r = _run_spfy(genome)
         l.append(r)
     # Pickle file.
