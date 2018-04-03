@@ -55,18 +55,17 @@ class Result:
         return np.array([self.x_values, self.y_values])
 
 class BarResult:
-    def __init__(self, list_sizes):
-        self.list_sizes = list_sizes
+    def __init__(self, seeds, now):
+        self.list_sizes = [len(l) for l in seeds]
+        self.seeds = seeds
         self.subtasks = None
-        self.data = {
-            'size_increments': list_sizes
-        }
+        self.data = []
+        self.now = now
 
     def update(self, timing):
         '''Variable "timing" should be of shape {sample_size(str): list_subtask_times(list)}
         '''
-        assert isinstance(timing, dict)
-        self.data.update(timing)
+        self.data.append(timing)
 
 # Calling functions.
 
@@ -132,24 +131,17 @@ def _bap(list_genomes):
     return True
 
 def _timing(func, seeds):
-    list_sizes = [len(l) for l in seeds]
-    r = BarResult(list_sizes)
+    now = _now()
+    r = BarResult(seeds, now)
+    raws = []
     for list_genomes in seeds:
         d = func(list_genomes)
         r.update(d)
+        raws.append(d)
+    # Pickle file.
+    pickle.dump(raws, open('{0}_spfy_raws_{1}.p'.format(now,len(seeds)), "wb" ))
+    pickle.dump(r, open('{0}_spfy_class_{1}.p'.format(now,len(seeds)), "wb" ))
     return r
-
-def main(spfy=True, bap=False, rn=None):
-    if not rn:
-        rn = range(1,22,5)
-    # Create groups of seed genomes.
-    seeds = [_seed_genomes(i) for i in rn]
-    # Run timings
-    if spfy:
-        r_spfy = _timing(_run_spfy, seeds)
-    if bap:
-        r_bap = _timing(_bap, seeds)
-    return r_spfy, r_bap
 
 def singlerun(n=100):
     '''Times Spfy 1-by-1 for up to n genomes. Used to find average/module.
@@ -167,6 +159,17 @@ def singlerun(n=100):
     pickle.dump(l, open(p, "wb" ))
     return l
 
+def main(spfy=True, bap=False, n=101):
+    rn = range(0,n+1,10)
+    rn[0]=1
+    # Create groups of seed genomes.
+    seeds = [_seed_genomes(i) for i in rn]
+    # Run timings
+    if spfy:
+        r_spfy = _timing(_run_spfy, seeds)
+    if bap:
+        r_bap = _timing(_bap, seeds)
+    return r_spfy, r_bap
+
 if __name__ == '__main__':
-    rn = range(1,22,5)
-    main(rn=rn)
+    main()
