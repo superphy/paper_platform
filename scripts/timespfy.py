@@ -105,11 +105,9 @@ def _run_spfy(list_genomes):
     # POST.
     r = requests.post(API + 'upload', data=data, files=files)
     r_json = r.json()
-    print("r_json: {0}".format(r_json))
     r_keys = r_json.keys()
-    print("r_keys: {0}".format(r_keys))
     pipeline_id = r_keys[0]
-    print("pipeline_id: ".format(pipeline_id))
+    print("pipeline_id: {0}".format(pipeline_id))
     # Sleep at least 4 second.
     sleep(4)
     try:
