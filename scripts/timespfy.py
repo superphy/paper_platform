@@ -104,7 +104,10 @@ def _run_spfy(list_genomes):
 
     # POST.
     r = requests.post(API + 'upload', data=data, files=files)
-    pipeline_id = r.json().keys()[0]
+    try:
+        pipeline_id = r.json().keys()[0]
+    except:
+        raise Exception('Could not find pipeline_id from response {0}'.format(r.text))
     print("pipeline_id: {0}".format(pipeline_id))
     # Sleep at least 4 second.
     sleep(4)
