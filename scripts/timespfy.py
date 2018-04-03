@@ -129,9 +129,11 @@ def _timing(func, seeds):
         r.update(d)
     return r
 
-def main(spfy=True, bap=False, start=1, stop=22, step=5):
+def main(spfy=True, bap=False, rn=None):
+    if not rn:
+        rn = range(1,22,5)
     # Create groups of seed genomes.
-    seeds = [_seed_genomes(i) for i in range(start,stop,step)]
+    seeds = [_seed_genomes(i) for i in rn]
     # Run timings
     if spfy:
         r_spfy = _timing(_run_spfy, seeds)
@@ -139,5 +141,22 @@ def main(spfy=True, bap=False, start=1, stop=22, step=5):
         r_bap = _timing(_bap, seeds)
     return r_spfy, r_bap
 
+def singlerun(n=100):
+    '''Times Spfy 1-by-1 for up to n genomes. Used to find average/module.
+    '''
+    l = []
+    now = _now()
+    seeds = _seed_genomes(n)
+    for index, genome in enumerate(seeds):
+        # Run Spfy with a single genome.
+        print('{0}/{1} Running Spfy with file: {2}'.format(index,len(seeds),genome))
+        r = _run_spfy(genome)
+        l.append(r)
+    # Pickle file.
+    p = '{0}_singlerun_{1}.p'.format(now,n)
+    pickle.dump(l, open(p, "wb" ))
+    return l
+
 if __name__ == '__main__':
-    main()
+    rn = range(1,22,5)
+    main(rn=rn)
