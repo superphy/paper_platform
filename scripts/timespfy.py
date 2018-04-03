@@ -29,11 +29,14 @@ def _now():
     return now
 
 def _seed_genomes(size):
+    def _pick():
+        f = os.path.join(GENOME_POOL, random.choice(os.listdir(GENOME_POOL)))
+        return f
     st = set()
-    pick = random.choice(os.listdir(GENOME_POOL))
+    pick = _pick()
     for i in range(size):
         while pick in st:
-            pick = os.path.join(GENOME_POOL, random.choice(os.listdir(GENOME_POOL)))
+            pick = _pick()
         st.add(pick)
     return list(st)
 
@@ -101,8 +104,8 @@ def _run_spfy(list_genomes):
 
     # POST.
     r = requests.post(API + 'upload', data=data, files=files)
-    pipeline_id = r.text
-    print("pipeline_id", pipeline_id)
+    pipeline_id = r.json.keys()[0]
+    print("pipeline_id: ".format(pipeline_id))
     # Sleep at least 4 second.
     sleep(4)
     try:
@@ -114,6 +117,7 @@ def _run_spfy(list_genomes):
             sleep(4)
         # Request to timings for various sub-jobs.
         timings = requests.get(API + 'timings/' + pipeline_id).json()
+        print("timings: {0}".format(timings))
         return timings
     except:
         # Case connection broke.
