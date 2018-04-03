@@ -71,16 +71,19 @@ def _run_spfy(list_genomes):
     '''POSTs to Spfy's API.
     '''
     # Zip files if more than 1 genome.
-    if len(list_genomes)>1:
-        # Zip the files.
-        name = _now() + '.zip'
-        with ZipFile(name, 'w') as z:
-            for f in list_genomes:
-                z.write(f)
-        # File payload.
-        files = {'file': open(name, 'rb')}
+    if isinstance(list_genomes, list):
+        if len(list_genomes)>1:
+            # Zip the files.
+            name = _now() + '.zip'
+            with ZipFile(name, 'w') as z:
+                for f in list_genomes:
+                    z.write(f)
+            # File payload.
+            files = {'file': open(name, 'rb')}
+        else:
+            files = {'file': open(list_genomes[0], 'rb')}
     else:
-        files = {'file': open(list_genomes[0], 'rb')}
+        files = {'file': open(list_genomes, 'rb')}
 
     # Options payload.
     data = {
