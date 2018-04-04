@@ -79,7 +79,7 @@ def _run_spfy(list_genomes):
             name = _now() + '.zip'
             with ZipFile(name, 'w') as z:
                 for f in list_genomes:
-                    z.write(f)
+                    z.write(f, os.path.basename(f))
             # File payload.
             files = {'file': open(name, 'rb')}
         else:
@@ -135,6 +135,7 @@ def _timing(func, seeds):
     r = BarResult(seeds, now)
     raws = []
     for list_genomes in seeds:
+        print('{0}/{1} Spfy Batch with files: {2}'.format(len(list_genomes),len(seeds[-1]),list_genomes))
         d = func(list_genomes)
         r.update(d)
         raws.append(d)
