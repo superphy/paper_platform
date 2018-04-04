@@ -163,14 +163,17 @@ def singlerun(n=100):
 def main(spfy=True, bap=False, n=101):
     rn = range(0,n+1,10)
     rn[0]=1
+    r = {}
     # Create groups of seed genomes.
     seeds = [_seed_genomes(i) for i in rn]
     # Run timings
     if spfy:
         r_spfy = _timing(_run_spfy, seeds)
+        r.update({'r_spfy':r_spfy})
     if bap:
         r_bap = _timing(_bap, seeds)
-    return r_spfy, r_bap
+        r.update({'r_bap':r_bap})
+    return r
 
 if __name__ == '__main__':
     main()
