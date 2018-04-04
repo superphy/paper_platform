@@ -116,7 +116,7 @@ def _run_spfy(list_genomes, on=''):
         while requests.get(API + 'results/' + pipeline_id).json() == unicode('pending'):
             # The length we sleep doesn't matter, as timing is retrieved directly
             # from RQ.
-            print "On {0}, sleeping. Elapsed: {1}".format(on, started-datetime.now())
+            print "On {0}, sleeping. Elapsed: {1}".format(on, datetime.now()-started)
             sleep(4)
         # Request to timings for various sub-jobs.
         timings = requests.get(API + 'timings/' + pipeline_id).json()
@@ -137,7 +137,7 @@ def _timing(func, seeds):
     raws = []
     for list_genomes in seeds:
         on = '{0}/{1}'.format(len(list_genomes),len(seeds[-1]))
-        print('{0} Spfy Batch with files: {1}'.format(on,list_genomes))
+        print('\n{0} Spfy Batch with files: {1}\n'.format(on,list_genomes))
         d = func(list_genomes, on)
         r.update(d)
         raws.append(d)
