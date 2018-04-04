@@ -163,6 +163,7 @@ def singlerun(n=100):
     return l
 
 def main(spfy=True, bap=False, n=101):
+    print('Starting timing run for {0} files\nFrom: {1}\nAgainst API: {2}'.format(n,GENOME_POOL,API))
     rn = range(0,n+1,10)
     rn[0]=1
     r = {}
