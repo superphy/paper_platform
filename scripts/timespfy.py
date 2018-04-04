@@ -69,7 +69,7 @@ class BarResult:
 
 # Calling functions.
 
-def _run_spfy(list_genomes):
+def _run_spfy(list_genomes, on=''):
     '''POSTs to Spfy's API.
     '''
     # Zip files if more than 1 genome.
@@ -98,7 +98,7 @@ def _run_spfy(list_genomes):
         'options.eae': True,
         'options.groupresults': True,
         'options.bulk': False,
-        'options.pan': True
+        'options.pan': False
     }
 
     # POST.
@@ -108,6 +108,7 @@ def _run_spfy(list_genomes):
     except:
         raise Exception('Could not find pipeline_id from response {0}'.format(r.text))
     print("pipeline_id: {0}".format(pipeline_id))
+    started = datetime.now()
     # Sleep at least 4 second.
     sleep(4)
     try:
@@ -115,7 +116,7 @@ def _run_spfy(list_genomes):
         while requests.get(API + 'results/' + pipeline_id).json() == unicode('pending'):
             # The length we sleep doesn't matter, as timing is retrieved directly
             # from RQ.
-            print "sleeping"
+            print "On {0}, sleeping. Elapsed: {1}".format(on, started-datetime.now())
             sleep(4)
         # Request to timings for various sub-jobs.
         timings = requests.get(API + 'timings/' + pipeline_id).json()
@@ -125,7 +126,7 @@ def _run_spfy(list_genomes):
         # Case connection broke.
         return {}
 
-def _bap(list_genomes):
+def _bap(list_genomes, on=''):
     # BAP throws an error without KmerFinder.
     r = subprocess.check_call("""docker run -ti --rm -w /workdir -v $(pwd):/workdir    cgetools BAP --dbdir /usr/src/cgepipeline/test/databases  --services KmerFinder,ResFinder,VirulenceFinder  --fa /usr/src/cgepipeline/test/test.fa""", shell=True)
     return True
@@ -135,8 +136,9 @@ def _timing(func, seeds):
     r = BarResult(seeds, now)
     raws = []
     for list_genomes in seeds:
-        print('{0}/{1} Spfy Batch with files: {2}'.format(len(list_genomes),len(seeds[-1]),list_genomes))
-        d = func(list_genomes)
+        on = '{0}/{1}'.format(len(list_genomes),len(seeds[-1]))
+        print('{0} Spfy Batch with files: {1}'.format(on,list_genomes))
+        d = func(list_genomes, on)
         r.update(d)
         raws.append(d)
     # Pickle file.
