@@ -119,8 +119,14 @@ def _run_spfy(list_genomes, on=''):
             print "On {0}, sleeping. Elapsed: {1}".format(on, datetime.now()-started)
             sleep(4)
         # Request to timings for various sub-jobs.
-        timings = requests.get(API + 'timings/' + pipeline_id).json()
-        print("timings: {0}".format(timings))
+        r = requests.get(API + 'timings/' + pipeline_id)
+        try:
+            timings = r.json()
+            print("timings: {0}".format(timings))
+        except:
+            m = "FATAL: timings got something weird when retrieving timings. Got: {0}".format(r)
+            print("\n{0}\n".format(m))
+            timings = {len(list_genomes):m}
         return timings
     except:
         # Case connection broke.
