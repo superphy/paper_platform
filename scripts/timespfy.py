@@ -61,6 +61,7 @@ class BarResult:
         self.subtasks = None
         self.data = []
         self.now = now
+        self.pipelines []
 
     def update(self, timing):
         '''Variable "timing" should be of shape {sample_size(str): list_subtask_times(list)}
@@ -69,7 +70,7 @@ class BarResult:
 
 # Calling functions.
 
-def _run_spfy(list_genomes, on=''):
+def _run_spfy(list_genomes, on='', r=None):
     '''POSTs to Spfy's API.
     '''
     # Zip files if more than 1 genome.
@@ -105,6 +106,8 @@ def _run_spfy(list_genomes, on=''):
     r = requests.post(API + 'upload', data=data, files=files)
     try:
         pipeline_id = r.json().keys()[0]
+        if r:
+            r.pipelines.append(pipeline_id)
     except:
         raise Exception('Could not find pipeline_id from response {0}'.format(r.text))
     print("pipeline_id: {0}".format(pipeline_id))
@@ -144,7 +147,7 @@ def _timing(func, seeds):
     for list_genomes in seeds:
         on = '{0}/{1}'.format(len(list_genomes),len(seeds[-1]))
         print('\n{0} Spfy Batch with files: {1}\n'.format(on,list_genomes))
-        d = func(list_genomes, on)
+        d = func(list_genomes, on, r)
         r.update(d)
         raws.append(d)
     # Pickle file.
