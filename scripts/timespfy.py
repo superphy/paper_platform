@@ -70,7 +70,7 @@ class BarResult:
 
 # Calling functions.
 
-def _run_spfy(list_genomes, on='', r=None):
+def _run_spfy(list_genomes, on='', resultcls=None):
     '''POSTs to Spfy's API.
     '''
     # Zip files if more than 1 genome.
@@ -106,8 +106,8 @@ def _run_spfy(list_genomes, on='', r=None):
     r = requests.post(API + 'upload', data=data, files=files)
     try:
         pipeline_id = r.json().keys()[0]
-        if r:
-            r.pipelines.append(pipeline_id)
+        if resultcls:
+            resultcls.pipelines.append(pipeline_id)
     except:
         raise Exception('Could not find pipeline_id from response {0}'.format(r.text))
     print("pipeline_id: {0}".format(pipeline_id))
