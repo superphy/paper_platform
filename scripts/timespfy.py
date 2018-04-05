@@ -70,7 +70,7 @@ class BarResult:
 
 # Calling functions.
 
-def _run_spfy(list_genomes, on='', resultcls=None):
+def _run_spfy(list_genomes, on='', resultcls=None, phylotyper=True):
     '''POSTs to Spfy's API.
     '''
     # Zip files if more than 1 genome.
@@ -94,9 +94,9 @@ def _run_spfy(list_genomes, on='', resultcls=None):
         'options.amr': True,
         'options.serotype': True,
         'options.vf': True,
-        'options.stx1': True,
-        'options.stx2': True,
-        'options.eae': True,
+        'options.stx1': phylotyper,
+        'options.stx2': phylotyper,
+        'options.eae': phylotyper,
         'options.groupresults': True,
         'options.bulk': False,
         'options.pan': False
@@ -140,14 +140,14 @@ def _bap(list_genomes, on=''):
     r = subprocess.check_call("""docker run -ti --rm -w /workdir -v $(pwd):/workdir    cgetools BAP --dbdir /usr/src/cgepipeline/test/databases  --services KmerFinder,ResFinder,VirulenceFinder  --fa /usr/src/cgepipeline/test/test.fa""", shell=True)
     return True
 
-def _timing(func, seeds):
+def _timing(func, seeds, phylotyper=True):
     now = _now()
     r = BarResult(seeds, now)
     raws = []
     for list_genomes in seeds:
         on = '{0}/{1}'.format(len(list_genomes),len(seeds[-1]))
         print('\n{0} Spfy Batch with files: {1}\n'.format(on,list_genomes))
-        d = func(list_genomes, on, r)
+        d = func(list_genomes, on, r, phylotyper)
         r.update(d)
         raws.append(d)
     # Pickle file.
@@ -171,20 +171,14 @@ def singlerun(n=100):
     pickle.dump(l, open(p, "wb" ))
     return l
 
-def main(spfy=True, bap=False, n=101):
+def main(spfy=True, bap=False, n=101, phylotyper=True):
     print('Starting timing run for {0} files\nFrom: {1}\nAgainst API: {2}'.format(n,GENOME_POOL,API))
     rn = range(0,n+1,10)
     rn[0]=1
-    r = {}
     # Create groups of seed genomes.
     seeds = [_seed_genomes(i) for i in rn]
     # Run timings
-    if spfy:
-        r_spfy = _timing(_run_spfy, seeds)
-        r.update({'r_spfy':r_spfy})
-    if bap:
-        r_bap = _timing(_bap, seeds)
-        r.update({'r_bap':r_bap})
+    r = _timing(_run_spfy, seeds, phylotyper)
     return r
 
 if __name__ == '__main__':
