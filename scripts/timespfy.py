@@ -61,7 +61,7 @@ class BarResult:
         self.subtasks = None
         self.data = []
         self.now = now
-        self.pipelines []
+        self.pipelines = []
 
     def update(self, timing):
         '''Variable "timing" should be of shape {sample_size(str): list_subtask_times(list)}
