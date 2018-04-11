@@ -109,7 +109,9 @@ def _run_spfy(list_genomes, on='', resultcls=None, phylotyper=True):
         if resultcls:
             resultcls.pipelines.append(pipeline_id)
     except:
-        raise Exception('Could not find pipeline_id from response {0}'.format(r.text))
+        print('Could not find pipeline_id from response {0}'.format(r.text))
+        sleep(20)
+        return {}
     print("pipeline_id: {0}".format(pipeline_id))
     started = datetime.now()
     # Sleep at least 4 second.
@@ -120,7 +122,7 @@ def _run_spfy(list_genomes, on='', resultcls=None, phylotyper=True):
             # The length we sleep doesn't matter, as timing is retrieved directly
             # from RQ.
             print "On {0}, sleeping. Elapsed: {1}".format(on, datetime.now()-started)
-            sleep(4)
+            sleep(20)
         # Request to timings for various sub-jobs.
         r = requests.get(API + 'timings/' + pipeline_id)
         try:
