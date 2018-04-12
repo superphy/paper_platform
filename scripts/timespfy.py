@@ -157,7 +157,7 @@ def _timing(func, seeds, phylotyper=True):
     pickle.dump(r, open('{0}_spfy_class_{1}.p'.format(now,len(seeds)), "wb" ))
     return r
 
-def singlerun(n=100):
+def singlerun(n=100, phylotyper=True):
     '''Times Spfy 1-by-1 for up to n genomes. Used to find average/module.
     '''
     l = []
@@ -167,7 +167,7 @@ def singlerun(n=100):
         on = '{0}/{1}'.format(index+1,len(seeds)
         # Run Spfy with a single genome.
         print('{0} Running Spfy with file: {1}'.format(on,genome))
-        r = _run_spfy(genome, on=on)
+        r = _run_spfy(genome, on=on, phylotyper=phylotyper)
         l.append({genome:r})
     # Pickle file.
     p = '{0}_singlerun_{1}.p'.format(now,n)
