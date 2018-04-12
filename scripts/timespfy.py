@@ -164,9 +164,10 @@ def singlerun(n=100):
     now = _now()
     seeds = _seed_genomes(n)
     for index, genome in enumerate(seeds):
+        on = '{0}/{1}'.format(index+1,len(seeds)
         # Run Spfy with a single genome.
-        print('{0}/{1} Running Spfy with file: {2}'.format(index+1,len(seeds),genome))
-        r = _run_spfy(genome)
+        print('{0} Running Spfy with file: {1}'.format(on,genome))
+        r = _run_spfy(genome, on=on)
         l.append({genome:r})
     # Pickle file.
     p = '{0}_singlerun_{1}.p'.format(now,n)
