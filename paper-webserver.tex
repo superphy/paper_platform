@@ -269,16 +269,30 @@ The resulting database has 17,820 nodes and 3,811,473 leaves, with 1,125,909,074
 Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are subjected to quality control, ensuring the submitted genomes are \textit{E. coli} sequences before subsequent analyses are run.
 \par
 
-
 % analysis run-time / throughput with different levels of parallelization
 % particularly for statistical tests
 % should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
+
+On comparison tasks, Spfy can retrieve and compare 1 million nodes or attributes in the graph database in aproximately 70 seconds \ref{fig:fishers_performance}. Performance scales linearly with the number of genomes involved in the comparison, or the number of target nodes retrieved per genome.
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{images/fishers_genomes.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{images/fishers_targets.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{images/fishers_overall.png}
+\endminipage
+\caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. Left: Runtimes as the number of genomes involved increases for a fixed (107) number of targets per genome. Center: Runtimes as the number of targets involved increased for a fixed (116) number of genomes per target. Right: Runtimes as the total number of targets retrieved increases; the total number of targets is calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, we see a linear increase in runtime as the number of targets or the number of genomes involved increases.}\label{fig:fishers_performance}
+\end{figure}
 
 \section{DISCUSSION}
 % Gist, we address the the "Limitations" of \cite{de2015trends}.
 % Namely:
 % 1. Custom formats.
-% 2. Use of legacy tech (SQL) means youu can't accomadate "Big-Data" goals.
+% 2. Use of legacy tech (SQL) means youu can't accomadate "Big-Data" goals.{}
 
 % drawbacks - big data
 Many bioinformatics software programs have been developed \textit{ad hoc}, with individual researchers and laboratories developing software specific to their environment \cite{de2015trends}.
