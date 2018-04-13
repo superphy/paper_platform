@@ -123,7 +123,15 @@ Here, we present a new platform merging Superphy's pre-computed results with a n
 % Describe available functions in spfy
 % para covering everything
 
-Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
+Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. An example of the VF results is given in \ref{fig-tables}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
+
+\begin{figure}[!htb]
+\begin{center}{}
+\includegraphics[width=\textwidth]{images/tables.png}
+\end{center}
+\caption{Detailed results for the virulence factor subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The result can also be shared using the URL with the embedded token.}
+\label{fig-tables}
+\end{figure}
 
 Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to the previously created ontologies GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}, where metadata including genotypes, biomarkers, host, source are stored.
 
@@ -190,9 +198,7 @@ For example, the addition of a new analysis module would typically require a new
 The front-end website is written as a single-page application.
 To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, built around a card-based design (Figure \ref{fig-results}).
 
-Both the task selection and result displays follow the same design pattern, where data storage is graph-based, but the results of analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files, as shown in Figure \ref{fig-tables}.
-
-\begin{figure}[!hb]
+\begin{figure}[!htb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/results.png}
 \end{center}
@@ -200,13 +206,7 @@ Both the task selection and result displays follow the same design pattern, wher
 \label{fig-results}
 \end{figure}
 
-\begin{figure}[!hb]
-\begin{center}
-\includegraphics[width=\textwidth]{images/tables.png}
-\end{center}
-\caption{Detailed results for the virulence factor subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The result can also be shared using the URL with the embedded token.}
-\label{fig-tables}
-\end{figure}
+Both the task selection and result displays follow the same design pattern, where data storage is graph-based, but the results of analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files, as shown in Figure \ref{fig-tables}.
 
 No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone with the same link.
 
