@@ -294,18 +294,25 @@ As shown in Figure \ref{fig:fishers_performance}, performance scales linearly wi
 \caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. Left: Runtimes as the number of genomes involved increases for a fixed (107) number of targets per genome. Center: Runtimes as the number of targets involved increased for a fixed (116) number of genomes per target. Right: Runtimes as the total number of targets retrieved increases; the total number of targets is calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, we see a linear increase in runtime as the number of targets or the number of genomes involved increases.}\label{fig:fishers_performance}
 \end{figure}
 
-On analysis tasks, Spfy runs all included modules in 130 seconds on average, per file \ref{fig:spfy_performance}.
-Spfy can also queue up batches of files for analysis, decreasing the average runtime to 54 seconds on average with a degree of parallelization.
-% TODO: add totals
+On analysis tasks, Spfy runs all included modules in 130 seconds on average, per file \ref{fig:spfy_performance_indivs}.
+Spfy can also queue up batches of files for analysis, decreasing the average runtime to an average of 54 seconds per file due to parallelization of analysis runs \ref{fig:spfy_performance_batches}.
+In total, its took 45 minutes to analyze 50 files and 89 minutes to analyze 100 files.
+
+\begin{figure}[!hb]
+\begin{center}
+\includegraphics[width=\textwidth]{images/spfy_indivs.png}
+\end{center}
+\caption{Runtimes of Spfy's analysis modules. 100 genome files were run one-by-one with the different colors representing the runtimes of the different analysis module; The blue line indicates the average actual runtime per file after accounting for parallelization.}\label{fig:spfy_performance_indivs}
+\end{figure}
 
 \begin{figure}[!htb]
 \minipage{0.5\textwidth}
-  \includegraphics[width=\linewidth]{images/spfy_indivs.png}
+  \includegraphics[width=\linewidth]{images/spfy_batches_totals.png}
 \endminipage\hfill
 \minipage{0.5\textwidth}%
   \includegraphics[width=\linewidth]{images/spfy_batches.png}
 \endminipage
-\caption{Runtimes of Spfy's analysis modules. Left: 100 genome files are ran one-by-one with different colors representing the runtimes of the analysis module; Blue indicates the total runtime and the line represents the average runtime per file. Right: batches of files are run of increasing size. As indicated by the line, the average runtime per genome in consistant when running more than one file. This is due to the degree of parallelization meeting the capacity of the host computer.}\label{fig:spfy_performance}
+\caption{Runtimes of Spfy's analysis modules for batches of files. Left: Total runtime for analyzing all files in the given batch. The blue line indicates the actual time to completion after accounting for parallelization; 50 files are analyzed in 45 minutes and 100 files in 89 minutes. Right: Average runtime per file in the batch. As indicated by the line, the average runtime per genome in consistant when running more than one file. This is due to the degree of parallelization reaching the capacity of the host computer.}\label{fig:spfy_performance_batches}
 \end{figure}
 
 \section{DISCUSSION}
