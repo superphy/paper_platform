@@ -187,6 +187,9 @@ The permanent storage of results is as a one-time cost, which avoids re-computat
 In a graph database, a search can begin at any node or attribute. This is in contrast to a SQL database, which requires a predefined schema, or a NoSQL database which treats data as documents with varying structure.
 For example, the addition of a new analysis module would typically require a new table definition in a SQL database, or the addition of a new document type in a NoSQL database. With a graph database, new nodes or attributes are added and then connected to existing data, removing the need for explicit joins or data conversions. Additionally, data can be added to Spfy in parts, and the database will infer the correct connections between the data.
 
+Spfy primarily uses Blazegraph \url{https://github.com/blazegraph/database} for storage along with MongoDB to cache a hash table for duplicate checking.
+The cache allows Spfy to more efficiently check for duplicate files in Blazegraph, than would be possible through an exaustive search of the graph structure.
+
 \subsection{Web design}
 % para
 % 1. goals: intuitive/familar, ease of use
@@ -273,8 +276,10 @@ Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} g
 % particularly for statistical tests
 % should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
 
-On comparison tasks, Spfy can retrieve and compare 1 million nodes or attributes in the graph database in aproximately 70 seconds \ref{fig:fishers_performance}.
-Performance scales linearly with the number of genomes involved in the comparison, or the number of target nodes retrieved per genome.
+Spfy is running on a virtual machine (VM) with 8 vCPUs emulating single-core Intel® Xeon® E3-series processors, and with 32 GB of RAM.
+The VM is running Linux with CentOS.
+On comparison tasks, Spfy can retrieve and compare 1 million nodes/attributes in the graph database in aproximately 70 seconds.
+As shown in Figure \ref{fig:fishers_performance}, performance scales linearly with the number of genomes involved in the comparison, or the number of target nodes retrieved per genome; 1.5 million nodes/attributes can be compared in aproximately 90 seconds, and 2 million nodes/attributes in aproximately 110 seconds.
 
 \begin{figure}[!htb]
 \minipage{0.32\textwidth}
@@ -291,6 +296,7 @@ Performance scales linearly with the number of genomes involved in the compariso
 
 On analysis tasks, Spfy runs all included modules in 130 seconds on average, per file \ref{fig:spfy_performance}.
 Spfy can also queue up batches of files for analysis, decreasing the average runtime to 54 seconds on average with a degree of parallelization.
+% TODO: add totals
 
 \begin{figure}[!htb]
 \minipage{0.5\textwidth}
