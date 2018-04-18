@@ -125,11 +125,13 @@ Here, we present a new platform merging Superphy's pre-computed results with a n
 
 Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. An example of the VF results is given in Figure \ref{fig-tables}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
 
+No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone with the same link.
+
 \begin{figure}[!htb]
 \begin{center}{}
 \includegraphics[width=\textwidth]{images/tables.png}
 \end{center}
-\caption{Detailed results for the virulence factor subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The result can also be shared using the URL with the embedded token.}
+\caption{Detailed results for the serotyping and virulence factor subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The genome file, GCA_001911825.1_ASM191182v1_genome.fna, was analyzed with the determined serotype associated with the file, and virulence factors associated with the contigouous DNA sequences they were found on. The Start/Stop positions on the contig., are provided along with the Percent Identity (Cutoff) used in the analysis.}
 \label{fig-tables}
 \end{figure}
 
@@ -145,7 +147,7 @@ Different types can also be joined into a group through logical connectives AND,
 \end{center}
 \caption{
 % This needs to be specific to the image we are showing eg. the O157 vs. O26 comparison. We mention the general comparison in the text, and this can be offered as a specific example of that.
-Genomes with the predicted subtype O157 are compared against the subtype O26. In this example, there are 903 O157 genomes and 291 O26 genomes which are compared for the presence of 129 AMR genes. Fisher's Exact Test is used for the comparison.}
+Genomes with the predicted subtype O157 are compared against the subtype O26. In this example, there are 903 O157 genomes and 291 O26 genomes which are compared for the presence of 129 AMR genes. Fisher's Exact Test is used for the comparison. Of a group A or B, Spfy reports the  number of genomes in that group with the particular Target, and the P-Value and Odds Ratio from Fisher's test.}
 \label{fig-groupings}
 \end{figure}
 
@@ -189,6 +191,7 @@ For example, the addition of a new analysis module would typically require a new
 
 Spfy primarily uses Blazegraph \url{https://github.com/blazegraph/database} for storage along with MongoDB to cache a hash table for duplicate checking.
 The cache allows Spfy to more efficiently check for duplicate files in Blazegraph than would be possible through a search of the graph structure.
+MongoDB is also used to support the 
 
 \subsection{Web design}
 % para
@@ -200,18 +203,15 @@ The cache allows Spfy to more efficiently check for duplicate files in Blazegrap
 
 The front-end website is written as a single-page application.
 To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, built around a card-based design (Figure \ref{fig-results}).
+Both the task selection and result displays follow the same design pattern, where data storage is graph-based, but the results of analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files.
 
 \begin{figure}[!htb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/results.png}
 \end{center}
-\caption{The results interface for submitted tasks. Cards represent individual tasks and the entire collection can be accessed by sharing the URL with the embedded token.}
+\caption{The results interface for submitted tasks. Cards represent individual tasks submitted by the user, such as checking the Database status, subtyping of single genomes, population comparisons, or subtyping of multiple genomes.}
 \label{fig-results}
 \end{figure}
-
-Both the task selection and result displays follow the same design pattern, where data storage is graph-based, but the results of analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files, as shown in Figure \ref{fig-tables}.
-
-No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone with the same link.
 
 \subsection{Service Virtualization}
 % para
@@ -246,7 +246,7 @@ Docker integration ensures that software dependencies, which are typically manua
 \begin{center}
 \includegraphics[width=\textwidth]{images/docker}
 \end{center}
-\caption{The Docker containers used in Spfy. Arrows represent the connections between different containers, and the entire platform can be recreated with a single command using its Docker-Compose definition.}
+\caption{The Docker containers used in Spfy. Arrows represent the connections between different containers, and the entire platform can be recreated with a single command using its Docker-Compose definition. Users access the platform using the ReactJS based website, which makes requests to the Flask API. Any requested analysis task is distributed to the Redis Task Queue and data files are stored in a Docker volume. MongoDB stores a hash table for efficient duplicate checking of results in Blazegraph.}
 \label{fig-docker}
 \end{figure}
 
