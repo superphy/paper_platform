@@ -123,7 +123,7 @@ Here, we present a new platform merging Superphy's pre-computed results with a n
 % Describe available functions in spfy
 % para covering everything
 
-Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. An example of the VF results is given in \ref{fig-tables}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
+Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. An example of the VF results is given in Figure \ref{fig-tables}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
 
 \begin{figure}[!htb]
 \begin{center}{}
@@ -137,7 +137,7 @@ Spfy handles all of the analyses tasks by dividing them into subtasks, which are
 
 By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological association studies. Any data-type or relation in the graph is a valid option for analysis. This means that genomes can be compared on the basis of the presence or absence of pan-genome regions, serotype, subtyping data, or provided metadata such as location or host-source. All results are displayed to users in real-time, usually within 2-3 minutes.
 For example, Spfy can determine if there's a statistically significant difference, using Fisher's exact test, in the presence of all known AMR genes in collected O157 \textit{E. coli} genomes vs. O26 as shown in Figure \ref{fig-groupings}.
-Different types can also be joined into a group through logical connectives AND, OR, Negation, and any data type is also a valid target. This approach can be used to compare any data regardless of source software.
+Different types can also be joined into a group through logical connectives AND, OR, or Negation. This approach can be used to compare any data regardless of source software.
 
 \begin{figure}[!hb]
 \begin{center}
@@ -188,7 +188,7 @@ In a graph database, a search can begin at any node or attribute. This is in con
 For example, the addition of a new analysis module would typically require a new table definition in a SQL database, or the addition of a new document type in a NoSQL database. With a graph database, new nodes or attributes are added and then connected to existing data, removing the need for explicit joins or data conversions. Additionally, data can be added to Spfy in parts, and the database will infer the correct connections between the data.
 
 Spfy primarily uses Blazegraph \url{https://github.com/blazegraph/database} for storage along with MongoDB to cache a hash table for duplicate checking.
-The cache allows Spfy to more efficiently check for duplicate files in Blazegraph, than would be possible through an exaustive search of the graph structure.
+The cache allows Spfy to more efficiently check for duplicate files in Blazegraph than would be possible through a search of the graph structure.
 
 \subsection{Web design}
 % para
@@ -277,7 +277,7 @@ Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} g
 % should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
 
 Spfy is running on a virtual machine (VM) with 8 vCPUs emulating single-core Intel® Xeon® E3-series processors, and with 32 GB of RAM.
-The VM is running Linux with CentOS.
+The VM is running CentOS version 7.3, with Docker version 17.06.1-ce and Docker-Compose version 1.12.0.
 On comparison tasks, Spfy can retrieve and compare 1 million nodes/attributes in the graph database in aproximately 70 seconds.
 As shown in Figure \ref{fig:fishers_performance}, performance scales linearly with the number of genomes involved in the comparison, or the number of target nodes retrieved per genome; 1.5 million nodes/attributes can be compared in aproximately 90 seconds, and 2 million nodes/attributes in aproximately 110 seconds.
 
@@ -294,9 +294,9 @@ As shown in Figure \ref{fig:fishers_performance}, performance scales linearly wi
 \caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. Left: Runtimes as the number of genomes involved increases for a fixed (107) number of targets per genome. Center: Runtimes as the number of targets involved increased for a fixed (116) number of genomes per target. Right: Runtimes as the total number of targets retrieved increases; the total number of targets is calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, we see a linear increase in runtime as the number of targets or the number of genomes involved increases.}\label{fig:fishers_performance}
 \end{figure}
 
-On analysis tasks, Spfy runs all included modules in 130 seconds on average, per file \ref{fig:spfy_performance_indivs}.
-Spfy can also queue up batches of files for analysis, decreasing the average runtime to an average of 54 seconds per file due to parallelization of analysis runs \ref{fig:spfy_performance_batches}.
-In total, its took 45 minutes to analyze 50 files and 89 minutes to analyze 100 files.
+On analysis tasks, Spfy runs all included modules in an average of 130 seconds per genome, as shown in Figure \ref{fig:spfy_performance_indivs}.
+Spfy can also queue batches of genomes for analysis, decreasing the average runtime to an average of 54 seconds per file due to parallelization of analysis runs \ref{fig:spfy_performance_batches}.
+In total, the platform analyzed 50 genomes in 45 minutes, and 100 genomes in 89 minutes.
 
 \begin{figure}[!hb]
 \begin{center}
@@ -356,7 +356,8 @@ Spfy is similar to these technologies in that it automates workflows for users a
 % If we mention speed comparisons, we need to have actual data supporting them
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
 After accounting for assembly services, BAP reported \cite{thomsen2016bacterial} an average runtime of 8-9 minutes per genome over 476 runs which is in the same scale as Spfy's average of over 2 minutes.
-ResFinder, which is similar to the RGI program used by Spfy, took an average of 3-4 minutes whereas RGI took an average of 1 minute 30 seconds.
+Note that the two platforms are now directly comparable, due to the differences in analysis tasks invovled.
+In similar tasks such as AMR determination, the ResFinder program included in BAP took an average of 3-4 minutes \cite{thomsen2016bacterial} and is similar to the RGI program included in Spfy, which took an average of 1 minute 30 seconds.
 
 However, unlike these workflow managers, Spfy is designed to help solve the needless re-computation of analyses by storing results in a graph database for downstream comparative studies \ref{db_comparison}. This allows Spfy to perform population-wide analyses, regardless of the individual software used to generate the results for a given genome.
 
