@@ -24,7 +24,7 @@
 
 \author[1]{Kevin K Le\thanks{kevin.le@canada.ca}}
 \author[1]{Matthew D Whiteside}
-\author[1]{James Hopkins}
+\author[1]{James E Hopkins}
 \author[1]{Victor PJ Gannon}
 \author[1]{Chad R Laing\thanks{chad.laing@canada.ca}}
 \affil[1]{National Microbiology Laboratory at Lethbridge, Public Health Agency of Canada, Twp Rd 9-1, Lethbridge, AB, T1J 3Z4, Canada}
@@ -176,12 +176,11 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % para: the semantic web
 Semantic web technologies describe the relationships between data, and have been proposed as an open standard for sharing public information \cite{berners2001semantic}, while graph databases are a flexible means of storing this information \cite{horrocks2005semantic}. Biological data can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies. This system is flexible and allows novel data to be incorporated into the existing graph.
 
-% This is still true. The text needs to be larger: --> The text in this figure is too small to read and seems blurry. It should be enlarged.
 \begin{figure}[!hb]
 \begin{center}
-\includegraphics[width=\textwidth]{images/ontology_r3}
+\includegraphics[width=\textwidth]{images/ontology_r6}
 \end{center}
-\caption{Structure of the Spfy graph database. Brackets highlight the source of different data points and the software it was generated from. Data are added in as the analysis modules complete, at varying times, and the overall connections are inferred by the database. Non-bracketed sections are sourced from the uploaded genome files or user-supplied metadata.}
+\caption{Structure of the Spfy graph database. Brackets highlight the source of different data points and the software it was generated from. Data are added in as the analysis modules complete, at varying times, and the overall connections are inferred by the database. Non-bracketed sections are sourced from the uploaded genome files or user-supplied metadata. Figure was generated using \url{http://www.visualdataweb.de/webvowl/}.}
 \label{fig-ontology}
 \end{figure}
 
@@ -284,7 +283,7 @@ As shown in Figure \ref{fig:fishers_performance}, performance scales linearly wi
 \minipage{0.32\textwidth}%
   \includegraphics[width=\linewidth]{images/fishers_overall.png}
 \endminipage
-\caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. Left: Runtimes as the number of genomes increased for a fixed (107) number of targets per genome. Center: Runtimes as the number of targets increased for a fixed (116) number of genomes per target. Right: Runtimes as the total number of targets retrieved increased; the total number of targets was calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, a linear increase in runtime was observered as the number of targets or genomes increased.}\label{fig:fishers_performance}
+\caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. A: Runtimes as the number of genomes increased for a fixed (107) number of targets per genome. B: Runtimes as the number of targets increased for a fixed (116) number of genomes per target. C: Overall runtimes as the total number of targets retrieved increased; the total number of targets was calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, a linear increase in runtime was observered as the number of targets or genomes increased.}\label{fig:fishers_performance}
 \end{figure}
 
 On analysis tasks, Spfy runs all included analyses modules in an average of 130 seconds per genome.
@@ -292,10 +291,12 @@ Spfy can also queue batches of genomes for analysis, decreasing the average runt
 In total, the platform analyzed 50 genomes in 45 minutes, and 100 genomes in 89 minutes.
 
 \begin{figure}[!htb]
+\begin{center}
 \minipage{0.5\textwidth}%
   \includegraphics[width=\linewidth]{images/spfy_batches_totals.png}
 \endminipage
 \caption{Total runtimes of Spfy's analysis modules for batches of files. The blue line indicates the actual time to completion after accounting for parallelization; 50 files are analyzed in 45 minutes and 100 files in 89 minutes.}\label{fig:spfy_performance}
+\end{center}
 \end{figure}
 
 \section{DISCUSSION}
