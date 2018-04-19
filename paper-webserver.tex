@@ -37,13 +37,13 @@
 
 Public health laboratories are currently moving to whole-genome sequence (WGS) based analyses, and require the rapid prediction of standard reference laboratory methods based solely on genomic data. Currently, these predictive genomics tasks rely on workflows that chain together multiple programs for the requisite analyses. While useful, these systems do not store the analyses in a genome-centric way, meaning the same analyses are often re-computed for the same genomes.
 
-To solve this problem, we created Spfy, which uses a graph database to store and retrieve results from computational workflows, and link data to individual genomes using standardized ontologies.
+To solve this problem, we created Spfy, a platform that rapidly perform the common reference lab tests, uses a graph database to store and retrieve the results from the computational workflows, and links data to individual genomes using standardized ontologies.
 
-The Spfy platform facilitates rapid phenotype identification, as well as the efficient storage and downstream comparative analysis of tens of thousands of genome sequences. Though generally applicable to bacterial genome sequences, Spfy currently contains 10,243 \textit{Escherichia coli} genomes, for which \textit{in-silico} serotype and Shiga-toxin subtype, as well as the presence of known virulence factors and antimicrobial resistance determinants have been computed. Additionally, the presence / absence of then entire \textit{E. coli} pan-genome was computed and linked to each genome.
+The Spfy platform facilitates rapid phenotype identification, as well as the efficient storage and downstream comparative analysis of tens of thousands of genome sequences. Though generally applicable to bacterial genome sequences, Spfy currently contains 10,243 \textit{Escherichia coli} genomes, for which \textit{in-silico} serotype and Shiga-toxin subtype, as well as the presence of known virulence factors and antimicrobial resistance determinants have been computed. Additionally, the presence / absence of the entire \textit{E. coli} pan-genome was computed and linked to each genome.
 
-Owing to its vast database of pre-computed results, and the ability to easily incorporate user data, Spfy facilitates hypothesis testing in fields ranging from population genomics to epidemiology, while mitigating the re-computation of analyses.
+Owing to its database of diverse pre-computed results, and the ability to easily incorporate user data, Spfy facilitates hypothesis testing in fields ranging from population genomics to epidemiology, while mitigating the re-computation of analyses.
 
-The graph approach of Spfy is flexible, and can accommodate new analysis software modules as they are developed, easily linking new results to those already stored. Spfy provides a database and analyses approach for \textit{E. coli} that is able to match the rapid accumulation of WGS in public databases.
+The graph approach of Spfy is flexible, and can accommodate new analysis software modules as they are developed, easily linking new results to those already stored. Spfy provides a database and analyses approach for \textit{E. coli} that is able to match the rapid accumulation of WGS data in public databases.
 \par
 
 Database URL: \url{https://lfz.corefacility.ca/superphy/spfy/}.
@@ -73,11 +73,13 @@ Database URL: \url{https://lfz.corefacility.ca/superphy/spfy/}.
 Whole genome sequencing (WGS) can provide the entire genetic content of an organism. This unparalleled resolution and sensitivity has recently transformed public-health surveillance and outbreak response \cite{ronholm2016navigating,lytsy2017time}. Additionally, the identification of novel disease mechanisms \cite{wang2014whole,yuen2015whole}, and rapid clinical diagnoses and reference lab tests are now possible. \cite{willig2015whole,dewey2014clinical}.
 
 % 2. Big Problem: but tools are for individual analysis
-The rapid characterization based on WGS relies on the outputs from multiple software programs that are targeted for specific applications. Examples include the identification of known antimicrobial resistance (AMR) genes, through software such as the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive}, \cite{kleinheinz2014applying}, \cite{gupta2014arg}, and ARIBA \cite{hunt2017ariba}; or the identification of known virulence factor genes (VF) through software such as VirulenceFinder \cite{kleinheinz2014applying}, SRST2 \cite{inouye2014srst2}, and GeneSippr \cite{lambert2015genesippr}. For clinical diagnoses and comparisons, individual species can be first divided into subtypes with complementing AMR and VF results. Software methods for subtyping rely on pre-selected intraspecies genes or genomic regions, and are targeted through software such as Phylotyper \cite{whiteside2017phylotyper}, SerotypeFinder \cite{joensen2015rapid}, the EcOH dataset applied through SRST2 \cite{ingle2016silico}, and V-Typer \cite{carrillo2016comparative}. These methods represent \textit{in-silico} analogues of traditional wet-lab tests, which allows new WGS results to be viewed in the context of historical tests, and greatly expedites the analyses of newly sequenced genomes.
+The rapid characterization based on WGS relies on the outputs from multiple software programs that are targeted for specific applications. Examples include the identification of known antimicrobial resistance (AMR) genes, through software such as the Resistance Gene Identifier (RGI) \cite{mcarthur2013comprehensive}, ResFinder \cite{kleinheinz2014applying}, ARG-ANNOT \cite{gupta2014arg}, and ARIBA \cite{hunt2017ariba}; or the identification of known virulence factor genes (VF) through software such as VirulenceFinder \cite{kleinheinz2014applying}, SRST2 \cite{inouye2014srst2}, and GeneSippr \cite{lambert2015genesippr}. 
+
+For subtyping in clinical diagnoses and reference lab environments, software relies on pre-selected intraspecies genes or genomic regions, which are targeted through software such as Phylotyper \cite{whiteside2017phylotyper}, SerotypeFinder \cite{joensen2015rapid}, the EcOH dataset applied through SRST2 \cite{ingle2016silico}, and V-Typer \cite{carrillo2016comparative}. These methods represent \textit{in-silico} analogues of traditional wet-lab tests, which allow new whole-genome sequences to be viewed in the context of historical tests without the need for the time and labor of the traditional wet-lab tests.
 
 Comprehensive platforms that combine individual analyses programs into a cohesive whole also exist. These include free platforms such as the Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial}, and the Pathosystems Resource Integration Center (PATRIC) \cite{wattam2016improvements}. Commercial applications, such as Bionumerics, which is used by PulseNet International for the analyses of WGS data in outbreak situations also exist, and offer support as well as accredited, standardized tests \cite{swaminathan2001pulsenet}. These platforms are designed to be applied to individual projects.
 
-Many of the analyses that are currently used in the characterization and study of bacterial genomes are broadly useful, and therefore the same analyses are often computed multiple times for the same genome. An effective method to mitigate this re-computation, is to make the storage and retrieval of results part of the analyses platform, and effectively linked to the genomes of interest through a standardized ontology. Such measures help ensure the rapid response times required for public health applications, and allow results to be integrated and progressively updated as new data becomes available.
+Many of the analyses used in the characterization and study of bacterial genomes are broadly useful, and therefore they are often computed multiple times for the same genome across different studies. An effective method to mitigate this re-computation, is to make the storage and retrieval of results part of the analyses platform, and effectively linked to the genomes of interest through a standardized ontology. Such measures help ensure the rapid response times required for public health applications, and allow results to be integrated and progressively updated as new data becomes available.
 
 % 4. Our specific problem, previous work
 We have previously developed Superphy \cite{whiteside2016superphy}, an online predictive genomics platform targeting \textit{E. coli}. Superphy integrates pre-computed results with domain-specific knowledge to provide real-time exploration of publicly available genomes. While this tool has been useful for the thousands of pre-computed genomes in its database, the current pace of genome sequencing requires real-time predictive genomic analyses of tens-, and soon hundreds-of-thousands of genomes, and the long term storage and referencing of these results, which the original SuperPhy platform was incapable of.
@@ -94,7 +96,7 @@ We have previously developed Superphy \cite{whiteside2016superphy}, an online pr
 % - etc.
 
 % 5. how we solved it
-Here, we present a new platform merging Superphy's pre-computed results with a novel data storage and processing architecture, which we call Spfy; Spfy integrates a graph database with real-time analyses to avoid recomputing identical results. Graph-based result storage also allows retrospective comparisons across stored results as more genomes are sequenced or populations change, and is flexible, accommodating new analysis modules as they are developed. The database is available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
+Here, we present a new platform merging the pre-computed results of SuperPhy, with a novel data storage and processing architecture, which we call Spfy; Spfy integrates a graph database with real-time analyses to avoid recomputing identical results. Additionally, graph-based result storage allows retrospective comparisons across stored results as more genomes are sequenced or populations change. Spfy is flexible, accommodating new analysis modules as they are developed. The database is available at \url{https://lfz.corefacility.ca/superphy/spfy/}.
 
 % {needs to be beefed up, in language a biologist / public health worker would care about}
 
@@ -123,13 +125,23 @@ Here, we present a new platform merging Superphy's pre-computed results with a n
 % Describe available functions in spfy
 % para covering everything
 
-Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
+Spfy provides rapid \textit{in-silico} versions of common reference laboratory tests for the analyses of \textit{E. coli}. It supports the following \textit{in-silico} subtyping options: serotyping, through both O- and H-antigen identification using ECTyper \url{https://github.com/phac-nml/ecoli_serotyping} as well as VF gene determination; Shiga-toxin 1 (Stx1), Shiga-toxin 2 (Stx2), and Intimin typing using Phylotyper \cite{whiteside2017phylotyper}; and AMR annotation using the resistance gene identifier from the comprehensive antibiotic resistance database \cite{mcarthur2013comprehensive}. An example of the VF results is given in Figure \ref{fig-tables}. Spfy also performs pan-genome analyses using Panseq \cite{laing2010pan}, with the entire pan-genome stored in the database and associated with source genomes.
 
-Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to the previously created ontologies GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}, where metadata including genotypes, biomarkers, host, source are stored.
+No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone with the same link.
+
+\begin{figure}[!htb]
+\begin{center}{}
+\includegraphics[width=\textwidth]{images/tables.png}
+\end{center}
+\caption{Detailed results for the serotyping and virulence factor subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The genome file, GCA\_001911825.1\_ASM191182v1\_genome.fna, was analyzed with the determined serotype associated with the file, and virulence factors associated with the contigouous DNA sequences they were found on. The Start/Stop positions on the contig., are provided along with the Percent Identity (Cutoff) used in the analysis.}
+\label{fig-tables}
+\end{figure}
+
+Spfy handles all of the analyses tasks by dividing them into subtasks, which are subsequently distributed across a built-in task queue. Results are converted into individual graphs and stored within a larger graph database according to the previously created ontologies GenEpiO \cite{griffiths2017context}, FALDO \cite{bolleman2016faldo}, and TypOn \cite{vaz2014typon}, which includes metadata for genotypes, location, biomarkers, host, and source, among others.
 
 By integrating task distribution with graph storage, Spfy enables large-scale analyses, such as epidemiological association studies. Any data-type or relation in the graph is a valid option for analysis. This means that genomes can be compared on the basis of the presence or absence of pan-genome regions, serotype, subtyping data, or provided metadata such as location or host-source. All results are displayed to users in real-time, usually within 2-3 minutes.
-For example, Spfy can determine if there's a statistically significant difference, using Fisher's exact test, in the presence of all known AMR genes in collected O157 \textit{E. coli} genomes vs. O26 as shown in Figure \ref{fig-groupings}.
-Different types can also be joined into a group through logical connectives AND, OR, Negation, and any data type is also a valid target. This approach can be used to compare any data regardless of source software.
+For example, Spfy can determine if a statistically significant difference exists, using Fisher's exact test, among any identified AMR genes, between \textit{E. coli} genomes of serotype O157, and genomes of serotype O26, as shown in Figure \ref{fig-groupings}.
+Different types can also be joined into a group through logical connectives AND, OR, or Negation. This approach can be used to compare any data regardless of source software.
 
 \begin{figure}[!hb]
 \begin{center}
@@ -137,13 +149,13 @@ Different types can also be joined into a group through logical connectives AND,
 \end{center}
 \caption{
 % This needs to be specific to the image we are showing eg. the O157 vs. O26 comparison. We mention the general comparison in the text, and this can be offered as a specific example of that.
-Genomes with the predicted subtype O157 are compared against the subtype O26. In this example, there are 903 O157 genomes and 291 O26 genomes which are compared for the presence of 129 AMR genes. Fisher's Exact Test is used for the comparison.}
+\textit{E. coli} genomes of serotype O157 (903) compared against genome of serotype O26 (291), for statistically significant differences in the carriage of 129 AMR genes. Fisher's Exact Test is used by Spfy for these comparisons.}
 \label{fig-groupings}
 \end{figure}
 
 \section{IMPLEMENTATION}
 % para: intro to the spfy stack
-The server-side code for Spfy, graph generation, and analysis modules, are developed in Python, with the front-end website developed using the React JavaScript library \url{https://facebook.github.io/react/}. When new data is added to the database, the following steps are taken:
+The server-side code for Spfy, graph generation, and analysis modules, were developed in Python, with the front-end website developed using the React JavaScript library \url{https://facebook.github.io/react/}. When new data is added to the database, the following steps are taken:
 
 i) The upload begins through the website, where user-defined analyses options are selected. The results of these analyses are immediately reported to the user, while all other non-selected analyses are subsequently completed in the background and stored in the database without interaction from the user. The public web service accepts uploads of up to 200 MB (approximately 50 \textit {E. coli} genomes uncompressed, or 120 genomes compressed) at a time, though an unlimited amount of data can be submitted to a local instance.
 
@@ -162,9 +174,9 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % 3. inferencing
 % 3 1/2. SPARQL queries
 % para: the semantic web
-Semantic web technologies describe the relationships between data, and have been proposed as an open standard for sharing public information \cite{berners2001semantic}, while graph databases are a flexible means of storing this this information \cite{horrocks2005semantic}. Biological data can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies. This system is flexible and allows novel data to be incorporated into the existing graph.
+Semantic web technologies describe the relationships between data, and have been proposed as an open standard for sharing public information \cite{berners2001semantic}, while graph databases are a flexible means of storing this information \cite{horrocks2005semantic}. Biological data can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies. This system is flexible and allows novel data to be incorporated into the existing graph.
 
-% The text in this figure is too small to read and seems blurry. It should be enlarged.
+% This is still true. The text needs to be larger: --> The text in this figure is too small to read and seems blurry. It should be enlarged.
 \begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/ontology}
@@ -179,6 +191,10 @@ The permanent storage of results is as a one-time cost, which avoids re-computat
 In a graph database, a search can begin at any node or attribute. This is in contrast to a SQL database, which requires a predefined schema, or a NoSQL database which treats data as documents with varying structure.
 For example, the addition of a new analysis module would typically require a new table definition in a SQL database, or the addition of a new document type in a NoSQL database. With a graph database, new nodes or attributes are added and then connected to existing data, removing the need for explicit joins or data conversions. Additionally, data can be added to Spfy in parts, and the database will infer the correct connections between the data.
 
+Spfy primarily uses Blazegraph \url{https://github.com/blazegraph/database} for storage along with MongoDB to cache a hash table for duplicate checking.
+The cache allows Spfy to more efficiently check for duplicate files in Blazegraph than would be possible through a search of the graph structure.
+MongoDB is also used to support the 
+
 \subsection{Web design}
 % para
 % 1. goals: intuitive/familar, ease of use
@@ -189,26 +205,15 @@ For example, the addition of a new analysis module would typically require a new
 
 The front-end website is written as a single-page application.
 To ensure a familiar user interface, we followed the Material Design specification \url{https://material.io/}, published by Google, built around a card-based design (Figure \ref{fig-results}).
+Both the task selection and result displays follow the same design pattern, where data storage is graph-based, but the results of analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files.
 
-Both the task selection and result displays follow the same design pattern, where data storage is graph-based, but the results of analysis modules are presented to users in a familiar tabular structure and available for download as .csv spreadsheet files, as shown in Figure \ref{fig-tables}.
-
-\begin{figure}[!hb]
+\begin{figure}[!htb]
 \begin{center}
 \includegraphics[width=\textwidth]{images/results.png}
 \end{center}
-\caption{The results interface for submitted tasks. Cards represent individual tasks and the entire collection can be accessed by sharing the URL with the embedded token.}
+\caption{The results interface for submitted tasks. Cards represent individual tasks submitted by the user, such as checking the Database status, subtyping of single genomes, population comparisons, or subtyping of multiple genomes.}
 \label{fig-results}
 \end{figure}
-
-\begin{figure}[!hb]
-\begin{center}
-\includegraphics[width=\textwidth]{images/tables.png}
-\end{center}
-\caption{Detailed results for the virulence factor subtyping task. While data storage in Spfy is graph-based, a familiar tabular structure is presented to users. The result can also be shared using the URL with the embedded token.}
-\label{fig-tables}
-\end{figure}
-
-No account creation is required to use the platform. A sharable token is automatically created for users upon entering the website, and is embedded into the website address. Users can share results by copying their URL, and files submitted from different computers using the same token will be visible to anyone with the same link.
 
 \subsection{Service Virtualization}
 % para
@@ -243,7 +248,7 @@ Docker integration ensures that software dependencies, which are typically manua
 \begin{center}
 \includegraphics[width=\textwidth]{images/docker}
 \end{center}
-\caption{The Docker containers used in Spfy. Arrows represent the connections between different containers, and the entire platform can be recreated with a single command using its Docker-Compose definition.}
+\caption{The Docker containers used in Spfy. Arrows represent the connections between different containers, and the entire platform can be recreated with a single command using its Docker-Compose definition. Users access the platform using the ReactJS based website, which makes requests to the Flask API. Any requested analysis task is distributed to the Redis Task Queue and data files are stored in a Docker volume. MongoDB stores a hash table for efficient duplicate checking of results in Blazegraph.}
 \label{fig-docker}
 \end{figure}
 
@@ -259,26 +264,73 @@ Spfy packages compute nodes as reproducible Docker containers, and allows the pl
 % 1. goals: why CI, testing is important
 % 2. how we've implemented it, integration with github
 
+% MW: I would remove this section. Its not that critical to anyone that uses Spfy and would be an individual
+% choice for developers that obtain the code
+
 Tests for functionality and backwards compatibility are run on TravisCI \url{https://travisci.io}, a continuous integration (CI) platform.
 The individual tests use PyTest \url{https://doc.pytest.org/}, and the current build status can be checked on GitHub at \url{https://travis-ci.org/superphy/backend}.
 TravisCI also builds the core Docker images for Spfy, and uploads them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
 
 \section{RESULTS}
-Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and the results for all included analysis modules. This included: serotyping (O-antigen, H-antigen), toxin sub-typing (Shiga-toxin 1, Shiga-toxin 2, and Intimin), the identification of VF and AMR determinants, and determination of the pan-genome content of \textit{E. coli}.
+Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and the results for all included analysis modules. These included: serotyping (O-antigen, H-antigen), toxin sub-typing (Shiga-toxin 1, Shiga-toxin 2, and Intimin), the identification of VF and AMR determinants, and determination of the pan-genome content of \textit{E. coli}.
 The resulting database has 17,820 nodes and 3,811,473 leaves, with 1,125,909,074 object properties.
 Spfy has been up since May 2017. The server accepts assembled \textit{E. coli} genomes with the \textit{.fasta} or \textit{.fna} extensions. Submissions are subjected to quality control, ensuring the submitted genomes are \textit{E. coli} sequences before subsequent analyses are run.
 \par
-
 
 % analysis run-time / throughput with different levels of parallelization
 % particularly for statistical tests
 % should do a 1 genome = X number VFs, Y number of genomes for Y*X retrieval/analysis
 
+Spfy is running on a virtual machine (VM) with 8 vCPUs emulating single-core Intel® Xeon® E3-series processors, and with 32 GB of RAM.
+The VM is running CentOS version 7.3, with Docker version 17.06.1-ce and Docker-Compose version 1.12.0.
+On comparison tasks, Spfy can retrieve and compare 1 million nodes/attributes in the graph database in approximately 70 seconds.
+As shown in Figure \ref{fig:fishers_performance}, performance scales linearly with the number of genomes involved in the comparison, or the number of target nodes retrieved per genome; 1.5 million nodes/attributes can be compared in approximately 90 seconds, and 2 million nodes/attributes in approximately 110 seconds.
+
+% The X and Y axes labels need to be slightly larger. Designate the panes a), b), and c) and then reference them in the caption. The caption should contain the information that the titles on each pane currently do.
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{images/fishers_genomes.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{images/fishers_targets.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{images/fishers_overall.png}
+\endminipage
+\caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. Left: Runtimes as the number of genomes increased for a fixed (107) number of targets per genome. Center: Runtimes as the number of targets increased for a fixed (116) number of genomes per target. Right: Runtimes as the total number of targets retrieved increased; the total number of targets was calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, a linear increase in runtime was observered as the number of targets or genomes increased.}\label{fig:fishers_performance}
+\end{figure}
+
+On analysis tasks, Spfy runs all included analyses modules in an average of 130 seconds per genome, as shown in Figure \ref{fig:spfy_performance_indivs}.
+Spfy can also queue batches of genomes for analysis, decreasing the average runtime to an average of 54 seconds per file due to parallelization of analysis runs \ref{fig:spfy_performance_batches}.
+In total, the platform analyzed 50 genomes in 45 minutes, and 100 genomes in 89 minutes.
+
+% MW I would move the next 2 figures to supplementary information to cut down on figures
+% Often there is a limit on the # of figs.
+
+\begin{figure}[!hb]
+\begin{center}
+\includegraphics[width=\textwidth]{images/spfy_indivs.png}
+\end{center}
+\caption{Runtimes of Spfy's analysis modules. 100 genomes were run individually, with each coloured dot representing the runtime of a separate analysis module. The blue line indicates the average actual runtime per file after accounting for parallelization.}\label{fig:spfy_performance_indivs}
+\end{figure}
+
+
+% Again, label panes as a) and b), then reference in the caption
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+  \includegraphics[width=\linewidth]{images/spfy_batches_totals.png}
+\endminipage\hfill
+\minipage{0.5\textwidth}%
+  \includegraphics[width=\linewidth]{images/spfy_batches.png}
+\endminipage
+\caption{Runtimes of Spfy's analysis modules for batches of files. Left: Total runtime for analyzing all files in the given batch. The blue line indicates the actual time to completion after accounting for parallelization; 50 files are analyzed in 45 minutes and 100 files in 89 minutes. Right: Average runtime per file in the batch. As indicated by the line, the average runtime per genome in consistent when running more than one file due to the parallelization of analyses.}\label{fig:spfy_performance_batches}
+\end{figure}
+
 \section{DISCUSSION}
 % Gist, we address the the "Limitations" of \cite{de2015trends}.
 % Namely:
 % 1. Custom formats.
-% 2. Use of legacy tech (SQL) means youu can't accomadate "Big-Data" goals.
+% 2. Use of legacy tech (SQL) means youu can't accomadate "Big-Data" goals.{}
 
 % drawbacks - big data
 Many bioinformatics software programs have been developed \textit{ad hoc}, with individual researchers and laboratories developing software specific to their environment \cite{de2015trends}.
@@ -290,7 +342,7 @@ The ability to integrate data from different source technologies, merge submissi
 One of the key goals in developing Spfy was to accommodate and store a variety of result formats, and then to make the data from these results retrievable and usable as inputs for downstream analyses, such as predictive biomarker discovery.
 
 % This has not been shown in this paper; it has only been stated. We should probably have a large-scale analysis for an example, with accompanying times etc.
-We have shown how a graph database can accommodate the results from a variety of bioinformatics programs, and how Spfy is performant for data retrieval on the results for multiple analyses among over 10,000 genomes, providing results from big-data comparisons in the same efficiency as old analyses on single files.
+We have shown how a graph database can accommodate the results from a variety of bioinformatics programs, and how Spfy is performant for data retrieval of the results from multiple analyses among over 10,000 genomes. Spfy provides results from big-data comparisons with the same efficiency as old analyses on single files.
 
 \subsection{Impact on Public Heath Efforts}
 
@@ -306,26 +358,27 @@ Spfy provides rapid and easy predictive genomic analyses of \textit{E. coli} gen
 
 
 % namely galaxy
-The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}. Galaxy aims to provide a reproducible, computational interface which is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire pipeline can be replicated and also extended as new tools are developed. The Galaxy workflow focuses on running an individual analysis pipeline. It does not include functionality to store and collate analysis results for large-scale comparative studies.
+The automated analyses of WGS is currently facilitated by existing scientific workflow technologies such as Galaxy \cite{goecks2010galaxy}. Galaxy aims to provide a reproducible, computational interface that is accessible to individuals without programming knowledge. Galaxy defines a formal schema for linking different analysis software together, so the entire pipeline can be replicated and also extended as new tools are developed. The Galaxy workflow focuses on running an individual analysis pipeline. It does not include functionality to store and collate analysis results for large-scale comparative studies.
 
 The Bacterium Analysis Pipeline (BAP) \cite{thomsen2016bacterial} provides an integrated analysis pipeline for bacterial WGS data as a web service. It provides an individual per-genome report of the determined species, multilocus sequence type, VF and AMR genes \cite{thomsen2016bacterial}.
 
 Spfy is similar to these technologies in that it automates workflows for users and uses task queues to distribute selected analyses.
 % re: Matt "2. When comparing to IRIDA, BAP etc., can mention some differences with Superphy, e.g. the storage of interim result data that allows downstream integrated analysis"
-
 % If we mention speed comparisons, we need to have actual data supporting them
 On a per file basis, Spfy performs at a similar speed to BAP on predictive genomics tasks, though Spfy does not provide genome assembly services.
-After accounting for assembly services, BAP reported \cite{thomsen2016bacterial} an average runtime of 8-9 minutes per genome over 476 runs.
-ResFinder, which is similar to the RGI program used by Spfy, took an average of 3-4 minutes.
-However, unlike these workflow managers, Spfy is designed to help solve the needless re-computation of analyses by storing results in a graph database for downstream comparative studies. This allows Spfy to perform population-wide analyses, regardless of the individual software used to generate the results for a given genome.
+After accounting for assembly services, BAP reported \cite{thomsen2016bacterial} an average runtime of 8-9 minutes per genome over 476 runs which is in the same scale as Spfy's average of over 2 minutes.
+Note, however, that the two platforms are not directly comparable, due to the differences in analysis tasks involved.
+In similar tasks such as AMR determination, the ResFinder program included in BAP took an average of 3-4 minutes \cite{thomsen2016bacterial} and is similar to the RGI program included in Spfy, which took an average of 1 minute 30 seconds.
+
+However, unlike these workflow managers, Spfy is designed to help solve the re-computation of analyses by storing results in a graph database for downstream comparative studies \ref{db_comparison}. This allows Spfy to, for example, perform population-wide analyses on varied data from multiple diverse individual software.
 
 \small \input{tables/comparison}
 
-PATRIC \cite{wattam2016improvements} and Spfy share the same goal of integrated analyses. PATRIC has support for comparing up to nine user-submitted genomes against a reference genome, based on gene annotations; the platform indexes a NoSQL document store to compare similar document types. Unlike PARTIC, Spfy provides the ability to perform statistical comparisons of any permutation of a population group based on the chosen data types, and Spfy's graph database has no limit on the number of genomes grouped for comparison.
+PATRIC \cite{wattam2016improvements} and Spfy share the same goal of integrated analyses. PATRIC has support for comparing up to nine user-submitted genomes against a reference genome, based on gene annotations; the platform indexes a NoSQL document store to compare similar document types. Unlike PARTIC, Spfy provides the ability to perform statistical comparisons of any permutation of a population group based on the chosen data types, and the graph database of Spfy has no limit on the number of genomes grouped for comparison.
 
 \section{CONCLUSIONS}
 
-The integrated approach taken in the creation of Spfy, where the storage and retrieval of results provides enormous benefits for the large-scale analyes of \textit{E. coli}. The developed analyses modules are also self-contained and be transferred to existing platforms such as Galaxy. Future work will focus on adding machine learning modules to improve genotype / phenotype predictions, and supporting bacterial species such as \textit{Salmonella}, and \textit{Campylobacter}. The source code for Spfy is hosted at \url{https://github.com/superphy/backend}, and is available for free under the open-source Apache 2.0 license. A developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
+The integrated approach taken in the creation of Spfy, where the analyses, storage, and retrieval of results is combined, provides enormous benefits for the large-scale analyses of \textit{E. coli}. The developed analyses modules are also self-contained and can be used in existing platforms such as Galaxy. Future work will focus on adding machine learning modules to improve genotype / phenotype predictions, and supporting bacterial species such as \textit{Salmonella}, and \textit{Campylobacter}. The source code for Spfy is hosted at \url{https://github.com/superphy/backend}, and is available for free under the open-source Apache 2.0 license. A developer guide is provided at \url{https://superphy.readthedocs.io/en/latest/}.
 
 \textit{Conflict of interest}. None declared.
 

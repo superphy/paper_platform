@@ -61,6 +61,7 @@ class BarResult:
         self.subtasks = None
         self.data = []
         self.now = now
+        self.pipelines = []
 
     def update(self, timing):
         '''Variable "timing" should be of shape {sample_size(str): list_subtask_times(list)}
@@ -69,7 +70,7 @@ class BarResult:
 
 # Calling functions.
 
-def _run_spfy(list_genomes, on=''):
+def _run_spfy(list_genomes, on='', resultcls=None, phylotyper=True):
     '''POSTs to Spfy's API.
     '''
     # Zip files if more than 1 genome.
@@ -93,9 +94,9 @@ def _run_spfy(list_genomes, on=''):
         'options.amr': True,
         'options.serotype': True,
         'options.vf': True,
-        'options.stx1': True,
-        'options.stx2': True,
-        'options.eae': True,
+        'options.stx1': phylotyper,
+        'options.stx2': phylotyper,
+        'options.eae': phylotyper,
         'options.groupresults': True,
         'options.bulk': False,
         'options.pan': False
@@ -105,8 +106,12 @@ def _run_spfy(list_genomes, on=''):
     r = requests.post(API + 'upload', data=data, files=files)
     try:
         pipeline_id = r.json().keys()[0]
+        if resultcls:
+            resultcls.pipelines.append(pipeline_id)
     except:
-        raise Exception('Could not find pipeline_id from response {0}'.format(r.text))
+        print('Could not find pipeline_id from response {0}'.format(r.text))
+        sleep(20)
+        return {}
     print("pipeline_id: {0}".format(pipeline_id))
     started = datetime.now()
     # Sleep at least 4 second.
@@ -117,10 +122,16 @@ def _run_spfy(list_genomes, on=''):
             # The length we sleep doesn't matter, as timing is retrieved directly
             # from RQ.
             print "On {0}, sleeping. Elapsed: {1}".format(on, datetime.now()-started)
-            sleep(4)
+            sleep(20)
         # Request to timings for various sub-jobs.
-        timings = requests.get(API + 'timings/' + pipeline_id).json()
-        print("timings: {0}".format(timings))
+        r = requests.get(API + 'timings/' + pipeline_id)
+        try:
+            timings = r.json()
+            print("timings: {0}".format(timings))
+        except:
+            m = "FATAL: timings got something weird when retrieving timings. Got: {0}".format(r)
+            print("\n{0}\n".format(m))
+            timings = {len(list_genomes):m}
         return timings
     except:
         # Case connection broke.
@@ -131,14 +142,14 @@ def _bap(list_genomes, on=''):
     r = subprocess.check_call("""docker run -ti --rm -w /workdir -v $(pwd):/workdir    cgetools BAP --dbdir /usr/src/cgepipeline/test/databases  --services KmerFinder,ResFinder,VirulenceFinder  --fa /usr/src/cgepipeline/test/test.fa""", shell=True)
     return True
 
-def _timing(func, seeds):
+def _timing(func, seeds, phylotyper=True):
     now = _now()
     r = BarResult(seeds, now)
     raws = []
     for list_genomes in seeds:
         on = '{0}/{1}'.format(len(list_genomes),len(seeds[-1]))
         print('\n{0} Spfy Batch with files: {1}\n'.format(on,list_genomes))
-        d = func(list_genomes, on)
+        d = func(list_genomes, on, r, phylotyper)
         r.update(d)
         raws.append(d)
     # Pickle file.
@@ -146,36 +157,31 @@ def _timing(func, seeds):
     pickle.dump(r, open('{0}_spfy_class_{1}.p'.format(now,len(seeds)), "wb" ))
     return r
 
-def singlerun(n=100):
+def singlerun(n=100, phylotyper=True):
     '''Times Spfy 1-by-1 for up to n genomes. Used to find average/module.
     '''
     l = []
     now = _now()
     seeds = _seed_genomes(n)
     for index, genome in enumerate(seeds):
+        on = '{0}/{1}'.format(index+1,len(seeds))
         # Run Spfy with a single genome.
-        print('{0}/{1} Running Spfy with file: {2}'.format(index+1,len(seeds),genome))
-        r = _run_spfy(genome)
+        print('{0} Running Spfy with file: {1}'.format(on,genome))
+        r = _run_spfy(genome, on=on, phylotyper=phylotyper)
         l.append({genome:r})
     # Pickle file.
     p = '{0}_singlerun_{1}.p'.format(now,n)
     pickle.dump(l, open(p, "wb" ))
     return l
 
-def main(spfy=True, bap=False, n=101):
+def main(spfy=True, bap=False, n=101, phylotyper=True):
     print('Starting timing run for {0} files\nFrom: {1}\nAgainst API: {2}'.format(n,GENOME_POOL,API))
     rn = range(0,n+1,10)
     rn[0]=1
-    r = {}
     # Create groups of seed genomes.
     seeds = [_seed_genomes(i) for i in rn]
     # Run timings
-    if spfy:
-        r_spfy = _timing(_run_spfy, seeds)
-        r.update({'r_spfy':r_spfy})
-    if bap:
-        r_bap = _timing(_bap, seeds)
-        r.update({'r_bap':r_bap})
+    r = _timing(_run_spfy, seeds, phylotyper)
     return r
 
 if __name__ == '__main__':

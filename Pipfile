@@ -12,6 +12,7 @@ jupyter = "*"
 ipykernel = "*"
 scipy = "*"
 pandas = "*"
+requests = "*"
 
 
 [dev-packages]
