@@ -20,11 +20,11 @@
 
 \begin{document}
 
-\title{Spfy: an integrated graph database for real-time prediction of Escherichia coli phenotypes and downstream comparative analyses}
+\title{Spfy: an integrated graph database for real-time prediction of bacterial phenotypes and downstream comparative analyses}
 
 \author[1]{Kevin K Le\thanks{kevin.le@canada.ca}}
 \author[1]{Matthew D Whiteside}
-\author[1]{James Hopkins}
+\author[1]{James E Hopkins}
 \author[1]{Victor PJ Gannon}
 \author[1]{Chad R Laing\thanks{chad.laing@canada.ca}}
 \affil[1]{National Microbiology Laboratory at Lethbridge, Public Health Agency of Canada, Twp Rd 9-1, Lethbridge, AB, T1J 3Z4, Canada}
@@ -37,7 +37,7 @@
 
 Public health laboratories are currently moving to whole-genome sequence (WGS) based analyses, and require the rapid prediction of standard reference laboratory methods based solely on genomic data. Currently, these predictive genomics tasks rely on workflows that chain together multiple programs for the requisite analyses. While useful, these systems do not store the analyses in a genome-centric way, meaning the same analyses are often re-computed for the same genomes.
 
-To solve this problem, we created Spfy, a platform that rapidly perform the common reference lab tests, uses a graph database to store and retrieve the results from the computational workflows, and links data to individual genomes using standardized ontologies.
+To solve this problem, we created Spfy, a platform that rapidly performs the common reference lab tests, uses a graph database to store and retrieve the results from the computational workflows, and links data to individual genomes using standardized ontologies.
 
 The Spfy platform facilitates rapid phenotype identification, as well as the efficient storage and downstream comparative analysis of tens of thousands of genome sequences. Though generally applicable to bacterial genome sequences, Spfy currently contains 10,243 \textit{Escherichia coli} genomes, for which \textit{in-silico} serotype and Shiga-toxin subtype, as well as the presence of known virulence factors and antimicrobial resistance determinants have been computed. Additionally, the presence / absence of the entire \textit{E. coli} pan-genome was computed and linked to each genome.
 
@@ -149,7 +149,7 @@ Different types can also be joined into a group through logical connectives AND,
 \end{center}
 \caption{
 % This needs to be specific to the image we are showing eg. the O157 vs. O26 comparison. We mention the general comparison in the text, and this can be offered as a specific example of that.
-\textit{E. coli} genomes of serotype O157 (903) compared against genome of serotype O26 (291), for statistically significant differences in the carriage of 129 AMR genes. Fisher's Exact Test is used by Spfy for these comparisons.}
+\textit{E. coli} genomes of serotype O157 (903 genomes) compared against genome of serotype O26 (291 genomes), for statistically significant differences in the carriage of 129 AMR genes. Fisher's Exact Test is used by Spfy for these comparisons.}
 \label{fig-groupings}
 \end{figure}
 
@@ -176,12 +176,11 @@ iv) Python functions parse the results and permanently store them in Blazegraph 
 % para: the semantic web
 Semantic web technologies describe the relationships between data, and have been proposed as an open standard for sharing public information \cite{berners2001semantic}, while graph databases are a flexible means of storing this information \cite{horrocks2005semantic}. Biological data can be a genome, contiguous DNA sequence, or gene, and these are linked together in a searchable graph structure using existing ontologies. This system is flexible and allows novel data to be incorporated into the existing graph.
 
-% This is still true. The text needs to be larger: --> The text in this figure is too small to read and seems blurry. It should be enlarged.
 \begin{figure}[!hb]
 \begin{center}
-\includegraphics[width=\textwidth]{images/ontology}
+\includegraphics[width=\textwidth]{images/ontology_r6}
 \end{center}
-\caption{Structure of the Spfy graph database. Brackets highlight the source of different data points and the software it was generated from. Data are added in as the analysis modules complete, at varying times, and the overall connections are inferred by the database. Non-bracketed sections are sourced from the uploaded genome files or user-supplied metadata.}
+\caption{Structure of the Spfy graph database. Brackets highlight the source of different data points and the software it was generated from. Data are added in as the analysis modules complete, at varying times, and the overall connections are inferred by the database. Non-bracketed sections are sourced from the uploaded genome files or user-supplied metadata. Figure was generated using \url{http://www.visualdataweb.de/webvowl/}.}
 \label{fig-ontology}
 \end{figure}
 
@@ -258,19 +257,6 @@ Docker containers are widely supported by cloud computing services: Amazon Web S
 % we may want to sign up for a free trial to give an example of this
 Spfy packages compute nodes as reproducible Docker containers, and allows the platform to easily scale to demand.
 
-\subsection{Continuous integration}
-% Keep this short
-% para
-% 1. goals: why CI, testing is important
-% 2. how we've implemented it, integration with github
-
-% MW: I would remove this section. Its not that critical to anyone that uses Spfy and would be an individual
-% choice for developers that obtain the code
-
-Tests for functionality and backwards compatibility are run on TravisCI \url{https://travisci.io}, a continuous integration (CI) platform.
-The individual tests use PyTest \url{https://doc.pytest.org/}, and the current build status can be checked on GitHub at \url{https://travis-ci.org/superphy/backend}.
-TravisCI also builds the core Docker images for Spfy, and uploads them to Docker Hub \url{https://hub.docker.com/u/superphy/}.
-
 \section{RESULTS}
 Spfy was tested with 10,243 public \textit{E. coli} assembled genomes from Enterobase, storing every sequence and the results for all included analysis modules. These included: serotyping (O-antigen, H-antigen), toxin sub-typing (Shiga-toxin 1, Shiga-toxin 2, and Intimin), the identification of VF and AMR determinants, and determination of the pan-genome content of \textit{E. coli}.
 The resulting database has 17,820 nodes and 3,811,473 leaves, with 1,125,909,074 object properties.
@@ -297,33 +283,20 @@ As shown in Figure \ref{fig:fishers_performance}, performance scales linearly wi
 \minipage{0.32\textwidth}%
   \includegraphics[width=\linewidth]{images/fishers_overall.png}
 \endminipage
-\caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. Left: Runtimes as the number of genomes increased for a fixed (107) number of targets per genome. Center: Runtimes as the number of targets increased for a fixed (116) number of genomes per target. Right: Runtimes as the total number of targets retrieved increased; the total number of targets was calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, a linear increase in runtime was observered as the number of targets or genomes increased.}\label{fig:fishers_performance}
+\caption{Runtimes of Fisher's Exact Test depending on the number of nodes/attributes involved in the comparison. A: Runtimes as the number of genomes increased for a fixed (107) number of targets per genome. B: Runtimes as the number of targets increased for a fixed (116) number of genomes per target. C: Overall runtimes as the total number of targets retrieved increased; the total number of targets was calculated as follows: (Number Genomes Group A + Number Genomes Group B) x Number Targets per Genome. In all cases, a linear increase in runtime was observered as the number of targets or genomes increased.}\label{fig:fishers_performance}
 \end{figure}
 
-On analysis tasks, Spfy runs all included analyses modules in an average of 130 seconds per genome, as shown in Figure \ref{fig:spfy_performance_indivs}.
-Spfy can also queue batches of genomes for analysis, decreasing the average runtime to an average of 54 seconds per file due to parallelization of analysis runs \ref{fig:spfy_performance_batches}.
+On analysis tasks, Spfy runs all included analyses modules in an average of 130 seconds per genome.
+Spfy can also queue batches of genomes for analysis, decreasing the average runtime to an average of 54 seconds per file due to parallelization of analysis runs \ref{fig:spfy_performance}.
 In total, the platform analyzed 50 genomes in 45 minutes, and 100 genomes in 89 minutes.
 
-% MW I would move the next 2 figures to supplementary information to cut down on figures
-% Often there is a limit on the # of figs.
-
-\begin{figure}[!hb]
-\begin{center}
-\includegraphics[width=\textwidth]{images/spfy_indivs.png}
-\end{center}
-\caption{Runtimes of Spfy's analysis modules. 100 genomes were run individually, with each coloured dot representing the runtime of a separate analysis module. The blue line indicates the average actual runtime per file after accounting for parallelization.}\label{fig:spfy_performance_indivs}
-\end{figure}
-
-
-% Again, label panes as a) and b), then reference in the caption
 \begin{figure}[!htb]
-\minipage{0.5\textwidth}
-  \includegraphics[width=\linewidth]{images/spfy_batches_totals.png}
-\endminipage\hfill
+\begin{center}
 \minipage{0.5\textwidth}%
-  \includegraphics[width=\linewidth]{images/spfy_batches.png}
+  \includegraphics[width=\linewidth]{images/spfy_batches_totals.png}
 \endminipage
-\caption{Runtimes of Spfy's analysis modules for batches of files. Left: Total runtime for analyzing all files in the given batch. The blue line indicates the actual time to completion after accounting for parallelization; 50 files are analyzed in 45 minutes and 100 files in 89 minutes. Right: Average runtime per file in the batch. As indicated by the line, the average runtime per genome in consistent when running more than one file due to the parallelization of analyses.}\label{fig:spfy_performance_batches}
+\caption{Total runtimes of Spfy's analysis modules for batches of files. The blue line indicates the actual time to completion after accounting for parallelization; 50 files are analyzed in 45 minutes and 100 files in 89 minutes.}\label{fig:spfy_performance}
+\end{center}
 \end{figure}
 
 \section{DISCUSSION}
@@ -392,5 +365,18 @@ The integrated approach taken in the creation of Spfy, where the analyses, stora
 \newpage
 
 \section{APPENDIX}
+
+\section{SUPPLEMENTARY INFORMATION}
+
+% Again, label panes as a) and b), then reference in the caption
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+  \includegraphics[width=\linewidth]{images/spfy_indivs.png}
+\endminipage\hfill
+\minipage{0.5\textwidth}%
+  \includegraphics[width=\linewidth]{images/spfy_batches.png}
+\endminipage
+\caption{Runtimes of Spfy's analysis modules. A: 100 genomes were run individually, with each coloured dot representing the runtime of a separate analysis module. The blue line indicates the average actual runtime per file after accounting for parallelization. B: Average runtime when multiple genomes are enqueued together. As indicated by the line, the average runtime per genome in consistent when running more than one file.}\label{fig:supp_spfy_performance}
+\end{figure}
 
 \end{document}
