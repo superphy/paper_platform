@@ -5,6 +5,7 @@ import cPickle as pickle
 
 from time import sleep
 from datetime import datetime
+from random import shuffle
 
 GENOME_POOL = os.getenv(
     'GENOME_POOL',
@@ -139,6 +140,12 @@ def time_gc(c=None):
     raws = []
     # Loop.
     targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
+
+    # Shuffle elements if a count is specified.
+    if c:
+        shuffle(attributes)
+        shuffle(targets)
+
     for target in targets:
         p = 0
         q = 1
