@@ -133,11 +133,10 @@ def _attr_gc():
     print(l)
     return l
 
-def time_gc():
+def time_gc(c=None):
     attributes = _attr_gc()
     r = Result()
     raws = []
-    now = _now()
     # Loop.
     targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
     for target in targets:
@@ -152,12 +151,20 @@ def time_gc():
                 # Also saves the raws for writing out.
                 raws.append(st + (attributes[p], attributes[q], target))
                 q += 1
+                # break condition if only running a certain number of comparisons.
+                if c:
+                    c -= 1
+                    if c == 0:
+                        return raws, r.as_np()
             p += 1
             q = p + 1
-    array = r.as_np()
+    return raws, r.as_np()
+
+def main(c=None):
+    now = _now()
+    raws, array = time_gc(c)
     pickle.dump(raws, open(now + '_raws.p', "wb" ))
     pickle.dump(array, open(now + '_array.p', "wb" ))
-    return array
 
 if __name__ == '__main__':
-    time_gc()
+    main()
