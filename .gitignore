@@ -1,3 +1,5 @@
+*.pyc
+
 .idea/
 
 ## Core latex/pdflatex auxiliary files:
