@@ -7,11 +7,6 @@ from time import sleep
 from datetime import datetime
 from random import shuffle
 
-GENOME_POOL = os.getenv(
-    'GENOME_POOL',
-    'data/'
-)
-
 ROOT = os.getenv(
     'SPFY_API',
     'http://localhost:8000/'
@@ -138,14 +133,13 @@ def time_gc(c=None):
     attributes = _attr_gc()
     r = Result()
     raws = []
-    # Loop.
     targets = ('https://www.github.com/superphy#AntimicrobialResistanceGene', 'https://www.github.com/superphy#VirulenceFactor')
 
     # Shuffle elements if a count is specified.
     if c:
         shuffle(attributes)
-        targets = tuple(shuffle(list(targets)))
 
+    # Loop.
     for target in targets:
         p = 0
         q = 1
