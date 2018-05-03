@@ -144,7 +144,7 @@ def time_gc(c=None):
     # Shuffle elements if a count is specified.
     if c:
         shuffle(attributes)
-        shuffle(targets)
+        targets = tuple(shuffle(list(targets)))
 
     for target in targets:
         p = 0
