@@ -1,4 +1,4 @@
-~$*.docx*
+doc/~$*.docx*
 
 *.pyc
 
