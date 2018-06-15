@@ -22,7 +22,7 @@
 
 \title{Spfy: an integrated graph database for real-time prediction of bacterial phenotypes and downstream comparative analyses}
 
-\author[1]{Kevin K Le\thanks{kevin.le@canada.ca}}
+\author[1]{Kevin K Le\thanks{kle009@uottawa.ca}}
 \author[1]{Matthew D Whiteside}
 \author[1]{James E Hopkins}
 \author[1]{Victor PJ Gannon}
@@ -192,7 +192,7 @@ For example, the addition of a new analysis module would typically require a new
 
 Spfy primarily uses Blazegraph \url{https://github.com/blazegraph/database} for storage along with MongoDB to cache a hash table for duplicate checking.
 The cache allows Spfy to more efficiently check for duplicate files in Blazegraph than would be possible through a search of the graph structure.
-MongoDB is also used to support the 
+MongoDB is also used to support the synchronized user sessions feature of the website.
 
 \subsection{Web design}
 % para
@@ -343,7 +343,7 @@ After accounting for assembly services, BAP reported \cite{thomsen2016bacterial}
 Note, however, that the two platforms are not directly comparable, due to the differences in analysis tasks involved.
 In similar tasks such as AMR determination, the ResFinder program included in BAP took an average of 3-4 minutes \cite{thomsen2016bacterial} and is similar to the RGI program included in Spfy, which took an average of 1 minute 30 seconds.
 
-However, unlike these workflow managers, Spfy is designed to help solve the re-computation of analyses by storing results in a graph database for downstream comparative studies \ref{db_comparison}. This allows Spfy to, for example, perform population-wide analyses on varied data from multiple diverse individual software.
+However, unlike these workflow managers, Spfy is designed to help solve the re-computation of analyses by storing results in a graph database for downstream comparative studies (Table \ref{db_comparison}). This allows Spfy to, for example, perform population-wide analyses on varied data from multiple diverse individual software.
 
 \small \input{tables/comparison}
 
@@ -355,28 +355,9 @@ The integrated approach taken in the creation of Spfy, where the analyses, stora
 
 \textit{Conflict of interest}. None declared.
 
-\section{ACKNOWLEDGEMENTS}
-
 \newpage
 
 \bibliographystyle{unsrt}
 \bibliography{paper-webserver}
-
-\newpage
-
-\section{APPENDIX}
-
-\section{SUPPLEMENTARY INFORMATION}
-
-% Again, label panes as a) and b), then reference in the caption
-\begin{figure}[!htb]
-\minipage{0.5\textwidth}
-  \includegraphics[width=\linewidth]{images/spfy_indivs.png}
-\endminipage\hfill
-\minipage{0.5\textwidth}%
-  \includegraphics[width=\linewidth]{images/spfy_batches.png}
-\endminipage
-\caption{Runtimes of Spfy's analysis modules. A: 100 genomes were run individually, with each coloured dot representing the runtime of a separate analysis module. The blue line indicates the average actual runtime per file after accounting for parallelization. B: Average runtime when multiple genomes are enqueued together. As indicated by the line, the average runtime per genome in consistent when running more than one file.}\label{fig:supp_spfy_performance}
-\end{figure}
 
 \end{document}

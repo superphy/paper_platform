@@ -1,3 +1,7 @@
+doc/~$*.docx*
+
+*.pyc
+
 .idea/
 
 ## Core latex/pdflatex auxiliary files:
