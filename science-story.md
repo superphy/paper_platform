@@ -15,8 +15,8 @@ Our most significant findings are the design of graph structures for future exte
 
 A few of the technical findings were that:
 
-1. Generic, directed edges allow results from new analyses modules to be integrated and all statistical comparisons to work without modification.
-2. Finding the largest or smallest values in a node of a given type is expensive and should be stored in a different datastore. For example, we index an incremental key ("spfyid1", "spfyid2", ...) outside of the graph database.
+1. Generic, directed edges allow results from new analyses modules to be integrated and all developed statistical comparisons to work without modification.
+2. Finding the largest or smallest value for nodes of a given type is expensive and should be stored in a different datastore. For example, we index an incremental key ("spfyid1", "spfyid2", ...) outside of the graph database.
 3. Performance-wise, we see a linear relation between the number of nodes retrieved and the analysis time. For example, 1.5 million nodes/attributes can be compared in approximately 90 seconds, and 2 million nodes/attributes in approximately 110 seconds.
 
 # What are the implications or impact of the research?
